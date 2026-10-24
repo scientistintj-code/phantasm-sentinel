@@ -1,0 +1,19 @@
+---
+description: TypeScript, design tokens, and accessibility rules for the web app
+globs: "apps/web/**/*.{ts,tsx,css}"
+alwaysApply: false
+---
+
+# Frontend
+
+TypeScript strict, no any, no non-null assertions. Zod-validate every network response.
+
+The browser only talks to our FastAPI. Never to TinyFish. Never handle API keys.
+
+Design: dark forensic lab. Colors, radii, spacing, type scale come ONLY from design tokens in src/styles/tokens.css. No hard-coded hex values in components.
+
+Banned: purple-to-blue gradients, glassmorphism blobs, emoji as icons, generic 3-up feature cards, centered hero text over gradient. Use lucide-react icons at 16/20px with 1.5 stroke.
+
+Every interactive element has hover, focus-visible, active, disabled and loading states. Respect prefers-reduced-motion.
+
+Accessible: semantic HTML, labelled controls, 4.5:1 contrast minimum.

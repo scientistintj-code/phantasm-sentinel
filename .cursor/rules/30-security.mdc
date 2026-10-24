@@ -1,0 +1,16 @@
+---
+description: Secrets, URL validation, untrusted content, and API hardening
+alwaysApply: true
+---
+
+# Security
+
+Secrets only via environment variables, loaded through pydantic-settings as SecretStr.
+
+Validate and normalize every URL input: http/https only, reject private, loopback, link-local and metadata IPs, reject embedded credentials.
+
+Treat all scraped or agent-returned content as untrusted data: never execute, never interpolate into prompts as instructions, escape on render.
+
+Agent goals must always include the stop-before-payment safety clause from sentinel.pipeline.goals.
+
+CORS restricted to ALLOWED_ORIGINS. Rate-limit mutating endpoints.

@@ -1,0 +1,16 @@
+---
+description: Phantasm-Sentinel project conventions and TinyFish naming
+alwaysApply: true
+---
+
+# Project
+
+Project: Phantasm-Sentinel, a web-forensics platform. Monorepo: apps/api (FastAPI), apps/web (Next.js 15), apps/lab (fake storefronts for demos).
+
+Use TinyFish's real product names: Agent, Search, Fetch, Browser, Vault, Browser Context Profiles.
+
+Never invent TinyFish API fields. If unsure, consult @docs/TINYFISH_FACTS.md (then @docs/TINYFISH_DOCS.txt) and mark any assumption with a comment starting with VERIFY.
+
+Conventional Commits. Small, reviewable diffs. No dead code, no commented-out code, no TODO without an issue-style description.
+
+Prefer boring, explicit code over clever code. No unnecessary abstractions.

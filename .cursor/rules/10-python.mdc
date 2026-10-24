@@ -1,0 +1,19 @@
+---
+description: Python typing, async, logging, and TinyFish boundary rules for the API
+globs: apps/api/**/*.py
+alwaysApply: false
+---
+
+# Python
+
+Python 3.11, fully typed, must pass mypy --strict and ruff.
+
+Pydantic v2 models for every boundary (HTTP, TinyFish, DB). Frozen models where possible.
+
+Async all the way. No blocking I/O in async paths.
+
+No bare except. Raise typed domain errors from sentinel.core.errors. Never swallow exceptions.
+
+structlog with bound context (case_id, run_id). Never log API keys, request headers, or full page bodies.
+
+Only the sentinel.tinyfish package may talk to TinyFish.
