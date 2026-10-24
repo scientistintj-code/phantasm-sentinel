@@ -1,0 +1,51 @@
+"""Typed domain errors raised by the sentinel service."""
+
+from typing import ClassVar
+
+
+class SentinelError(Exception):
+    """Base class for sentinel domain failures."""
+
+    code: ClassVar[str] = "sentinel_error"
+    status_code: ClassVar[int] = 500
+    title: ClassVar[str] = "Sentinel error"
+
+    def __init__(self, message: str) -> None:
+        self.message = message
+        super().__init__(message)
+
+
+class InvalidTargetError(SentinelError):
+    """The caller supplied a URL that sentinel will not fetch."""
+
+    code: ClassVar[str] = "invalid_target"
+    status_code: ClassVar[int] = 400
+    title: ClassVar[str] = "Invalid target"
+
+    def __init__(self, message: str, *, reason: str) -> None:
+        self.reason = reason
+        super().__init__(message)
+
+
+class KeyPoolExhaustedError(SentinelError):
+    """Every configured TinyFish API key is unavailable."""
+
+    code: ClassVar[str] = "key_pool_exhausted"
+    status_code: ClassVar[int] = 503
+    title: ClassVar[str] = "Key pool exhausted"
+
+
+class TinyFishError(SentinelError):
+    """A TinyFish API call failed."""
+
+    code: ClassVar[str] = "tinyfish_error"
+    status_code: ClassVar[int] = 502
+    title: ClassVar[str] = "TinyFish request failed"
+
+
+class EvidenceIntegrityError(SentinelError):
+    """Stored evidence failed an integrity check."""
+
+    code: ClassVar[str] = "evidence_integrity"
+    status_code: ClassVar[int] = 500
+    title: ClassVar[str] = "Evidence integrity failure"
