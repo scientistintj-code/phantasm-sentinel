@@ -13,6 +13,7 @@ import {
   shortHash,
   tamperChain,
 } from "@/lib/ledger";
+import { StateMessage } from "./StateMessage";
 
 declare global {
   interface ImportMeta {
@@ -196,7 +197,7 @@ export function LedgerTab({
       ) : null}
       <div className={`ledger-chain-wrap${verifying ? " is-scanning" : ""}`} aria-busy={verifying}>
         {verifying ? <div className="ledger-scan" aria-hidden="true" /> : null}
-        {loading ? <p className="muted">Loading ledger.</p> : null}
+        {loading ? <StateMessage kind="loading">Loading ledger.</StateMessage> : null}
         {!loading && display.length === 0 && error === null ? (
           <p className="muted">No ledger entries.</p>
         ) : null}

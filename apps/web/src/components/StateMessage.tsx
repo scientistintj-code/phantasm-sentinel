@@ -14,9 +14,17 @@ export function StateMessage({
   }
   if (kind === "loading") {
     return (
-      <p className="muted" role="status">
-        {children}
-      </p>
+      <>
+        <p className="sr-only" role="status">
+          {children}
+        </p>
+        <div className="skeleton" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+          <i />
+        </div>
+      </>
     );
   }
   return <p className="muted">{children}</p>;

@@ -3,7 +3,10 @@ import { isReplayQuery } from "@/lib/ledger";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "Cases" };
+export const metadata = {
+  title: "Cases",
+  openGraph: { title: "Cases · Phantasm Sentinel" },
+};
 
 export default async function CasesPage({
   searchParams,

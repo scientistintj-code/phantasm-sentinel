@@ -3,7 +3,10 @@ import { loadMethodology } from "@/lib/risk-source";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "Methodology" };
+export const metadata = {
+  title: "Methodology",
+  openGraph: { title: "Methodology · Phantasm Sentinel" },
+};
 
 export default async function MethodologyPage() {
   let text: string | null = null;

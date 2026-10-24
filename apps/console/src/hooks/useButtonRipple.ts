@@ -2,6 +2,9 @@ import { useEffect } from "react";
 
 export function useButtonRipple(): void {
   useEffect(() => {
+    const reduce =
+      typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
     const timers = new Set<number>();
     const onPointerDown = (event: PointerEvent) => {
       const target = event.target;

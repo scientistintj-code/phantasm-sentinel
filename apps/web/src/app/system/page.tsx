@@ -5,7 +5,10 @@ import packageJson from "../../../package.json";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "System" };
+export const metadata = {
+  title: "System",
+  openGraph: { title: "System · Phantasm Sentinel" },
+};
 
 type KeyResult = { ok: true; keys: KeyHealth[] } | { ok: false; detail: string };
 

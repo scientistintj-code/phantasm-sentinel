@@ -226,7 +226,14 @@
 }
 
 .node.dimmed {
-  opacity: 0.28;
+  opacity: 1;
+}
+.node.dimmed > circle,
+.node.dimmed foreignObject {
+  opacity: 0.55;
+}
+.node.dimmed text {
+  fill: #8ea3b8;
 }
 
 .node.neighbor > circle:first-child {
@@ -384,7 +391,7 @@
 .char-count {
   display: block;
   text-align: right;
-  color: #66798c;
+  color: #8ea3b8;
   font: 8px "DM Mono", monospace;
   margin-top: 4px;
 }

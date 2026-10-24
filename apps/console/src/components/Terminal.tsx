@@ -11,19 +11,56 @@ export interface TerminalLine {
   card?: "halt";
 }
 
+const ANNOUNCE_MS = 1000;
+
 export function Terminal({ lines, resetKey }: { lines: TerminalLine[]; resetKey: string }) {
   const bodyRef = useRef<HTMLDivElement>(null);
   const stick = useRef(true);
   const pendingRef = useRef(0);
   const previousLength = useRef(0);
+  const announcedRef = useRef(0);
+  const linesRef = useRef(lines);
+  const timerRef = useRef<number | null>(null);
   const [pending, setPending] = useState(0);
+  const [liveText, setLiveText] = useState("");
+  linesRef.current = lines;
 
   useEffect(() => {
     stick.current = true;
     pendingRef.current = 0;
     previousLength.current = 0;
+    announcedRef.current = 0;
     setPending(0);
+    setLiveText("");
+    if (timerRef.current !== null) {
+      window.clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
   }, [resetKey]);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current !== null) {
+        window.clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (lines.length <= announcedRef.current || timerRef.current !== null) return;
+    timerRef.current = window.setTimeout(() => {
+      timerRef.current = null;
+      const current = linesRef.current;
+      const fresh = current.slice(announcedRef.current);
+      announcedRef.current = current.length;
+      if (fresh.length === 0) return;
+      const latest = fresh[fresh.length - 1];
+      if (!latest) return;
+      const detail = `${latest.tag} ${latest.module ? `${latest.module}: ` : ""}${latest.message}`.replace(/\s+/g, " ").trim();
+      setLiveText(fresh.length === 1 ? detail : `${fresh.length} new events. ${detail}`);
+    }, ANNOUNCE_MS);
+  }, [lines, liveText]);
 
   useEffect(() => {
     const added = lines.length - previousLength.current;
@@ -60,6 +97,9 @@ export function Terminal({ lines, resetKey }: { lines: TerminalLine[]; resetKey:
 
   return (
     <div className="terminal">
+      <div className="sr-only" role="log" aria-live="polite" aria-atomic="true" aria-relevant="additions text">
+        {liveText}
+      </div>
       <div className="terminal-head">
         <span>
           <LuTerminal size={14} /> LIVE EXECUTION LOG

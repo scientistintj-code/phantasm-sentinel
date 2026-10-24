@@ -14,6 +14,7 @@ import {
   type DossierClient,
 } from "@/lib/dossier";
 import { hmacStatus } from "@/lib/ledger";
+import { StateMessage } from "./StateMessage";
 
 function severityClass(severity: TargetReport["evidence"][number]["severity"]): string {
   if (severity === "safe") return "badge badge-healthy";
@@ -159,7 +160,7 @@ export function Dossier({
           Download JSON bundle
         </button>
       </div>
-      {loading ? <p className="muted">Loading dossier.</p> : null}
+      {loading ? <StateMessage kind="loading">Loading dossier.</StateMessage> : null}
       {error ? (
         <p className="muted" role="alert">
           {error}

@@ -326,6 +326,9 @@ export function App() {
 
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <Topbar
         agentStatus={agent.text}
         agentClass={agent.className}
@@ -343,7 +346,7 @@ export function App() {
         reconnecting={state.connection === "reconnecting"}
         keyNotice={keyNotice}
       />
-      <main className={presentation ? "presentation" : ""}>
+      <main id="main" tabIndex={-1} className={presentation ? "presentation" : ""}>
         <div className="dashboard-grid">
           <div className={`left-stack side-panel${presentation ? " side-hidden" : ""}`}>
             <MissionControl

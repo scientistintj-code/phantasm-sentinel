@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { STREAM_ALLOW, STREAM_LOAD_TIMEOUT_MS, STREAM_SANDBOX, allowedStreamUrl } from "../streamFrame";
 
+function reduceMotion(): boolean {
+  return typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function StreamFrame({
   streamingUrl,
   origins,
@@ -59,7 +63,7 @@ export function StreamFrame({
 
   return (
     <>
-      {phase === "loading" ? <div className="scanline" /> : null}
+      {phase === "loading" && !reduceMotion() ? <div className="scanline" /> : null}
       <iframe
         key={allowed}
         title="Live agent stream"
