@@ -109,3 +109,239 @@
 .contact {
   --node: var(--muted);
 }
+
+.target-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.target-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  background: rgba(34, 211, 238, 0.06);
+  color: #d7e5f1;
+  padding: 3px 4px 3px 7px;
+  font: 8px "DM Mono", monospace;
+}
+
+.target-chip span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.target-chip button {
+  border: 0;
+  background: transparent;
+  color: #8495a8;
+  padding: 0 2px;
+  font-size: 11px;
+}
+
+.url-hint {
+  color: var(--red);
+  font: 8px "DM Mono", monospace;
+  margin: 6px 0 0;
+}
+
+.suggest-chip {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: #9aacbc;
+  padding: 7px 8px;
+  font: 8px/1.4 "DM Mono", monospace;
+}
+
+.suggest-chip b {
+  display: block;
+  color: var(--cyan);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  color: #66798c;
+  font: 8px "DM Mono", monospace;
+  margin-top: 4px;
+}
+
+.plain-input {
+  padding-left: 11px !important;
+}
+
+.auth-line {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 8px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 11px;
+  font-weight: 500;
+  color: #a8b7c7;
+}
+
+.auth-check {
+  width: 14px !important;
+  height: 14px;
+  margin-top: 1px;
+  padding: 0 !important;
+  flex: none;
+  accent-color: var(--cyan);
+}
+
+.speed-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.speed-row button {
+  flex: 1;
+  padding: 6px 4px;
+  font: 600 10px "DM Mono", monospace;
+}
+
+.speed-row button.is-selected {
+  color: var(--cyan);
+  border-color: rgba(34, 211, 238, 0.5);
+}
+
+.target-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  margin: 0 0 8px;
+}
+
+.target-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: #91a4b8;
+  padding: 6px 8px;
+  font: 8px "DM Mono", monospace;
+  white-space: nowrap;
+}
+
+.target-tab.is-selected {
+  color: #dffaff;
+  border-color: rgba(34, 211, 238, 0.45);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.status-dot-running {
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+}
+
+.status-dot-completed {
+  background: var(--green);
+}
+
+.status-dot-failed {
+  background: var(--red);
+}
+
+.status-dot-queued {
+  background: var(--muted);
+}
+
+.terminal {
+  position: relative;
+}
+
+.new-events {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  background: #0c1c26;
+  color: var(--cyan);
+  font: 600 9px "DM Mono", monospace;
+  padding: 4px 8px;
+  z-index: 2;
+}
+
+.key-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.key-square {
+  min-width: 36px;
+  padding: 3px 4px;
+  border: 1px solid var(--line);
+  font: 7px "DM Mono", monospace;
+  text-align: center;
+  color: #9aacbc;
+}
+
+.key-healthy {
+  color: var(--green);
+  border-color: rgba(37, 212, 146, 0.45);
+}
+
+.key-cooling {
+  color: var(--amber);
+  border-color: rgba(245, 185, 66, 0.5);
+}
+
+.key-exhausted {
+  color: var(--red);
+  border-color: rgba(251, 82, 98, 0.5);
+}
+
+.key-invalid {
+  color: var(--muted);
+  border-color: var(--line);
+}
+
+.module-skipped .module-name em {
+  color: var(--muted);
+}
+
+.timeline-track.timeline-real {
+  display: block;
+  position: relative;
+}
+
+.timeline-track.timeline-real > span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.timeline-track.timeline-real > span > i {
+  width: 100%;
+}
+
+.error-banner button {
+  margin-left: auto;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  padding: 2px 8px;
+  font: 600 10px "DM Mono", monospace;
+}

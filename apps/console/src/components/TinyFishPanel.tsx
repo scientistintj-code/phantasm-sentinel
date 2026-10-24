@@ -1,16 +1,10 @@
 import type { IconType } from "react-icons";
 import { LuBot, LuCheck, LuFileJson, LuFingerprint, LuKeyRound, LuRadio, LuSearch, LuWorkflow } from "react-icons/lu";
+import type { ModuleCardData } from "../mission";
+import { keyPoolLabel } from "../mission";
 import { Panel } from "./Panel";
 
-export interface ModuleCardModel {
-  id: "search" | "fetch" | "agent" | "vault" | "profiles";
-  status: "idle" | "active" | "done" | "skipped";
-  timing: string;
-  description: string;
-  result: string | null;
-  progress: number | null;
-  steps: Array<{ label: string; checked: boolean }> | null;
-}
+export type ModuleCardModel = ModuleCardData;
 
 const ICONS: Record<ModuleCardModel["id"], IconType> = {
   search: LuSearch,
@@ -21,31 +15,39 @@ const ICONS: Record<ModuleCardModel["id"], IconType> = {
 };
 
 const NAMES: Record<ModuleCardModel["id"], string> = {
-  search: "TinySearch",
-  fetch: "TinyFetch",
-  agent: "TinyAgent",
-  vault: "TinyVault",
-  profiles: "TinyProfiles",
+  search: "Search",
+  fetch: "Fetch",
+  agent: "Agent",
+  vault: "Vault",
+  profiles: "Browser Context Profiles",
 };
+
+export interface KeySquare {
+  label: string;
+  state: "healthy" | "cooling" | "exhausted" | "invalid";
+}
 
 export function TinyFishPanel({
   modules,
+  executed,
   elapsed,
-  sseConnected,
-  keyState,
+  connection,
+  keys,
 }: {
   modules: ModuleCardModel[];
+  executed: number;
   elapsed: string;
-  sseConnected: boolean;
-  keyState: string;
+  connection: string;
+  keys: KeySquare[];
 }) {
-  const done = modules.filter((module) => module.status === "done").length;
+  const streamLive = connection === "LIVE";
+  const timed = modules.some((module) => module.span !== null);
   return (
     <Panel title="POWERED BY TINYFISH" icon={LuWorkflow} className="tinyfish-panel">
-      <div className={`module-counter ${done === modules.length && modules.length > 0 ? "complete" : ""}`}>
+      <div className={`module-counter ${executed === 5 ? "complete" : ""}`}>
         <span>Modules executed</span>
         <strong>
-          {done}/5 {done === 5 ? "Complete" : null}
+          {executed}/5 {executed === 5 ? "Complete" : null}
         </strong>
       </div>
       <div className="module-list">
@@ -62,10 +64,10 @@ export function TinyFishPanel({
                   <em>{module.timing}</em>
                 </div>
                 <span>{module.description}</span>
-                {module.steps && module.status !== "idle" ? (
+                {module.steps && module.steps.length > 0 ? (
                   <div className="agent-steps">
                     {module.steps.map((step) => (
-                      <small className={step.checked ? "checked" : ""} key={step.label}>
+                      <small className={step.checked ? "checked" : ""} key={step.id}>
                         {step.checked ? <LuCheck size={8} /> : <i />}
                         {step.label}
                       </small>
@@ -94,31 +96,40 @@ export function TinyFishPanel({
           <span>Execution Timeline</span>
           <b>{elapsed}</b>
         </div>
-        <div className="timeline-track">
+        <div className={`timeline-track${timed ? " timeline-real" : ""}`}>
           {modules.map((module) => (
-            <span title={`${NAMES[module.id]} · ${module.timing}`} key={module.id}>
-              <i style={{ width: `${module.progress ?? (module.status === "done" ? 100 : 0)}%` }} />
+            <span
+              title={`${NAMES[module.id]} · ${module.timing}`}
+              key={module.id}
+              style={module.span ? { left: `${module.span.left}%`, width: `${module.span.width}%` } : undefined}
+            >
+              <i style={module.span ? undefined : { width: `${module.progress ?? 0}%` }} />
             </span>
           ))}
         </div>
       </div>
-      <div className={`tiny-badges ${sseConnected ? "is-active" : ""}`}>
+      <div className={`tiny-badges ${streamLive ? "is-active" : ""}`}>
         <span>
           <LuFingerprint size={11} /> Stealth Fingerprint: <b>READY</b>
         </span>
         <span>
-          <LuRadio size={11} /> SSE Stream /run-sse: <b>{sseConnected ? "CONNECTED" : "STANDBY"}</b>
+          <LuRadio size={11} /> SSE Stream /run-sse: <b>{connection}</b>
         </span>
       </div>
       <div className="api-row">
         <div>
-          <small>TinyFish API Key</small>
-          <code>················</code>
+          <small>Key pool</small>
+          <div className="key-pool">
+            {keys.map((key, index) => {
+              const label = keyPoolLabel(key.label, index);
+              return (
+                <span className={`key-square key-${key.state}`} key={`${label}-${index}`} title={key.state}>
+                  {label}
+                </span>
+              );
+            })}
+          </div>
         </div>
-        <span>
-          <i />
-          {keyState}
-        </span>
       </div>
     </Panel>
   );
