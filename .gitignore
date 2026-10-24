@@ -20,3 +20,7 @@ data/evidence/
 coverage/
 .coverage
 htmlcov/
+docs/TINYFISH_DOCS.txt
+docs/sse-sample.txt
+docs/TINYFISH_DOCS.txt
+docs/sse-sample.txt
