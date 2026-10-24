@@ -35,6 +35,14 @@ class KeyPoolExhaustedError(SentinelError):
     title: ClassVar[str] = "Key pool exhausted"
 
 
+class KeyLeaseError(SentinelError):
+    """A key lease was used after it was released."""
+
+    code: ClassVar[str] = "key_lease_closed"
+    status_code: ClassVar[int] = 500
+    title: ClassVar[str] = "Key lease closed"
+
+
 class TinyFishError(SentinelError):
     """A TinyFish API call failed."""
 
