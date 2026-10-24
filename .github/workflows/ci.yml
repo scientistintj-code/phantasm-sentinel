@@ -50,9 +50,6 @@ jobs:
 
   web:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/web
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -69,21 +66,34 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-          cache-dependency-path: apps/web/pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Typecheck core and console
+        run: pnpm --filter @phantasm/core --filter @phantasm/console typecheck
+
+      - name: Test core and console
+        run: pnpm --filter @phantasm/core --filter @phantasm/console test
+
+      - name: Build console
+        run: pnpm --filter @phantasm/console build
+
       - name: Lint
+        working-directory: apps/web
         run: pnpm lint
 
       - name: Typecheck
+        working-directory: apps/web
         run: pnpm typecheck
 
       - name: Test
+        working-directory: apps/web
         run: pnpm test
 
       - name: Build
+        working-directory: apps/web
         env:
           NEXT_PUBLIC_API_BASE_URL: http://127.0.0.1:8000
         run: pnpm build

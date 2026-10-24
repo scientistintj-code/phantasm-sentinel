@@ -1,0 +1,10 @@
+{
+  "name": "phantasm-sentinel",
+  "private": true,
+  "scripts": {
+    "typecheck": "pnpm --filter @phantasm/core --filter @phantasm/console --filter web typecheck",
+    "test": "pnpm --filter @phantasm/core --filter @phantasm/console --filter web test",
+    "lint": "pnpm --filter web lint",
+    "build:console": "pnpm --filter @phantasm/console build"
+  }
+}
