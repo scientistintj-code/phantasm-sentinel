@@ -5,6 +5,8 @@ import packageJson from "../../../package.json";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = { title: "System" };
+
 type KeyResult = { ok: true; keys: KeyHealth[] } | { ok: false; detail: string };
 
 async function loadKeys(): Promise<KeyResult> {

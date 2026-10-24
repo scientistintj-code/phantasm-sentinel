@@ -5,7 +5,10 @@ import { Topbar } from "@/components/Topbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Phantasm Sentinel",
+  title: {
+    default: "Phantasm Sentinel",
+    template: "%s · Phantasm Sentinel",
+  },
 };
 
 export default function RootLayout({

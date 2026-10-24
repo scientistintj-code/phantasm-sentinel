@@ -5,6 +5,8 @@ import { loadMethodology } from "@/lib/risk-source";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = { title: "Dossier" };
+
 export default async function DossierPage({
   params,
   searchParams,
