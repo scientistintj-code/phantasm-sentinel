@@ -500,6 +500,138 @@ textarea:disabled {
   }
 }
 
+.ledger-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ledger-head code {
+  font: 500 12px "DM Mono", monospace;
+  overflow-wrap: anywhere;
+  color: var(--cyan);
+}
+
+.ledger-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.btn-accent {
+  color: var(--cyan);
+  border-color: rgba(34, 211, 238, 0.55);
+  background: rgba(34, 211, 238, 0.08);
+}
+
+.ledger-seal {
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  letter-spacing: 1.1px;
+}
+
+.ledger-seal strong {
+  font-weight: 500;
+}
+
+.ledger-chain-wrap {
+  position: relative;
+  min-height: 48px;
+  overflow: hidden;
+}
+
+.ledger-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  animation: ledger-scan 1.2s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ledger-chain {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0 0;
+}
+
+.ledger-entry {
+  position: relative;
+  padding: 0 0 18px 28px;
+}
+
+.ledger-link {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.ledger-entry:first-child .ledger-link {
+  top: 14px;
+}
+
+.ledger-entry:last-child .ledger-link {
+  bottom: auto;
+  height: 14px;
+}
+
+.ledger-node {
+  position: absolute;
+  left: 3px;
+  top: 12px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--cyan);
+  background: var(--bg);
+}
+
+.ledger-link-broken {
+  background: var(--red);
+  box-shadow: 0 0 8px var(--red);
+}
+
+.ledger-entry-broken .ledger-node {
+  border-color: var(--red);
+  background: var(--red);
+}
+
+.ledger-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  font: 500 11px "DM Mono", monospace;
+}
+
+.ledger-seq {
+  color: var(--cyan);
+  font: 500 12px "DM Mono", monospace;
+}
+
+.ledger-hash {
+  font: 500 11px "DM Mono", monospace;
+  letter-spacing: 0.4px;
+}
+
+@keyframes ledger-scan {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
