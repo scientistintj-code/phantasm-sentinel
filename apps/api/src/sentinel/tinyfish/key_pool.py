@@ -16,10 +16,8 @@ from sentinel.core.errors import KeyLeaseError, KeyPoolExhaustedError
 
 log = structlog.get_logger(__name__)
 
-# VERIFY: Step 1.2 maps TinyFish HTTP statuses and error codes onto KeyOutcome.
-# This module does not inspect status codes. Candidates in docs/TINYFISH_FACTS.md
-# section 8: 402 INSUFFICIENT_CREDITS, 402 FREE_ALLOWANCE_EXHAUSTED, legacy 403
-# FORBIDDEN when credits or the subscription are gone, and HTTP 200 BILLING_REJECTED.
+# Status and error-code mapping lives in sentinel.tinyfish.client. This module
+# only records the KeyOutcome that the client reports.
 
 
 class KeyOutcome(StrEnum):
@@ -143,6 +141,43 @@ class KeyPool:
                 except TimeoutError:
                     timed_out = True
                 if timed_out:
+                    continue
+
+    async def acquire_pinned(self, label: str, *, timeout: float | None = None) -> KeyLease:  # noqa: ASYNC109
+        """Reserve the key that already owns a run.
+
+        Cooling-down and exhausted keys can still be pinned because the run
+        already exists. An unknown label or an INVALID key raises KeyLeaseError.
+        The lease counts toward in_flight and does not increment runs_served.
+        """
+        limit = self._acquire_timeout_seconds if timeout is None else timeout
+        if limit < 0:
+            raise ValueError("timeout must be >= 0")
+        deadline = time.monotonic() + limit
+        async with self._condition:
+            slot = next((item for item in self._slots if item.label == label), None)
+            if slot is None:
+                raise KeyLeaseError(f"unknown TinyFish key label {label}")
+            while True:
+                self._refresh(slot)
+                if slot.state is KeyState.INVALID:
+                    raise KeyLeaseError(f"{label} is invalid")
+                if slot.in_flight < self._concurrency_per_key:
+                    slot.in_flight += 1
+                    slot.last_used = time.monotonic()
+                    log.info(
+                        "key_acquired",
+                        key_label=slot.label,
+                        in_flight=slot.in_flight,
+                    )
+                    return KeyLease(self, slot)
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise KeyPoolExhaustedError("timed out waiting for a pinned TinyFish API key")
+                try:
+                    async with asyncio.timeout(remaining):
+                        await self._condition.wait()
+                except TimeoutError:
                     continue
 
     async def snapshot(self) -> list[KeySnapshot]:

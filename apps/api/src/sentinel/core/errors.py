@@ -51,6 +51,30 @@ class TinyFishError(SentinelError):
     title: ClassVar[str] = "TinyFish request failed"
 
 
+class TinyFishRunInterruptedError(TinyFishError):
+    """The stream failed after STARTED. Poll the run instead of starting another."""
+
+    code: ClassVar[str] = "tinyfish_run_interrupted"
+    status_code: ClassVar[int] = 502
+    title: ClassVar[str] = "TinyFish run interrupted"
+
+    def __init__(self, message: str, *, run_id: str) -> None:
+        self.run_id = run_id
+        super().__init__(message)
+
+
+class TinyFishDeadlineError(TinyFishError):
+    """The client deadline elapsed. A known run is cancelled before this is raised."""
+
+    code: ClassVar[str] = "tinyfish_deadline"
+    status_code: ClassVar[int] = 504
+    title: ClassVar[str] = "TinyFish deadline exceeded"
+
+    def __init__(self, message: str, *, run_id: str | None) -> None:
+        self.run_id = run_id
+        super().__init__(message)
+
+
 class EvidenceIntegrityError(SentinelError):
     """Stored evidence failed an integrity check."""
 

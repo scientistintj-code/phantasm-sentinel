@@ -197,6 +197,52 @@ async def test_acquire_times_out_when_no_key_is_free() -> None:
 
 
 @pytest.mark.asyncio
+async def test_acquire_pinned_reuses_cooling_and_exhausted_keys() -> None:
+    clock = _FakeClock()
+    pool = _pool("alpha-secret", "beta-secret", concurrency_per_key=1, clock=clock)
+    cooling = await pool.acquire()
+    await cooling.mark_rate_limited(30)
+    await cooling.release()
+
+    pinned = await pool.acquire_pinned("key-1")
+    try:
+        assert pinned.label == "key-1"
+        rows = await pool.snapshot()
+        assert rows[0].state is KeyState.COOLING_DOWN
+        assert rows[0].in_flight == 1
+        assert rows[0].runs_served == 1
+    finally:
+        await pinned.release()
+
+    exhausted = await pool.acquire()
+    assert exhausted.label == "key-2"
+    await exhausted.mark_exhausted()
+    await exhausted.release()
+    again = await pool.acquire_pinned("key-2")
+    try:
+        assert again.label == "key-2"
+    finally:
+        await again.release()
+
+    fresh = _pool("alpha-secret", concurrency_per_key=1)
+    invalid = await fresh.acquire()
+    await invalid.mark_invalid()
+    await invalid.release()
+    with pytest.raises(KeyLeaseError, match="invalid"):
+        await fresh.acquire_pinned("key-1")
+    with pytest.raises(KeyLeaseError, match="unknown"):
+        await fresh.acquire_pinned("missing")
+
+    busy = _pool("alpha-secret", concurrency_per_key=1)
+    held = await busy.acquire()
+    try:
+        with pytest.raises(KeyPoolExhaustedError, match="pinned"):
+            await busy.acquire_pinned("key-1", timeout=0.05)
+    finally:
+        await held.release()
+
+
+@pytest.mark.asyncio
 async def test_repr_str_and_snapshot_omit_secrets(capsys: pytest.CaptureFixture[str]) -> None:
     configure_logging()
     pool = _pool(_SECRET_ALPHA, _SECRET_BETA)
