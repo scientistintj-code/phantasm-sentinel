@@ -102,12 +102,224 @@
   opacity: 1;
 }
 
+.evidence > i.empty,
+.evidence > i.high {
+  background: var(--red);
+}
+
 .evidence > i.empty {
   background: var(--line);
 }
 
 .contact {
-  --node: var(--muted);
+  --node: #f5b942;
+}
+
+.legend i.contact {
+  box-shadow: 0 0 0 1.5px var(--cyan);
+}
+
+.node.contact > circle:first-child {
+  stroke: var(--cyan);
+}
+
+.risk-gauge {
+  transition: background 700ms ease-out;
+}
+
+.coverage-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.info-tip {
+  position: relative;
+  display: inline-flex;
+}
+
+.info-tip button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.info-tooltip,
+.chip-reason,
+.export-tooltip {
+  position: absolute;
+  z-index: 6;
+  width: max-content;
+  max-width: 220px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  background: #0a1018;
+  color: #c5d4e2;
+  font: 9px "DM Mono", monospace;
+  letter-spacing: 0.2px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.info-tooltip {
+  left: 0;
+  top: calc(100% + 6px);
+}
+
+.info-tip:hover .info-tooltip,
+.info-tip:focus-within .info-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.info-tooltip a {
+  color: var(--cyan);
+}
+
+.validation-chips .failed {
+  position: relative;
+}
+
+.chip-reason {
+  left: 0;
+  top: calc(100% + 4px);
+  white-space: normal;
+}
+
+.validation-chips .failed:hover .chip-reason,
+.validation-chips .failed:focus-within .chip-reason {
+  opacity: 1;
+}
+
+.export-slot {
+  position: relative;
+  display: block;
+}
+
+.export-tooltip {
+  left: 0;
+  bottom: calc(100% + 6px);
+}
+
+.export-slot:hover .export-tooltip,
+.export-slot:focus-within .export-tooltip {
+  opacity: 1;
+}
+
+.copy-toast {
+  position: fixed;
+  right: 22px;
+  bottom: 48px;
+  z-index: 40;
+  padding: 8px 12px;
+  border: 1px solid rgba(37, 212, 146, 0.45);
+  background: #0c1614;
+  color: var(--green);
+  font: 10px "DM Mono", monospace;
+}
+
+.node foreignObject {
+  pointer-events: none;
+}
+
+.node.dimmed {
+  opacity: 0.28;
+}
+
+.node.neighbor > circle:first-child {
+  stroke-width: 2.5;
+}
+
+.graph-canvas line.lit {
+  stroke: var(--cyan);
+  stroke-dasharray: none;
+}
+
+.cluster-hull {
+  fill: rgba(34, 211, 238, 0.06);
+  stroke: rgba(34, 211, 238, 0.38);
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.cluster-chip {
+  cursor: pointer;
+}
+
+.cluster-chip rect {
+  fill: rgba(7, 15, 25, 0.92);
+  stroke: rgba(34, 211, 238, 0.5);
+}
+
+.cluster-chip text {
+  fill: #d7e5f1;
+  font: 8px "DM Mono", monospace;
+}
+
+.cluster-chip:focus-visible rect {
+  stroke: var(--cyan);
+  stroke-width: 2;
+}
+
+.graph-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #c5d4e2;
+  font: 10px "DM Mono", monospace;
+}
+
+.graph-table caption {
+  text-align: left;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.graph-table th,
+.graph-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 6px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.graph-table button {
+  border: 0;
+  background: transparent;
+  color: var(--cyan);
+  padding: 0;
+  font: 10px "DM Mono", monospace;
+}
+
+.cluster-dialog {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 4;
+  max-width: min(420px, 80%);
+  padding: 10px 12px;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: rgba(7, 15, 25, 0.94);
+  color: #d7e5f1;
+}
+
+.cluster-dialog strong,
+.cluster-dialog p {
+  display: block;
+  margin: 0 0 8px;
+  font: 9px/1.45 "DM Mono", monospace;
+}
+
+.cluster-dialog button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--cyan);
+  padding: 4px 8px;
+  font: 9px "DM Mono", monospace;
 }
 
 .target-chips {

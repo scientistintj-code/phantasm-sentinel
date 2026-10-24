@@ -6,15 +6,17 @@ import {
   createApiClient,
   createInvestigationStore,
   logLines,
+  type Graph,
   type InvestigationStore,
   type KeyHealth,
   type ReplaySpeed,
   type SentinelEvent,
   type TargetReport,
   type TargetState,
+  type VerifyResult,
 } from "@phantasm/core";
 import { Footer } from "./components/Footer";
-import { ForensicPanel, type EvidenceItem, type ValidationChip, type ValidationState } from "./components/ForensicPanel";
+import { ForensicPanel } from "./components/ForensicPanel";
 import { GraphPanel } from "./components/GraphPanel";
 import { LiveAgentView } from "./components/LiveAgentView";
 import { MetricsRow } from "./components/MetricsRow";
@@ -23,6 +25,15 @@ import type { TerminalLine } from "./components/Terminal";
 import { TinyFishPanel } from "./components/TinyFishPanel";
 import { Topbar } from "./components/Topbar";
 import { labCaseText, labGraph, labKeys, reportForTarget } from "./fixtures";
+import {
+  PDF_DISABLED_REASON,
+  RISK_COLOR,
+  buildExportBundle,
+  dossierUrl,
+  download,
+  evidenceRows,
+  validationView,
+} from "./forensics";
 import { useButtonRipple } from "./hooks/useButtonRipple";
 import {
   FOCUS_CAP,
@@ -52,18 +63,6 @@ const MODULE_LABEL: Record<string, string> = {
   infra: "Infra",
 };
 
-const EVIDENCE_LABELS = [
-  "Merchant ID",
-  "Gateway",
-  "Payment Endpoint",
-  "Host IP",
-  "Domain Age",
-  "SSL Issuer",
-  "Suspicious Scripts",
-  "Redirect Chain",
-] as const;
-
-const RISK_COLOR = { LOW: "#25d492", MEDIUM: "#f5b942", HIGH: "#fb5262" } as const;
 const KEY_POLL_MS = 5000;
 
 export function App() {
@@ -90,6 +89,7 @@ export function App() {
   const [keys, setKeys] = useState<KeyHealth[]>(mode === "replay" ? labKeys : []);
   const [forceInvalid, setForceInvalid] = useState(false);
   const [streamBroken, setStreamBroken] = useState(false);
+  const [graph, setGraph] = useState<Graph | null>(null);
   useButtonRipple();
 
   useEffect(() => {
@@ -112,6 +112,30 @@ export function App() {
   useEffect(() => {
     setStreamBroken(false);
   }, [selectedTargetId]);
+
+  useEffect(() => {
+    const id = state.case?.id;
+    if (state.graphVersion <= 0 || !id) {
+      setGraph(null);
+      return;
+    }
+    if (mode === "replay") {
+      setGraph(labGraph);
+      return;
+    }
+    let cancelled = false;
+    client
+      .getGraph(id)
+      .then((next) => {
+        if (!cancelled) setGraph(next);
+      })
+      .catch(() => {
+        // A failed refetch keeps the last drawn graph.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [client, mode, state.case?.id, state.graphVersion]);
 
   useEffect(() => {
     if (mode === "replay") {
@@ -159,10 +183,10 @@ export function App() {
   const lines = useMemo(() => toLines(view.log, logLines(view)), [view]);
   const modules = useMemo(() => buildModuleCards(state, selectedTargetId), [state, selectedTargetId]);
   const alerts = alertMessages(state, selectedTargetId);
-  const graph = state.graphVersion > 0 ? labGraph : null;
+  const caseId = state.case?.id ?? null;
   const riskText = risk?.text ?? "";
   const riskColor = risk ? RISK_COLOR[risk.label] : "#74869b";
-  const validation = validationState(followed, forceInvalid);
+  const validation = validationView(followed, forceInvalid);
   const agent = agentPill(state.case?.status ?? null);
   const streamingUrl = streamBroken ? null : (followed?.streamingUrl ?? null);
   const togglesEnabled = agentTogglesEnabled();
@@ -334,28 +358,38 @@ export function App() {
               score={risk?.score ?? 0}
               riskText={riskText || "—"}
               riskColor={riskColor}
+              coverage={report?.risk.evidence_coverage ?? "0/8"}
               verdict={risk?.verdict ?? ""}
-              validation={validation}
-              chips={validationChips(followed, validation)}
-              evidence={evidenceItems(report)}
-              scanning={validation === "validating"}
+              validation={validation.state}
+              chips={validation.chips}
+              evidence={evidenceRows(report)}
+              scanning={validation.state === "validating"}
               showSimulateError={import.meta.env.DEV}
-              canExport={report !== null}
+              canExportJson={caseId !== null || report !== null}
+              canExportPdf={caseId !== null}
+              pdfDisabledReason={PDF_DISABLED_REASON}
               onSimulateError={() => setForceInvalid(true)}
-              onCopy={(value) => {
-                void navigator.clipboard?.writeText(value);
-              }}
               onExportJson={() => {
-                if (report) download("phantasm-report.json", JSON.stringify(report, null, 2), "application/json");
+                void exportBundle({
+                  mode,
+                  caseId,
+                  client,
+                  snapshot: state.case,
+                  target: followed,
+                  report,
+                  graph,
+                });
               }}
               onExportPdf={() => {
-                if (report) download("phantasm-report.pdf", reportText(report), "text/plain");
+                if (!caseId) return;
+                const opened = window.open(dossierUrl(mode, caseId), "_blank", "noopener,noreferrer");
+                if (opened) opened.opener = null;
               }}
             />
           </div>
         </div>
-        <GraphPanel graph={graph} riskColor={riskColor} />
-        <MetricsRow graph={graph} riskText={riskText} />
+        <GraphPanel graph={graph} riskColor={riskColor} onSelectTarget={setSelectedTargetId} />
+        <MetricsRow graph={graph} />
       </main>
       <Footer version={__PHANTASM_CORE_VERSION__} />
     </div>
@@ -414,56 +448,35 @@ function alertMessages(state: ReturnType<InvestigationStore["getState"]>, target
   return messages;
 }
 
-function validationState(target: TargetState | null, forceInvalid: boolean): ValidationState {
-  if (forceInvalid) return "invalid";
-  if (target?.validation) return "validated";
-  if (target?.phase === "validate_payload") return "validating";
-  return "waiting";
-}
-
-function validationChips(target: TargetState | null, validation: ValidationState): ValidationChip[] {
-  return EVIDENCE_LABELS.map((label, index) => {
-    const field = target?.validation?.checks[index];
-    if (validation === "invalid") return { label, status: "failed" };
-    if (validation === "validating") return { label, status: "checking" };
-    if (!field) return { label, status: "pending" };
-    return { label, status: field.passed ? "passed" : "failed" };
-  });
-}
-
-function evidenceItems(report: TargetReport | null): EvidenceItem[] {
-  if (!report) {
-    return EVIDENCE_LABELS.map((label) => ({ label, value: "—", severity: "empty" }));
-  }
-  return report.evidence.map((row) => ({
-    label: row.label,
-    value: row.value,
-    severity: row.severity,
-  }));
-}
-
 function displayAddress(streamingUrl: string | null, target: TargetState | null): string {
   const raw = streamingUrl || target?.url || "";
   return raw.replace(/^https?:\/\//, "");
 }
 
-function reportText(report: TargetReport): string {
-  const lines = [
-    "PHANTASM-WEB FORENSIC REPORT",
-    `Target: ${report.host}`,
-    `Risk: ${report.risk.score} / ${report.risk.label} RISK`,
-    `Verdict: ${report.risk.verdict}`,
-    "",
-    ...report.evidence.map((row) => `${row.label}: ${row.value}`),
-  ];
-  return lines.join("\n");
-}
-
-function download(filename: string, contents: string, type: string): void {
-  const link = document.createElement("a");
-  const objectUrl = URL.createObjectURL(new Blob([contents], { type }));
-  link.href = objectUrl;
-  link.download = filename;
-  link.click();
-  URL.revokeObjectURL(objectUrl);
+async function exportBundle(input: {
+  mode: "live" | "replay";
+  caseId: string | null;
+  client: { verifyLedger(caseId: string): Promise<VerifyResult> };
+  snapshot: ReturnType<InvestigationStore["getState"]>["case"];
+  target: TargetState | null;
+  report: TargetReport | null;
+  graph: Graph | null;
+}): Promise<void> {
+  let ledgerHead: VerifyResult | null = null;
+  if (input.mode === "live" && input.caseId) {
+    try {
+      ledgerHead = await input.client.verifyLedger(input.caseId);
+    } catch {
+      ledgerHead = null;
+    }
+  }
+  const bundle = buildExportBundle({
+    mode: input.mode,
+    case: input.snapshot,
+    target: input.target,
+    report: input.report,
+    graph: input.graph,
+    ledgerHead,
+  });
+  download(`phantasm-${input.caseId ?? "case"}.json`, JSON.stringify(bundle, null, 2), "application/json");
 }

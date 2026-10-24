@@ -15,11 +15,13 @@
     "@phantasm/core": "workspace:*",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "d3-force": "^3.0.0",
     "react-icons": "^5.5.0",
     "zustand": "^5.0.16"
   },
   "devDependencies": {
     "@testing-library/react": "^16.3.3",
+    "@types/d3-force": "^3.0.10",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.1.2",
