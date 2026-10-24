@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { Topbar } from "@/components/Topbar";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="app-shell">
+          <Topbar />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

@@ -1,26 +1,52 @@
 import { expect, test } from "vitest";
 
-import {
-  TINYFISH_STREAMING_ORIGIN,
-  contentSecurityPolicy,
-  securityHeaders,
-} from "./security-headers";
+import { contentSecurityPolicy, parseStreamOrigins, securityHeaders } from "./security-headers";
 
-const apiOrigin = "http://127.0.0.1:8000";
+test("limits connect-src to this app and frame-src to configured stream origins", () => {
+  const policy = contentSecurityPolicy({
+    dev: false,
+    nonce: "abc+def=",
+    streamOrigins: ["https://stream.example"],
+  });
 
-test("limits connect-src to this app and the API, and frame-src to the placeholder", () => {
-  const policy = contentSecurityPolicy(apiOrigin, false);
-
-  expect(policy).toContain(`connect-src 'self' ${apiOrigin}`);
-  expect(policy).toContain(`frame-src ${TINYFISH_STREAMING_ORIGIN}`);
+  expect(policy).toContain("default-src 'self'");
+  expect(policy).toContain("script-src 'self' 'nonce-abc+def='");
+  expect(policy).toContain("style-src 'self' 'unsafe-inline'");
+  expect(policy).toContain("font-src 'self'");
+  expect(policy).toContain("img-src 'self' data:");
+  expect(policy).toContain("connect-src 'self'");
+  expect(policy).not.toContain("127.0.0.1");
+  expect(policy).toContain("frame-src https://stream.example");
   expect(policy).toContain("frame-ancestors 'none'");
+  expect(policy).toContain("base-uri 'self'");
+  expect(policy).toContain("form-action 'self'");
+  expect(policy).not.toContain("strict-dynamic");
+  expect(policy).not.toContain("unsafe-eval");
+  expect(policy).not.toContain("blob:");
   expect(policy).not.toContain("tinyfish.ai");
   expect(policy).not.toContain("*");
-  expect(policy).not.toContain("unsafe-eval");
+});
+
+test("uses frame-src none when no stream origins are configured", () => {
+  expect(
+    contentSecurityPolicy({ dev: false, nonce: "abc", streamOrigins: [] }),
+  ).toContain("frame-src 'none'");
+});
+
+test("keeps only http(s) stream origins", () => {
+  expect(
+    parseStreamOrigins(
+      "https://stream.example/view, javascript:alert(1), data:text/html,hi, https://stream.example/other",
+    ),
+  ).toEqual(["https://stream.example"]);
+  expect(parseStreamOrigins(undefined)).toEqual([]);
 });
 
 test("allows eval only in development", () => {
-  expect(contentSecurityPolicy(apiOrigin, true)).toContain("'unsafe-eval'");
+  const policy = contentSecurityPolicy({ dev: true, streamOrigins: [] });
+  expect(policy).toContain("'unsafe-eval'");
+  expect(policy).toContain("'unsafe-inline'");
+  expect(policy).not.toContain("nonce-");
 });
 
 test("sets the static security headers", () => {
