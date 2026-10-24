@@ -1,0 +1,342 @@
+[
+  {
+    "target_id": "tgt_lab_a",
+    "host": "lab-a.example",
+    "risk": {
+      "score": 86,
+      "label": "HIGH",
+      "evidence_coverage": "6/8",
+      "verdict": "Shared merchant infrastructure and malicious checkout behavior detected"
+    },
+    "evidence": [
+      {
+        "field": "merchant_id",
+        "label": "Merchant ID",
+        "value": "MID_LAB_A_4401",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "gateway",
+        "label": "Gateway",
+        "value": "LabGate One",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "payment_endpoint",
+        "label": "Payment Endpoint",
+        "value": "https://pay.labgate-one.example/v1/charge",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "host_ip",
+        "label": "Host IP",
+        "value": "203.0.113.11",
+        "severity": "medium",
+        "source": "infra"
+      },
+      {
+        "field": "domain_age",
+        "label": "Domain Age",
+        "value": "9 days",
+        "severity": "high",
+        "source": "derived"
+      },
+      {
+        "field": "ssl_issuer",
+        "label": "SSL Issuer",
+        "value": "R3 / Let's Encrypt",
+        "severity": "safe",
+        "source": "infra"
+      },
+      {
+        "field": "suspicious_scripts",
+        "label": "Suspicious Scripts",
+        "value": "3 detected",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "redirect_chain",
+        "label": "Redirect Chain",
+        "value": "4 hops",
+        "severity": "medium",
+        "source": "derived"
+      }
+    ]
+  },
+  {
+    "target_id": "tgt_lab_b",
+    "host": "lab-b.example",
+    "risk": {
+      "score": 80,
+      "label": "HIGH",
+      "evidence_coverage": "6/8",
+      "verdict": "Shared merchant infrastructure and malicious checkout behavior detected"
+    },
+    "evidence": [
+      {
+        "field": "merchant_id",
+        "label": "Merchant ID",
+        "value": "MID_LAB_B_4402",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "gateway",
+        "label": "Gateway",
+        "value": "LabGate One",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "payment_endpoint",
+        "label": "Payment Endpoint",
+        "value": "https://pay.labgate-one.example/v1/charge",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "host_ip",
+        "label": "Host IP",
+        "value": "203.0.113.12",
+        "severity": "medium",
+        "source": "infra"
+      },
+      {
+        "field": "domain_age",
+        "label": "Domain Age",
+        "value": "12 days",
+        "severity": "high",
+        "source": "derived"
+      },
+      {
+        "field": "ssl_issuer",
+        "label": "SSL Issuer",
+        "value": "R3 / Let's Encrypt",
+        "severity": "safe",
+        "source": "infra"
+      },
+      {
+        "field": "suspicious_scripts",
+        "label": "Suspicious Scripts",
+        "value": "2 detected",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "redirect_chain",
+        "label": "Redirect Chain",
+        "value": "3 hops",
+        "severity": "medium",
+        "source": "derived"
+      }
+    ]
+  },
+  {
+    "target_id": "tgt_lab_c",
+    "host": "lab-c.example",
+    "risk": {
+      "score": 92,
+      "label": "HIGH",
+      "evidence_coverage": "5/8",
+      "verdict": "Shared merchant infrastructure and malicious checkout behavior detected"
+    },
+    "evidence": [
+      {
+        "field": "merchant_id",
+        "label": "Merchant ID",
+        "value": "MID_LAB_C_4403",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "gateway",
+        "label": "Gateway",
+        "value": "LabGate One",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "payment_endpoint",
+        "label": "Payment Endpoint",
+        "value": "https://pay.labgate-one.example/v1/charge",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "host_ip",
+        "label": "Host IP",
+        "value": "203.0.113.13",
+        "severity": "high",
+        "source": "infra"
+      },
+      {
+        "field": "domain_age",
+        "label": "Domain Age",
+        "value": "6 days",
+        "severity": "high",
+        "source": "derived"
+      },
+      {
+        "field": "ssl_issuer",
+        "label": "SSL Issuer",
+        "value": "R3 / Let's Encrypt",
+        "severity": "safe",
+        "source": "infra"
+      },
+      {
+        "field": "suspicious_scripts",
+        "label": "Suspicious Scripts",
+        "value": "4 detected",
+        "severity": "high",
+        "source": "agent"
+      },
+      {
+        "field": "redirect_chain",
+        "label": "Redirect Chain",
+        "value": "5 hops",
+        "severity": "high",
+        "source": "derived"
+      }
+    ]
+  },
+  {
+    "target_id": "tgt_lab_d",
+    "host": "lab-d.example",
+    "risk": {
+      "score": 68,
+      "label": "MEDIUM",
+      "evidence_coverage": "6/8",
+      "verdict": "Unverified infrastructure - manual review recommended"
+    },
+    "evidence": [
+      {
+        "field": "merchant_id",
+        "label": "Merchant ID",
+        "value": "MID_LAB_D_5501",
+        "severity": "medium",
+        "source": "agent"
+      },
+      {
+        "field": "gateway",
+        "label": "Gateway",
+        "value": "LabGate Two",
+        "severity": "medium",
+        "source": "agent"
+      },
+      {
+        "field": "payment_endpoint",
+        "label": "Payment Endpoint",
+        "value": "https://pay.labgate-two.example/v1/charge",
+        "severity": "medium",
+        "source": "agent"
+      },
+      {
+        "field": "host_ip",
+        "label": "Host IP",
+        "value": "203.0.113.14",
+        "severity": "medium",
+        "source": "infra"
+      },
+      {
+        "field": "domain_age",
+        "label": "Domain Age",
+        "value": "40 days",
+        "severity": "medium",
+        "source": "derived"
+      },
+      {
+        "field": "ssl_issuer",
+        "label": "SSL Issuer",
+        "value": "Valid certificate",
+        "severity": "safe",
+        "source": "infra"
+      },
+      {
+        "field": "suspicious_scripts",
+        "label": "Suspicious Scripts",
+        "value": "1 flagged",
+        "severity": "medium",
+        "source": "agent"
+      },
+      {
+        "field": "redirect_chain",
+        "label": "Redirect Chain",
+        "value": "2 hops",
+        "severity": "medium",
+        "source": "derived"
+      }
+    ]
+  },
+  {
+    "target_id": "tgt_lab_e",
+    "host": "lab-e.example",
+    "risk": {
+      "score": 18,
+      "label": "LOW",
+      "evidence_coverage": "8/8",
+      "verdict": "Demo/test environment - no fraud indicators found"
+    },
+    "evidence": [
+      {
+        "field": "merchant_id",
+        "label": "Merchant ID",
+        "value": "MID_ECHO_9001",
+        "severity": "safe",
+        "source": "agent"
+      },
+      {
+        "field": "gateway",
+        "label": "Gateway",
+        "value": "Echo Pay",
+        "severity": "safe",
+        "source": "agent"
+      },
+      {
+        "field": "payment_endpoint",
+        "label": "Payment Endpoint",
+        "value": "https://pay.echo-widgets.example/checkout",
+        "severity": "safe",
+        "source": "agent"
+      },
+      {
+        "field": "host_ip",
+        "label": "Host IP",
+        "value": "198.51.100.50",
+        "severity": "safe",
+        "source": "infra"
+      },
+      {
+        "field": "domain_age",
+        "label": "Domain Age",
+        "value": "8 years",
+        "severity": "safe",
+        "source": "derived"
+      },
+      {
+        "field": "ssl_issuer",
+        "label": "SSL Issuer",
+        "value": "Amazon RSA 2048",
+        "severity": "safe",
+        "source": "infra"
+      },
+      {
+        "field": "suspicious_scripts",
+        "label": "Suspicious Scripts",
+        "value": "0",
+        "severity": "safe",
+        "source": "agent"
+      },
+      {
+        "field": "redirect_chain",
+        "label": "Redirect Chain",
+        "value": "clean",
+        "severity": "safe",
+        "source": "derived"
+      }
+    ]
+  }
+]

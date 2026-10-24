@@ -1,0 +1,20 @@
+[
+  {
+    "label": "key-1",
+    "state": "healthy",
+    "in_flight": 0,
+    "runs_served": 2
+  },
+  {
+    "label": "key-2",
+    "state": "healthy",
+    "in_flight": 0,
+    "runs_served": 2
+  },
+  {
+    "label": "key-3",
+    "state": "healthy",
+    "in_flight": 0,
+    "runs_served": 1
+  }
+]

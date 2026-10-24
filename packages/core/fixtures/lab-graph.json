@@ -1,0 +1,457 @@
+{
+  "version": 5,
+  "nodes": [
+    {
+      "id": "domain:lab_a_example",
+      "type": "domain",
+      "label": "lab-a.example",
+      "target_id": "tgt_lab_a"
+    },
+    {
+      "id": "merchant:lab_pk_live_alpha",
+      "type": "merchant",
+      "label": "LAB_PK_LIVE_ALPHA"
+    },
+    {
+      "id": "merchant:mid_lab_a_4401",
+      "type": "merchant",
+      "label": "MID_LAB_A_4401"
+    },
+    {
+      "id": "gateway:pay_labgate_one_example",
+      "type": "gateway",
+      "label": "pay.labgate-one.example"
+    },
+    {
+      "id": "gateway:cdn_labgate_one_example",
+      "type": "gateway",
+      "label": "cdn.labgate-one.example"
+    },
+    {
+      "id": "bank:rxglobal_services",
+      "type": "bank",
+      "label": "RXGLOBAL SERVICES"
+    },
+    {
+      "id": "host:203_0_113_11",
+      "type": "host",
+      "label": "203.0.113.11"
+    },
+    {
+      "id": "contact:billing_a_rxglobal_mail_example",
+      "type": "contact",
+      "label": "billing-a@rxglobal-mail.example"
+    },
+    {
+      "id": "domain:lab_b_example",
+      "type": "domain",
+      "label": "lab-b.example",
+      "target_id": "tgt_lab_b"
+    },
+    {
+      "id": "merchant:mid_lab_b_4402",
+      "type": "merchant",
+      "label": "MID_LAB_B_4402"
+    },
+    {
+      "id": "host:203_0_113_12",
+      "type": "host",
+      "label": "203.0.113.12"
+    },
+    {
+      "id": "contact:billing_b_rxglobal_mail_example",
+      "type": "contact",
+      "label": "billing-b@rxglobal-mail.example"
+    },
+    {
+      "id": "domain:lab_c_example",
+      "type": "domain",
+      "label": "lab-c.example",
+      "target_id": "tgt_lab_c"
+    },
+    {
+      "id": "merchant:mid_lab_c_4403",
+      "type": "merchant",
+      "label": "MID_LAB_C_4403"
+    },
+    {
+      "id": "contact:t_me_rxglobal_desk",
+      "type": "contact",
+      "label": "t.me/rxglobal_desk"
+    },
+    {
+      "id": "contact:15551230003",
+      "type": "contact",
+      "label": "+15551230003"
+    },
+    {
+      "id": "host:203_0_113_13",
+      "type": "host",
+      "label": "203.0.113.13"
+    },
+    {
+      "id": "domain:lab_d_example",
+      "type": "domain",
+      "label": "lab-d.example",
+      "target_id": "tgt_lab_d"
+    },
+    {
+      "id": "merchant:lab_pk_live_beta",
+      "type": "merchant",
+      "label": "LAB_PK_LIVE_BETA"
+    },
+    {
+      "id": "merchant:mid_lab_d_5501",
+      "type": "merchant",
+      "label": "MID_LAB_D_5501"
+    },
+    {
+      "id": "gateway:pay_labgate_two_example",
+      "type": "gateway",
+      "label": "pay.labgate-two.example"
+    },
+    {
+      "id": "gateway:cdn_labgate_two_example",
+      "type": "gateway",
+      "label": "cdn.labgate-two.example"
+    },
+    {
+      "id": "bank:northwind_markets",
+      "type": "bank",
+      "label": "NORTHWIND MARKETS"
+    },
+    {
+      "id": "contact:desk_northwind_markets_example",
+      "type": "contact",
+      "label": "desk@northwind-markets.example"
+    },
+    {
+      "id": "host:203_0_113_14",
+      "type": "host",
+      "label": "203.0.113.14"
+    },
+    {
+      "id": "domain:lab_e_example",
+      "type": "domain",
+      "label": "lab-e.example",
+      "target_id": "tgt_lab_e"
+    },
+    {
+      "id": "merchant:lab_pk_test_echo",
+      "type": "merchant",
+      "label": "LAB_PK_TEST_ECHO"
+    },
+    {
+      "id": "merchant:mid_echo_9001",
+      "type": "merchant",
+      "label": "MID_ECHO_9001"
+    },
+    {
+      "id": "merchant:cid_echo_e",
+      "type": "merchant",
+      "label": "cid_echo_e"
+    },
+    {
+      "id": "gateway:pay_echo_widgets_example",
+      "type": "gateway",
+      "label": "pay.echo-widgets.example"
+    },
+    {
+      "id": "gateway:forms_echo_widgets_example",
+      "type": "gateway",
+      "label": "forms.echo-widgets.example"
+    },
+    {
+      "id": "gateway:static_echo_widgets_example",
+      "type": "gateway",
+      "label": "static.echo-widgets.example"
+    },
+    {
+      "id": "bank:echo_widgets_llc",
+      "type": "bank",
+      "label": "ECHO WIDGETS LLC"
+    },
+    {
+      "id": "contact:t_me_echo_widgets_help",
+      "type": "contact",
+      "label": "t.me/echo_widgets_help"
+    },
+    {
+      "id": "contact:hello_lab_e_example",
+      "type": "contact",
+      "label": "hello@lab-e.example"
+    },
+    {
+      "id": "contact:15550000005",
+      "type": "contact",
+      "label": "+15550000005"
+    },
+    {
+      "id": "host:198_51_100_50",
+      "type": "host",
+      "label": "198.51.100.50"
+    }
+  ],
+  "edges": [
+    {
+      "a": "domain:lab_a_example",
+      "b": "merchant:lab_pk_live_alpha",
+      "weight": 0.99,
+      "kind": "publishable_key"
+    },
+    {
+      "a": "domain:lab_a_example",
+      "b": "merchant:mid_lab_a_4401",
+      "weight": 0.96,
+      "kind": "merchant_id"
+    },
+    {
+      "a": "domain:lab_a_example",
+      "b": "gateway:pay_labgate_one_example",
+      "weight": 0.98,
+      "kind": "processor_host"
+    },
+    {
+      "a": "domain:lab_a_example",
+      "b": "gateway:cdn_labgate_one_example",
+      "weight": 0.91,
+      "kind": "checkout_script_host"
+    },
+    {
+      "a": "domain:lab_a_example",
+      "b": "bank:rxglobal_services",
+      "weight": 0.94,
+      "kind": "descriptor"
+    },
+    {
+      "a": "domain:lab_a_example",
+      "b": "host:203_0_113_11",
+      "weight": 0.9,
+      "kind": "ip"
+    },
+    {
+      "a": "domain:lab_a_example",
+      "b": "contact:billing_a_rxglobal_mail_example",
+      "weight": 0.8,
+      "kind": "email"
+    },
+    {
+      "a": "domain:lab_b_example",
+      "b": "merchant:lab_pk_live_alpha",
+      "weight": 0.99,
+      "kind": "publishable_key"
+    },
+    {
+      "a": "domain:lab_b_example",
+      "b": "merchant:mid_lab_b_4402",
+      "weight": 0.95,
+      "kind": "merchant_id"
+    },
+    {
+      "a": "domain:lab_b_example",
+      "b": "gateway:pay_labgate_one_example",
+      "weight": 0.97,
+      "kind": "processor_host"
+    },
+    {
+      "a": "domain:lab_b_example",
+      "b": "gateway:cdn_labgate_one_example",
+      "weight": 0.9,
+      "kind": "checkout_script_host"
+    },
+    {
+      "a": "domain:lab_b_example",
+      "b": "bank:rxglobal_services",
+      "weight": 0.93,
+      "kind": "descriptor"
+    },
+    {
+      "a": "domain:lab_b_example",
+      "b": "host:203_0_113_12",
+      "weight": 0.9,
+      "kind": "ip"
+    },
+    {
+      "a": "domain:lab_b_example",
+      "b": "contact:billing_b_rxglobal_mail_example",
+      "weight": 0.8,
+      "kind": "email"
+    },
+    {
+      "a": "domain:lab_c_example",
+      "b": "merchant:lab_pk_live_alpha",
+      "weight": 0.99,
+      "kind": "publishable_key"
+    },
+    {
+      "a": "domain:lab_c_example",
+      "b": "merchant:mid_lab_c_4403",
+      "weight": 0.97,
+      "kind": "merchant_id"
+    },
+    {
+      "a": "domain:lab_c_example",
+      "b": "gateway:pay_labgate_one_example",
+      "weight": 0.98,
+      "kind": "processor_host"
+    },
+    {
+      "a": "domain:lab_c_example",
+      "b": "gateway:cdn_labgate_one_example",
+      "weight": 0.92,
+      "kind": "checkout_script_host"
+    },
+    {
+      "a": "domain:lab_c_example",
+      "b": "bank:rxglobal_services",
+      "weight": 0.96,
+      "kind": "descriptor"
+    },
+    {
+      "a": "domain:lab_c_example",
+      "b": "contact:t_me_rxglobal_desk",
+      "weight": 0.93,
+      "kind": "telegram"
+    },
+    {
+      "a": "domain:lab_c_example",
+      "b": "contact:15551230003",
+      "weight": 0.7,
+      "kind": "phone"
+    },
+    {
+      "a": "domain:lab_c_example",
+      "b": "host:203_0_113_13",
+      "weight": 0.9,
+      "kind": "ip"
+    },
+    {
+      "a": "domain:lab_d_example",
+      "b": "merchant:lab_pk_live_beta",
+      "weight": 0.9,
+      "kind": "publishable_key"
+    },
+    {
+      "a": "domain:lab_d_example",
+      "b": "merchant:mid_lab_d_5501",
+      "weight": 0.84,
+      "kind": "merchant_id"
+    },
+    {
+      "a": "domain:lab_d_example",
+      "b": "gateway:pay_labgate_two_example",
+      "weight": 0.8,
+      "kind": "processor_host"
+    },
+    {
+      "a": "domain:lab_d_example",
+      "b": "gateway:cdn_labgate_two_example",
+      "weight": 0.72,
+      "kind": "checkout_script_host"
+    },
+    {
+      "a": "domain:lab_d_example",
+      "b": "bank:northwind_markets",
+      "weight": 0.7,
+      "kind": "descriptor"
+    },
+    {
+      "a": "domain:lab_d_example",
+      "b": "contact:t_me_rxglobal_desk",
+      "weight": 0.93,
+      "kind": "telegram"
+    },
+    {
+      "a": "domain:lab_d_example",
+      "b": "contact:desk_northwind_markets_example",
+      "weight": 0.66,
+      "kind": "email"
+    },
+    {
+      "a": "domain:lab_d_example",
+      "b": "host:203_0_113_14",
+      "weight": 0.85,
+      "kind": "ip"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "merchant:lab_pk_test_echo",
+      "weight": 0.6,
+      "kind": "publishable_key"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "merchant:mid_echo_9001",
+      "weight": 0.55,
+      "kind": "merchant_id"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "merchant:cid_echo_e",
+      "weight": 0.5,
+      "kind": "client_id"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "gateway:pay_echo_widgets_example",
+      "weight": 0.5,
+      "kind": "processor_host"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "gateway:forms_echo_widgets_example",
+      "weight": 0.5,
+      "kind": "form_action_host"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "gateway:static_echo_widgets_example",
+      "weight": 0.5,
+      "kind": "checkout_script_host"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "bank:echo_widgets_llc",
+      "weight": 0.5,
+      "kind": "descriptor"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "contact:t_me_echo_widgets_help",
+      "weight": 0.4,
+      "kind": "telegram"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "contact:hello_lab_e_example",
+      "weight": 0.4,
+      "kind": "email"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "contact:15550000005",
+      "weight": 0.4,
+      "kind": "phone"
+    },
+    {
+      "a": "domain:lab_e_example",
+      "b": "host:198_51_100_50",
+      "weight": 0.9,
+      "kind": "ip"
+    }
+  ],
+  "clusters": [
+    {
+      "id": "clu_high_abcd",
+      "members": [
+        "tgt_lab_a",
+        "tgt_lab_b",
+        "tgt_lab_c",
+        "tgt_lab_d"
+      ],
+      "confidence": 0.92,
+      "explanation": "HIGH cluster: lab-a, lab-b, and lab-c share publishable key LAB_PK_LIVE_ALPHA, processor host pay.labgate-one.example, and descriptor RXGLOBAL SERVICES. lab-d shares Telegram t.me/rxglobal_desk with lab-c. lab-e is not a member."
+    }
+  ],
+  "insight": "One HIGH cluster links lab-a through lab-d. lab-e.example is isolated with indicators that do not recur."
+}

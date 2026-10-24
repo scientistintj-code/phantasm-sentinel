@@ -1,0 +1,4280 @@
+{
+  "case_id": "c0ffee00-0000-4000-8000-000000000001",
+  "signing_secret": "lab-fixture-ledger-secret",
+  "entry_count": 219,
+  "head_hash": "235f37ad335452edeffc1014862ff2f59b9d4a176cc3ef8a6624da00994090bf",
+  "signature": "fcfc787cd680db87ac05e2f1b71c7a6939d86da92db8f961eb18cbc93a93bf1b",
+  "entries": [
+    {
+      "seq": 1,
+      "ts": "2026-10-24T12:00:00.000Z",
+      "event_type": "CaseCreated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 1,
+        "ts": "2026-10-24T12:00:00.000Z",
+        "type": "CaseCreated",
+        "title": "Lab storefront cluster"
+      },
+      "prev_hash": "0b1a0607f2a3d98237841c6ede8175f81c05486c4c99beb799b38be34fd9680d",
+      "entry_hash": "eb90ca56fde3766f84e3e2c7602debc5784b556d36e1b83677fbce9481b0d6cc"
+    },
+    {
+      "seq": 2,
+      "ts": "2026-10-24T12:00:00.080Z",
+      "event_type": "TargetQueued",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 2,
+        "ts": "2026-10-24T12:00:00.080Z",
+        "type": "TargetQueued",
+        "target_id": "tgt_lab_a",
+        "url": "https://lab-a.example",
+        "host": "lab-a.example"
+      },
+      "prev_hash": "eb90ca56fde3766f84e3e2c7602debc5784b556d36e1b83677fbce9481b0d6cc",
+      "entry_hash": "4593a36d7b1be7c5cb2254ec0ae15c052e2f70ea73867264a132096b6c66fca0"
+    },
+    {
+      "seq": 3,
+      "ts": "2026-10-24T12:00:00.120Z",
+      "event_type": "TargetQueued",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 3,
+        "ts": "2026-10-24T12:00:00.120Z",
+        "type": "TargetQueued",
+        "target_id": "tgt_lab_b",
+        "url": "https://lab-b.example",
+        "host": "lab-b.example"
+      },
+      "prev_hash": "4593a36d7b1be7c5cb2254ec0ae15c052e2f70ea73867264a132096b6c66fca0",
+      "entry_hash": "2c5f4cfb791b455efc1bf72d21994fb8242ae65d4db21d0e1874cb4020188970"
+    },
+    {
+      "seq": 4,
+      "ts": "2026-10-24T12:00:00.160Z",
+      "event_type": "TargetQueued",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 4,
+        "ts": "2026-10-24T12:00:00.160Z",
+        "type": "TargetQueued",
+        "target_id": "tgt_lab_c",
+        "url": "https://lab-c.example",
+        "host": "lab-c.example"
+      },
+      "prev_hash": "2c5f4cfb791b455efc1bf72d21994fb8242ae65d4db21d0e1874cb4020188970",
+      "entry_hash": "c32e472e3a5649a770fe119aafdbbb6160664ba54044216dd1cd787abf65f78e"
+    },
+    {
+      "seq": 5,
+      "ts": "2026-10-24T12:00:00.200Z",
+      "event_type": "TargetQueued",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 5,
+        "ts": "2026-10-24T12:00:00.200Z",
+        "type": "TargetQueued",
+        "target_id": "tgt_lab_d",
+        "url": "https://lab-d.example",
+        "host": "lab-d.example"
+      },
+      "prev_hash": "c32e472e3a5649a770fe119aafdbbb6160664ba54044216dd1cd787abf65f78e",
+      "entry_hash": "16e69e24c41398b59f1340ea6fef89cf188af10669b58e330e9312bd3554c6c8"
+    },
+    {
+      "seq": 6,
+      "ts": "2026-10-24T12:00:00.240Z",
+      "event_type": "TargetQueued",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 6,
+        "ts": "2026-10-24T12:00:00.240Z",
+        "type": "TargetQueued",
+        "target_id": "tgt_lab_e",
+        "url": "https://lab-e.example",
+        "host": "lab-e.example"
+      },
+      "prev_hash": "16e69e24c41398b59f1340ea6fef89cf188af10669b58e330e9312bd3554c6c8",
+      "entry_hash": "c164e155478fa40e638492328750f12ec2d2dfdec37f2ecfb3741a6d933f5aa6"
+    },
+    {
+      "seq": 7,
+      "ts": "2026-10-24T12:00:01.000Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 7,
+        "ts": "2026-10-24T12:00:01.000Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_a",
+        "module": "search",
+        "state": "started"
+      },
+      "prev_hash": "c164e155478fa40e638492328750f12ec2d2dfdec37f2ecfb3741a6d933f5aa6",
+      "entry_hash": "3709c23c44a0e5b56789a30d5c7e3de3bcbd22b153e4d99643df86f8a7c1a41a"
+    },
+    {
+      "seq": 8,
+      "ts": "2026-10-24T12:00:01.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 8,
+        "ts": "2026-10-24T12:00:01.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_a",
+        "module": "search",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "2 sibling hosts share this checkout copy"
+      },
+      "prev_hash": "3709c23c44a0e5b56789a30d5c7e3de3bcbd22b153e4d99643df86f8a7c1a41a",
+      "entry_hash": "528af737f2d3c58d754f0692db962d9d1b12e456fe75f2542eb2ec3ae26f43d6"
+    },
+    {
+      "seq": 9,
+      "ts": "2026-10-24T12:00:01.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 9,
+        "ts": "2026-10-24T12:00:01.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_a",
+        "source": "search",
+        "summary": "2 sibling hosts share this checkout copy"
+      },
+      "prev_hash": "528af737f2d3c58d754f0692db962d9d1b12e456fe75f2542eb2ec3ae26f43d6",
+      "entry_hash": "9cec9ae9fe6f079de0e682c73845043fd89564f4235dbc4e93007c2bc2c2eecf"
+    },
+    {
+      "seq": 10,
+      "ts": "2026-10-24T12:00:01.800Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 10,
+        "ts": "2026-10-24T12:00:01.800Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_a",
+        "module": "fetch",
+        "state": "started"
+      },
+      "prev_hash": "9cec9ae9fe6f079de0e682c73845043fd89564f4235dbc4e93007c2bc2c2eecf",
+      "entry_hash": "01211a9eb505933f4296fd4d3287d8689c68a099b6af7d82e10d8d171f6a5971"
+    },
+    {
+      "seq": 11,
+      "ts": "2026-10-24T12:00:02.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 11,
+        "ts": "2026-10-24T12:00:02.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_a",
+        "module": "fetch",
+        "state": "completed",
+        "duration_ms": 700,
+        "summary": "SPA DOM unpacked to JSON"
+      },
+      "prev_hash": "01211a9eb505933f4296fd4d3287d8689c68a099b6af7d82e10d8d171f6a5971",
+      "entry_hash": "f4e85da17969b459606caac63b098f2b0ea09a123ca33ade1194fd57bdc92889"
+    },
+    {
+      "seq": 12,
+      "ts": "2026-10-24T12:00:02.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 12,
+        "ts": "2026-10-24T12:00:02.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_a",
+        "source": "fetch",
+        "summary": "Fetched lab-a.example and noted the checkout script host"
+      },
+      "prev_hash": "f4e85da17969b459606caac63b098f2b0ea09a123ca33ade1194fd57bdc92889",
+      "entry_hash": "153485c0c53fb964db1427837fdfbb77ee391b0426b8c700d91ad777ba7e8bab"
+    },
+    {
+      "seq": 13,
+      "ts": "2026-10-24T12:00:02.860Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 13,
+        "ts": "2026-10-24T12:00:02.860Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_a",
+        "phase": "init_browser"
+      },
+      "prev_hash": "153485c0c53fb964db1427837fdfbb77ee391b0426b8c700d91ad777ba7e8bab",
+      "entry_hash": "e02ea60d82b58f32736e570af0a10dcfda144b7e4728b9fe1f2546cc0c81c722"
+    },
+    {
+      "seq": 14,
+      "ts": "2026-10-24T12:00:02.960Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 14,
+        "ts": "2026-10-24T12:00:02.960Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_a",
+        "module": "profiles",
+        "state": "started"
+      },
+      "prev_hash": "e02ea60d82b58f32736e570af0a10dcfda144b7e4728b9fe1f2546cc0c81c722",
+      "entry_hash": "b643752e99f93ecd5f7209e644bf6e5bd83e7989aa852aed68e48b2c5bb62331"
+    },
+    {
+      "seq": 15,
+      "ts": "2026-10-24T12:00:03.360Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 15,
+        "ts": "2026-10-24T12:00:03.360Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_a",
+        "phase": "load_site"
+      },
+      "prev_hash": "b643752e99f93ecd5f7209e644bf6e5bd83e7989aa852aed68e48b2c5bb62331",
+      "entry_hash": "53681576e3683fa1148d19464fe23e1149d3844a27551361189628142b1fe665"
+    },
+    {
+      "seq": 16,
+      "ts": "2026-10-24T12:00:03.560Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 16,
+        "ts": "2026-10-24T12:00:03.560Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_a",
+        "module": "profiles",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "Session cookies saved to profile"
+      },
+      "prev_hash": "53681576e3683fa1148d19464fe23e1149d3844a27551361189628142b1fe665",
+      "entry_hash": "d62983ab65be9eb32dea0f2761a8a566dc2acc3865be3826b07cd267250f1f8e"
+    },
+    {
+      "seq": 17,
+      "ts": "2026-10-24T12:00:03.760Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 17,
+        "ts": "2026-10-24T12:00:03.760Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_a",
+        "module": "agent",
+        "state": "started"
+      },
+      "prev_hash": "d62983ab65be9eb32dea0f2761a8a566dc2acc3865be3826b07cd267250f1f8e",
+      "entry_hash": "acc31f67877ed57f3beeb5e28f59c1351c6772363b443fc5ed14cafb96450786"
+    },
+    {
+      "seq": 18,
+      "ts": "2026-10-24T12:00:03.880Z",
+      "event_type": "ProbeStarted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 18,
+        "ts": "2026-10-24T12:00:03.880Z",
+        "type": "ProbeStarted",
+        "target_id": "tgt_lab_a",
+        "run_id": "run_lab_a",
+        "key_label": "key-1"
+      },
+      "prev_hash": "acc31f67877ed57f3beeb5e28f59c1351c6772363b443fc5ed14cafb96450786",
+      "entry_hash": "527619288aae980aba1ed53989567a1efcada38b2ac49f6a736405460966b307"
+    },
+    {
+      "seq": 19,
+      "ts": "2026-10-24T12:00:04.000Z",
+      "event_type": "StreamingUrl",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 19,
+        "ts": "2026-10-24T12:00:04.000Z",
+        "type": "StreamingUrl",
+        "target_id": "tgt_lab_a",
+        "url": "https://stream.invalid/run_lab_a"
+      },
+      "prev_hash": "527619288aae980aba1ed53989567a1efcada38b2ac49f6a736405460966b307",
+      "entry_hash": "5c34ba1df08024ac0c27976de408b1aca3fae984e3e6307b87250165e8b0b110"
+    },
+    {
+      "seq": 20,
+      "ts": "2026-10-24T12:00:04.480Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 20,
+        "ts": "2026-10-24T12:00:04.480Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_a",
+        "index": 1,
+        "purpose": "Dismiss popup"
+      },
+      "prev_hash": "5c34ba1df08024ac0c27976de408b1aca3fae984e3e6307b87250165e8b0b110",
+      "entry_hash": "013f980b98be3afab4e0a88f45d416837669af9b1e8fa13f053b7e436f4c07ac"
+    },
+    {
+      "seq": 21,
+      "ts": "2026-10-24T12:00:04.560Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 21,
+        "ts": "2026-10-24T12:00:04.560Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_a",
+        "phase": "bypass_popups"
+      },
+      "prev_hash": "013f980b98be3afab4e0a88f45d416837669af9b1e8fa13f053b7e436f4c07ac",
+      "entry_hash": "bde97ab04e73fa2c13b33c5bca0f431b3db70188abf9b0a6790e4c5265e4aaf6"
+    },
+    {
+      "seq": 22,
+      "ts": "2026-10-24T12:00:05.000Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 22,
+        "ts": "2026-10-24T12:00:05.000Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_b",
+        "module": "search",
+        "state": "started"
+      },
+      "prev_hash": "bde97ab04e73fa2c13b33c5bca0f431b3db70188abf9b0a6790e4c5265e4aaf6",
+      "entry_hash": "117355789b4c77cfcc14e548573db82da0cd27e2d70467fa9fc8b7dbdfafbe54"
+    },
+    {
+      "seq": 23,
+      "ts": "2026-10-24T12:00:05.040Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 23,
+        "ts": "2026-10-24T12:00:05.040Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_a",
+        "index": 2,
+        "purpose": "Accept cookie banner"
+      },
+      "prev_hash": "117355789b4c77cfcc14e548573db82da0cd27e2d70467fa9fc8b7dbdfafbe54",
+      "entry_hash": "d2cadd12257aff67c53fb78da163a0ec1e8a8edd07d2a5857e4f7ebeeb36878b"
+    },
+    {
+      "seq": 24,
+      "ts": "2026-10-24T12:00:05.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 24,
+        "ts": "2026-10-24T12:00:05.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_b",
+        "module": "search",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "Same publishable key as lab-a.example"
+      },
+      "prev_hash": "d2cadd12257aff67c53fb78da163a0ec1e8a8edd07d2a5857e4f7ebeeb36878b",
+      "entry_hash": "07a8a96ade15f3dbf383edceabe9b4753d398c589f1f3407bf0994d0129eebaf"
+    },
+    {
+      "seq": 25,
+      "ts": "2026-10-24T12:00:05.520Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 25,
+        "ts": "2026-10-24T12:00:05.520Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_a",
+        "index": 3,
+        "purpose": "Add item to cart"
+      },
+      "prev_hash": "07a8a96ade15f3dbf383edceabe9b4753d398c589f1f3407bf0994d0129eebaf",
+      "entry_hash": "c387119841ed7f7f981ba4ce2e3295b42e75bc38455b4b1e0d7743ee1f07b286"
+    },
+    {
+      "seq": 26,
+      "ts": "2026-10-24T12:00:05.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 26,
+        "ts": "2026-10-24T12:00:05.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_b",
+        "source": "search",
+        "summary": "Same publishable key as lab-a.example"
+      },
+      "prev_hash": "c387119841ed7f7f981ba4ce2e3295b42e75bc38455b4b1e0d7743ee1f07b286",
+      "entry_hash": "f1d9b954434b5d0080619f876e5dc4fe2ec2addcec2c922964d4ead512099c00"
+    },
+    {
+      "seq": 27,
+      "ts": "2026-10-24T12:00:05.800Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 27,
+        "ts": "2026-10-24T12:00:05.800Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_b",
+        "module": "fetch",
+        "state": "started"
+      },
+      "prev_hash": "f1d9b954434b5d0080619f876e5dc4fe2ec2addcec2c922964d4ead512099c00",
+      "entry_hash": "92c274919c132f921ffd1f019fd49d2a64b44cf133245077a516e0bbe58e65e6"
+    },
+    {
+      "seq": 28,
+      "ts": "2026-10-24T12:00:06.000Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 28,
+        "ts": "2026-10-24T12:00:06.000Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_a",
+        "index": 4,
+        "purpose": "Open checkout"
+      },
+      "prev_hash": "92c274919c132f921ffd1f019fd49d2a64b44cf133245077a516e0bbe58e65e6",
+      "entry_hash": "127086d10c28c97f374b5905de7ab6ce00b1fbe1f8414c2639372eaf4c6b3520"
+    },
+    {
+      "seq": 29,
+      "ts": "2026-10-24T12:00:06.080Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 29,
+        "ts": "2026-10-24T12:00:06.080Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_a",
+        "phase": "navigate_checkout"
+      },
+      "prev_hash": "127086d10c28c97f374b5905de7ab6ce00b1fbe1f8414c2639372eaf4c6b3520",
+      "entry_hash": "29aab8aa006b8606411a271b32f1f8657ae8e2fcdf0ce62c10f220b9d707ee7d"
+    },
+    {
+      "seq": 30,
+      "ts": "2026-10-24T12:00:06.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 30,
+        "ts": "2026-10-24T12:00:06.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_b",
+        "module": "fetch",
+        "state": "completed",
+        "duration_ms": 700,
+        "summary": "SPA DOM unpacked to JSON"
+      },
+      "prev_hash": "29aab8aa006b8606411a271b32f1f8657ae8e2fcdf0ce62c10f220b9d707ee7d",
+      "entry_hash": "305f94e7436563be7c8ad71a0f6905d1263dc82a6638e5721fcc988703f29572"
+    },
+    {
+      "seq": 31,
+      "ts": "2026-10-24T12:00:06.560Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 31,
+        "ts": "2026-10-24T12:00:06.560Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_a",
+        "index": 5,
+        "purpose": "Fill shipping form"
+      },
+      "prev_hash": "305f94e7436563be7c8ad71a0f6905d1263dc82a6638e5721fcc988703f29572",
+      "entry_hash": "acb7b35c4f6b424076cc3a0aeb951c587edd211325866e1659e10e2add8985a0"
+    },
+    {
+      "seq": 32,
+      "ts": "2026-10-24T12:00:06.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 32,
+        "ts": "2026-10-24T12:00:06.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_b",
+        "source": "fetch",
+        "summary": "Fetched lab-b.example and noted the checkout script host"
+      },
+      "prev_hash": "acb7b35c4f6b424076cc3a0aeb951c587edd211325866e1659e10e2add8985a0",
+      "entry_hash": "291d8205a8e2eab7363c2d5fc57897befcd83965635904dac7d1a5f9ea85403b"
+    },
+    {
+      "seq": 33,
+      "ts": "2026-10-24T12:00:06.860Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 33,
+        "ts": "2026-10-24T12:00:06.860Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_b",
+        "phase": "init_browser"
+      },
+      "prev_hash": "291d8205a8e2eab7363c2d5fc57897befcd83965635904dac7d1a5f9ea85403b",
+      "entry_hash": "90aea601f32b96e08d9d7f5311f94166e65680700e5f5dc0b9976094dd89bcc1"
+    },
+    {
+      "seq": 34,
+      "ts": "2026-10-24T12:00:06.960Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 34,
+        "ts": "2026-10-24T12:00:06.960Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_b",
+        "module": "profiles",
+        "state": "started"
+      },
+      "prev_hash": "90aea601f32b96e08d9d7f5311f94166e65680700e5f5dc0b9976094dd89bcc1",
+      "entry_hash": "a05a5796f31622a69303f24950cc8829e8de20ed9b6bc0cea91f5eff91f7eb94"
+    },
+    {
+      "seq": 35,
+      "ts": "2026-10-24T12:00:07.040Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 35,
+        "ts": "2026-10-24T12:00:07.040Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_a",
+        "index": 6,
+        "purpose": "Reach payment stage"
+      },
+      "prev_hash": "a05a5796f31622a69303f24950cc8829e8de20ed9b6bc0cea91f5eff91f7eb94",
+      "entry_hash": "a2b55df6e353fef96bf3915f0313bc1cd815a38b645d3e905cdc7188677baede"
+    },
+    {
+      "seq": 36,
+      "ts": "2026-10-24T12:00:07.360Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 36,
+        "ts": "2026-10-24T12:00:07.360Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_b",
+        "phase": "load_site"
+      },
+      "prev_hash": "a2b55df6e353fef96bf3915f0313bc1cd815a38b645d3e905cdc7188677baede",
+      "entry_hash": "0fc90a10e69d9d509effc604215a2cb5cec70d308f08c7932b34d0feb4e09d51"
+    },
+    {
+      "seq": 37,
+      "ts": "2026-10-24T12:00:07.520Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 37,
+        "ts": "2026-10-24T12:00:07.520Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_a",
+        "index": 7,
+        "purpose": "Read publishable key from the checkout script"
+      },
+      "prev_hash": "0fc90a10e69d9d509effc604215a2cb5cec70d308f08c7932b34d0feb4e09d51",
+      "entry_hash": "37d2545bb5773007a86561d69b40481a02cf4fec095e8c8407b98b2e78731dbd"
+    },
+    {
+      "seq": 38,
+      "ts": "2026-10-24T12:00:07.560Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 38,
+        "ts": "2026-10-24T12:00:07.560Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_b",
+        "module": "profiles",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "Session cookies saved to profile"
+      },
+      "prev_hash": "37d2545bb5773007a86561d69b40481a02cf4fec095e8c8407b98b2e78731dbd",
+      "entry_hash": "3e4cb5f1398927fef61b1de7b1c7d17e7ecfe6047d8c07b2c5072c230a0e1eae"
+    },
+    {
+      "seq": 39,
+      "ts": "2026-10-24T12:00:07.760Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 39,
+        "ts": "2026-10-24T12:00:07.760Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_a",
+        "module": "agent",
+        "state": "completed",
+        "duration_ms": 3360,
+        "summary": "Checkout reached in 7 steps"
+      },
+      "prev_hash": "3e4cb5f1398927fef61b1de7b1c7d17e7ecfe6047d8c07b2c5072c230a0e1eae",
+      "entry_hash": "94d343e7945b6d585a7b47dd4b6b978e6ba629b3ac7c045f330bb1ac015821a6"
+    },
+    {
+      "seq": 40,
+      "ts": "2026-10-24T12:00:07.760Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 40,
+        "ts": "2026-10-24T12:00:07.760Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_b",
+        "module": "agent",
+        "state": "started"
+      },
+      "prev_hash": "94d343e7945b6d585a7b47dd4b6b978e6ba629b3ac7c045f330bb1ac015821a6",
+      "entry_hash": "20ff55e71a23fe040464313da71adede8fb4d51040d2e682d757b9d90568d874"
+    },
+    {
+      "seq": 41,
+      "ts": "2026-10-24T12:00:07.880Z",
+      "event_type": "ProbeStarted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 41,
+        "ts": "2026-10-24T12:00:07.880Z",
+        "type": "ProbeStarted",
+        "target_id": "tgt_lab_b",
+        "run_id": "run_lab_b",
+        "key_label": "key-2"
+      },
+      "prev_hash": "20ff55e71a23fe040464313da71adede8fb4d51040d2e682d757b9d90568d874",
+      "entry_hash": "4080a58ecf2b93a36d6922d27b929a4e36be0f6f7fb67d9e987cf71f04927303"
+    },
+    {
+      "seq": 42,
+      "ts": "2026-10-24T12:00:07.940Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 42,
+        "ts": "2026-10-24T12:00:07.940Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_a",
+        "phase": "collect_evidence"
+      },
+      "prev_hash": "4080a58ecf2b93a36d6922d27b929a4e36be0f6f7fb67d9e987cf71f04927303",
+      "entry_hash": "dd50ab48152d9c22caf92d8e30917c09b439c6c1b831cb53b7a692cf57e2dd06"
+    },
+    {
+      "seq": 43,
+      "ts": "2026-10-24T12:00:08.000Z",
+      "event_type": "StreamingUrl",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 43,
+        "ts": "2026-10-24T12:00:08.000Z",
+        "type": "StreamingUrl",
+        "target_id": "tgt_lab_b",
+        "url": "https://stream.invalid/run_lab_b"
+      },
+      "prev_hash": "dd50ab48152d9c22caf92d8e30917c09b439c6c1b831cb53b7a692cf57e2dd06",
+      "entry_hash": "ef20e5ede5c81efc0816176cbbe8ee2685c1dbdacb7e17b241caeccd5fd97ee9"
+    },
+    {
+      "seq": 44,
+      "ts": "2026-10-24T12:00:08.080Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 44,
+        "ts": "2026-10-24T12:00:08.080Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "publishable_key",
+          "value": "LAB_PK_LIVE_ALPHA",
+          "confidence": 0.99,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "ef20e5ede5c81efc0816176cbbe8ee2685c1dbdacb7e17b241caeccd5fd97ee9",
+      "entry_hash": "6ede5db1b2d91591ac444efdbc06f1df0e1dbd5189c56f46846ae49da32f828c"
+    },
+    {
+      "seq": 45,
+      "ts": "2026-10-24T12:00:08.220Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 45,
+        "ts": "2026-10-24T12:00:08.220Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "merchant_id",
+          "value": "MID_LAB_A_4401",
+          "confidence": 0.96,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "6ede5db1b2d91591ac444efdbc06f1df0e1dbd5189c56f46846ae49da32f828c",
+      "entry_hash": "8ecf8a8a0791e37f8b31688cdfb505bdc34e97c4da7eadc4be40fb96f1241d7f"
+    },
+    {
+      "seq": 46,
+      "ts": "2026-10-24T12:00:08.360Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 46,
+        "ts": "2026-10-24T12:00:08.360Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "processor_host",
+          "value": "pay.labgate-one.example",
+          "confidence": 0.98,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "8ecf8a8a0791e37f8b31688cdfb505bdc34e97c4da7eadc4be40fb96f1241d7f",
+      "entry_hash": "41c6fa4b48f512f0006ab4b581fe5384090405afaa31d546a52bf4805b440c93"
+    },
+    {
+      "seq": 47,
+      "ts": "2026-10-24T12:00:08.480Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 47,
+        "ts": "2026-10-24T12:00:08.480Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_b",
+        "index": 1,
+        "purpose": "Dismiss popup"
+      },
+      "prev_hash": "41c6fa4b48f512f0006ab4b581fe5384090405afaa31d546a52bf4805b440c93",
+      "entry_hash": "3102fd136dd89c962d4aae6b77c1442a0858f3bedff40f4d2272247f3a7b2e20"
+    },
+    {
+      "seq": 48,
+      "ts": "2026-10-24T12:00:08.500Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 48,
+        "ts": "2026-10-24T12:00:08.500Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "checkout_script_host",
+          "value": "cdn.labgate-one.example",
+          "confidence": 0.91,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "3102fd136dd89c962d4aae6b77c1442a0858f3bedff40f4d2272247f3a7b2e20",
+      "entry_hash": "b1c2a2aa9358ce5db03d1fe6a5147d92ee205737f38e24e3caa8bdc02d79adba"
+    },
+    {
+      "seq": 49,
+      "ts": "2026-10-24T12:00:08.560Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 49,
+        "ts": "2026-10-24T12:00:08.560Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_b",
+        "phase": "bypass_popups"
+      },
+      "prev_hash": "b1c2a2aa9358ce5db03d1fe6a5147d92ee205737f38e24e3caa8bdc02d79adba",
+      "entry_hash": "b2730bc4830b0a23fc662cfd04732a97a575df009c118fe959e0ee0702eb302c"
+    },
+    {
+      "seq": 50,
+      "ts": "2026-10-24T12:00:08.640Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 50,
+        "ts": "2026-10-24T12:00:08.640Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "descriptor",
+          "value": "RXGLOBAL SERVICES",
+          "confidence": 0.94,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "b2730bc4830b0a23fc662cfd04732a97a575df009c118fe959e0ee0702eb302c",
+      "entry_hash": "9733ab13023c6f913a47fded7ce784cd08770167473233fb8e12dcfa3554c72c"
+    },
+    {
+      "seq": 51,
+      "ts": "2026-10-24T12:00:08.780Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 51,
+        "ts": "2026-10-24T12:00:08.780Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "ip",
+          "value": "203.0.113.11",
+          "confidence": 0.9,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "9733ab13023c6f913a47fded7ce784cd08770167473233fb8e12dcfa3554c72c",
+      "entry_hash": "85b4a90e87f8fde8e840f150ed365f8428378365368132307f658ac593988ae8"
+    },
+    {
+      "seq": 52,
+      "ts": "2026-10-24T12:00:08.920Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 52,
+        "ts": "2026-10-24T12:00:08.920Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "email",
+          "value": "billing-a@rxglobal-mail.example",
+          "confidence": 0.8,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "85b4a90e87f8fde8e840f150ed365f8428378365368132307f658ac593988ae8",
+      "entry_hash": "27f238078611442f72a6c2d529dfbda0e690d9747ba79dcf8b3b720688e9eb2a"
+    },
+    {
+      "seq": 53,
+      "ts": "2026-10-24T12:00:09.000Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 53,
+        "ts": "2026-10-24T12:00:09.000Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_c",
+        "module": "search",
+        "state": "started"
+      },
+      "prev_hash": "27f238078611442f72a6c2d529dfbda0e690d9747ba79dcf8b3b720688e9eb2a",
+      "entry_hash": "b213e0d9923094fb5df7688ef809812b4dd131d224bf03b6cbe8cdb44df086de"
+    },
+    {
+      "seq": 54,
+      "ts": "2026-10-24T12:00:09.040Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 54,
+        "ts": "2026-10-24T12:00:09.040Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_b",
+        "index": 2,
+        "purpose": "Accept cookie banner"
+      },
+      "prev_hash": "b213e0d9923094fb5df7688ef809812b4dd131d224bf03b6cbe8cdb44df086de",
+      "entry_hash": "882897dc6891a85fa790a2bb67162c49c88cc9302cc3c49bd0231e5b2e4e96c1"
+    },
+    {
+      "seq": 55,
+      "ts": "2026-10-24T12:00:09.060Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 55,
+        "ts": "2026-10-24T12:00:09.060Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "ns",
+          "value": "ns1.labdns.example",
+          "confidence": 0.7,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "882897dc6891a85fa790a2bb67162c49c88cc9302cc3c49bd0231e5b2e4e96c1",
+      "entry_hash": "9bcbfccff13648bdf813ac4df65332866a368213fadce5ebb2ec7f292d06ad28"
+    },
+    {
+      "seq": 56,
+      "ts": "2026-10-24T12:00:09.200Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 56,
+        "ts": "2026-10-24T12:00:09.200Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "cert_fingerprint",
+          "value": "a1:11:11:11:11:11:11:11",
+          "confidence": 0.88,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "9bcbfccff13648bdf813ac4df65332866a368213fadce5ebb2ec7f292d06ad28",
+      "entry_hash": "803f6a48d2f8cefb9d76f03eed693482b05a1e3bf69882ce0219c7289da08a72"
+    },
+    {
+      "seq": 57,
+      "ts": "2026-10-24T12:00:09.340Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 57,
+        "ts": "2026-10-24T12:00:09.340Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "registrar",
+          "value": "LabReg Ltd",
+          "confidence": 0.75,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "803f6a48d2f8cefb9d76f03eed693482b05a1e3bf69882ce0219c7289da08a72",
+      "entry_hash": "f4a38643ccd40ce66ed981fa3b1f129575be3327fe8778aef7487bce2a4cb198"
+    },
+    {
+      "seq": 58,
+      "ts": "2026-10-24T12:00:09.480Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 58,
+        "ts": "2026-10-24T12:00:09.480Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_a",
+        "indicator": {
+          "kind": "domain",
+          "value": "lab-a.example",
+          "confidence": 1,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "f4a38643ccd40ce66ed981fa3b1f129575be3327fe8778aef7487bce2a4cb198",
+      "entry_hash": "93776d044a2a138ace06f2f5dce5312c751ff64c0f384e3ef394222dcfb2beec"
+    },
+    {
+      "seq": 59,
+      "ts": "2026-10-24T12:00:09.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 59,
+        "ts": "2026-10-24T12:00:09.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_c",
+        "module": "search",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "Telegram handle posted beside the shared descriptor"
+      },
+      "prev_hash": "93776d044a2a138ace06f2f5dce5312c751ff64c0f384e3ef394222dcfb2beec",
+      "entry_hash": "5a056e452222e80893ba35d720051f88641c80a3320f00fd051a1079f30dc1aa"
+    },
+    {
+      "seq": 60,
+      "ts": "2026-10-24T12:00:09.520Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 60,
+        "ts": "2026-10-24T12:00:09.520Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_b",
+        "index": 3,
+        "purpose": "Add item to cart"
+      },
+      "prev_hash": "5a056e452222e80893ba35d720051f88641c80a3320f00fd051a1079f30dc1aa",
+      "entry_hash": "af106f068a76a896a3fe789d81602134267ac4f0d9b2545750a57da1daa935d5"
+    },
+    {
+      "seq": 61,
+      "ts": "2026-10-24T12:00:09.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 61,
+        "ts": "2026-10-24T12:00:09.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_c",
+        "source": "search",
+        "summary": "Telegram handle posted beside the shared descriptor"
+      },
+      "prev_hash": "af106f068a76a896a3fe789d81602134267ac4f0d9b2545750a57da1daa935d5",
+      "entry_hash": "ade0b60e2e53f9fccc091e6e106bf768008b14da0bd1022e44408cc44343f539"
+    },
+    {
+      "seq": 62,
+      "ts": "2026-10-24T12:00:09.640Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 62,
+        "ts": "2026-10-24T12:00:09.640Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_a",
+        "module": "vault",
+        "state": "skipped",
+        "summary": "No vault credentials for this lab target"
+      },
+      "prev_hash": "ade0b60e2e53f9fccc091e6e106bf768008b14da0bd1022e44408cc44343f539",
+      "entry_hash": "7bf098432e6adb37e5eb2e64be65f36c216cd5ef91bd90c49953e34e1756ce54"
+    },
+    {
+      "seq": 63,
+      "ts": "2026-10-24T12:00:09.800Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 63,
+        "ts": "2026-10-24T12:00:09.800Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_c",
+        "module": "fetch",
+        "state": "started"
+      },
+      "prev_hash": "7bf098432e6adb37e5eb2e64be65f36c216cd5ef91bd90c49953e34e1756ce54",
+      "entry_hash": "3c3d7c2ecd90cfe0c8756097ae9c8c38a289abfba36c9f3612ba5a60fedc5073"
+    },
+    {
+      "seq": 64,
+      "ts": "2026-10-24T12:00:09.840Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 64,
+        "ts": "2026-10-24T12:00:09.840Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_a",
+        "phase": "validate_payload"
+      },
+      "prev_hash": "3c3d7c2ecd90cfe0c8756097ae9c8c38a289abfba36c9f3612ba5a60fedc5073",
+      "entry_hash": "f346ea1f693d8b9ee269fe15d93826200be60d1b6988849e67e95ed39ce247b7"
+    },
+    {
+      "seq": 65,
+      "ts": "2026-10-24T12:00:10.000Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 65,
+        "ts": "2026-10-24T12:00:10.000Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_b",
+        "index": 4,
+        "purpose": "Open checkout"
+      },
+      "prev_hash": "f346ea1f693d8b9ee269fe15d93826200be60d1b6988849e67e95ed39ce247b7",
+      "entry_hash": "9f7070bcce7d7fc432aabe332b421203e9e054dc4b622e8bca3c868714570915"
+    },
+    {
+      "seq": 66,
+      "ts": "2026-10-24T12:00:10.080Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 66,
+        "ts": "2026-10-24T12:00:10.080Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_b",
+        "phase": "navigate_checkout"
+      },
+      "prev_hash": "9f7070bcce7d7fc432aabe332b421203e9e054dc4b622e8bca3c868714570915",
+      "entry_hash": "6bf54413a81d82be9871a673eca797b48f13b3b95a80d30eb2b29ab4eef34fa9"
+    },
+    {
+      "seq": 67,
+      "ts": "2026-10-24T12:00:10.200Z",
+      "event_type": "PayloadValidated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 67,
+        "ts": "2026-10-24T12:00:10.200Z",
+        "type": "PayloadValidated",
+        "target_id": "tgt_lab_a",
+        "schema_version": "2.4",
+        "checks": [
+          {
+            "field": "merchant_id",
+            "passed": true
+          },
+          {
+            "field": "gateway",
+            "passed": true
+          },
+          {
+            "field": "payment_endpoint",
+            "passed": true
+          },
+          {
+            "field": "host_ip",
+            "passed": true
+          },
+          {
+            "field": "domain_age",
+            "passed": false,
+            "reason": "Domain age 9 days is under 30 days"
+          },
+          {
+            "field": "ssl_issuer",
+            "passed": true
+          },
+          {
+            "field": "suspicious_scripts",
+            "passed": false,
+            "reason": "3 checkout scripts load from an unrelated host"
+          },
+          {
+            "field": "redirect_chain",
+            "passed": true
+          }
+        ],
+        "report": {
+          "target_id": "tgt_lab_a",
+          "host": "lab-a.example",
+          "risk": {
+            "score": 86,
+            "label": "HIGH",
+            "evidence_coverage": "6/8",
+            "verdict": "Shared merchant infrastructure and malicious checkout behavior detected"
+          },
+          "evidence": [
+            {
+              "field": "merchant_id",
+              "label": "Merchant ID",
+              "value": "MID_LAB_A_4401",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "gateway",
+              "label": "Gateway",
+              "value": "LabGate One",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "payment_endpoint",
+              "label": "Payment Endpoint",
+              "value": "https://pay.labgate-one.example/v1/charge",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "host_ip",
+              "label": "Host IP",
+              "value": "203.0.113.11",
+              "severity": "medium",
+              "source": "infra"
+            },
+            {
+              "field": "domain_age",
+              "label": "Domain Age",
+              "value": "9 days",
+              "severity": "high",
+              "source": "derived"
+            },
+            {
+              "field": "ssl_issuer",
+              "label": "SSL Issuer",
+              "value": "R3 / Let's Encrypt",
+              "severity": "safe",
+              "source": "infra"
+            },
+            {
+              "field": "suspicious_scripts",
+              "label": "Suspicious Scripts",
+              "value": "3 detected",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "redirect_chain",
+              "label": "Redirect Chain",
+              "value": "4 hops",
+              "severity": "medium",
+              "source": "derived"
+            }
+          ]
+        }
+      },
+      "prev_hash": "6bf54413a81d82be9871a673eca797b48f13b3b95a80d30eb2b29ab4eef34fa9",
+      "entry_hash": "4e910b3e8d761dd22ab0b7ee6d4a11e83336a5a7393f4aae0d25b4c92624aed0"
+    },
+    {
+      "seq": 68,
+      "ts": "2026-10-24T12:00:10.420Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 68,
+        "ts": "2026-10-24T12:00:10.420Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_a",
+        "phase": "build_graph"
+      },
+      "prev_hash": "4e910b3e8d761dd22ab0b7ee6d4a11e83336a5a7393f4aae0d25b4c92624aed0",
+      "entry_hash": "4bf61f769b4302764e1974f161e7ca13d45bc56ee02ea7428a5080afddf5b8e7"
+    },
+    {
+      "seq": 69,
+      "ts": "2026-10-24T12:00:10.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 69,
+        "ts": "2026-10-24T12:00:10.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_c",
+        "module": "fetch",
+        "state": "completed",
+        "duration_ms": 700,
+        "summary": "SPA DOM unpacked to JSON"
+      },
+      "prev_hash": "4bf61f769b4302764e1974f161e7ca13d45bc56ee02ea7428a5080afddf5b8e7",
+      "entry_hash": "2949898f2502b8ecc46e74f234509e4b89c4121d32ce51fc7c0a9c25e5013127"
+    },
+    {
+      "seq": 70,
+      "ts": "2026-10-24T12:00:10.560Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 70,
+        "ts": "2026-10-24T12:00:10.560Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_b",
+        "index": 5,
+        "purpose": "Fill shipping form"
+      },
+      "prev_hash": "2949898f2502b8ecc46e74f234509e4b89c4121d32ce51fc7c0a9c25e5013127",
+      "entry_hash": "0f70f30138e7ace0cc1678938c38ce36c4beddd612f95339d160e9f77f614c95"
+    },
+    {
+      "seq": 71,
+      "ts": "2026-10-24T12:00:10.600Z",
+      "event_type": "GraphUpdated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 71,
+        "ts": "2026-10-24T12:00:10.600Z",
+        "type": "GraphUpdated",
+        "target_id": "tgt_lab_a",
+        "version": 1
+      },
+      "prev_hash": "0f70f30138e7ace0cc1678938c38ce36c4beddd612f95339d160e9f77f614c95",
+      "entry_hash": "7a6d5b31738589a8f42c4a9b4883ee811df3178a677d477609e938eacf0bf2ea"
+    },
+    {
+      "seq": 72,
+      "ts": "2026-10-24T12:00:10.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 72,
+        "ts": "2026-10-24T12:00:10.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_c",
+        "source": "fetch",
+        "summary": "Fetched lab-c.example and noted the checkout script host"
+      },
+      "prev_hash": "7a6d5b31738589a8f42c4a9b4883ee811df3178a677d477609e938eacf0bf2ea",
+      "entry_hash": "40ba08c4cce011e92399a163fe6bbf22fb9e63b2b58da9794b8dfbca01c8b0ce"
+    },
+    {
+      "seq": 73,
+      "ts": "2026-10-24T12:00:10.800Z",
+      "event_type": "ProbeCompleted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 73,
+        "ts": "2026-10-24T12:00:10.800Z",
+        "type": "ProbeCompleted",
+        "target_id": "tgt_lab_a",
+        "status": "COMPLETED",
+        "reached_checkout": true,
+        "stopped_reason": "checkout_captured"
+      },
+      "prev_hash": "40ba08c4cce011e92399a163fe6bbf22fb9e63b2b58da9794b8dfbca01c8b0ce",
+      "entry_hash": "e79c2a1711c46f504c922bbf74eb49a347e5bacb6962ee977e0dee96697e100b"
+    },
+    {
+      "seq": 74,
+      "ts": "2026-10-24T12:00:10.860Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 74,
+        "ts": "2026-10-24T12:00:10.860Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_c",
+        "phase": "init_browser"
+      },
+      "prev_hash": "e79c2a1711c46f504c922bbf74eb49a347e5bacb6962ee977e0dee96697e100b",
+      "entry_hash": "abe30c6e0fe1b0ff4180ecde0de5eec4d07dbd2e74fee532e1234bad01409842"
+    },
+    {
+      "seq": 75,
+      "ts": "2026-10-24T12:00:10.960Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 75,
+        "ts": "2026-10-24T12:00:10.960Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_c",
+        "module": "profiles",
+        "state": "started"
+      },
+      "prev_hash": "abe30c6e0fe1b0ff4180ecde0de5eec4d07dbd2e74fee532e1234bad01409842",
+      "entry_hash": "45bdff24a34f0904ab4e9966a8c6a1f37837ff12e257bbff17896b723edb346c"
+    },
+    {
+      "seq": 76,
+      "ts": "2026-10-24T12:00:11.040Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 76,
+        "ts": "2026-10-24T12:00:11.040Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_b",
+        "index": 6,
+        "purpose": "Reach payment stage"
+      },
+      "prev_hash": "45bdff24a34f0904ab4e9966a8c6a1f37837ff12e257bbff17896b723edb346c",
+      "entry_hash": "79d024cf227935ce68367966b03180764eb39b516deee94433350248882407ef"
+    },
+    {
+      "seq": 77,
+      "ts": "2026-10-24T12:00:11.280Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 77,
+        "ts": "2026-10-24T12:00:11.280Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_b",
+        "module": "agent",
+        "state": "completed",
+        "duration_ms": 2880,
+        "summary": "Checkout reached in 6 steps"
+      },
+      "prev_hash": "79d024cf227935ce68367966b03180764eb39b516deee94433350248882407ef",
+      "entry_hash": "614c879247979ae2bbc9f9ca3ea9da8ac83de58fbda66bdc0999a7e776622bde"
+    },
+    {
+      "seq": 78,
+      "ts": "2026-10-24T12:00:11.360Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 78,
+        "ts": "2026-10-24T12:00:11.360Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_c",
+        "phase": "load_site"
+      },
+      "prev_hash": "614c879247979ae2bbc9f9ca3ea9da8ac83de58fbda66bdc0999a7e776622bde",
+      "entry_hash": "d076706e58af425eb61748ed81029b5c93151ee24bf02ea56ed0b3b7a30551ba"
+    },
+    {
+      "seq": 79,
+      "ts": "2026-10-24T12:00:11.460Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 79,
+        "ts": "2026-10-24T12:00:11.460Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_b",
+        "phase": "collect_evidence"
+      },
+      "prev_hash": "d076706e58af425eb61748ed81029b5c93151ee24bf02ea56ed0b3b7a30551ba",
+      "entry_hash": "4f91d2cb8b9a2473b773a9333fbd41ed970359e313a5249e155ee70bc06ec9f5"
+    },
+    {
+      "seq": 80,
+      "ts": "2026-10-24T12:00:11.560Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 80,
+        "ts": "2026-10-24T12:00:11.560Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_c",
+        "module": "profiles",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "Session cookies saved to profile"
+      },
+      "prev_hash": "4f91d2cb8b9a2473b773a9333fbd41ed970359e313a5249e155ee70bc06ec9f5",
+      "entry_hash": "c6a1ed72ce44ac7e8017857df2bec59b4f7e0d0cea19518a888789ab6b953ecb"
+    },
+    {
+      "seq": 81,
+      "ts": "2026-10-24T12:00:11.600Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 81,
+        "ts": "2026-10-24T12:00:11.600Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "publishable_key",
+          "value": "LAB_PK_LIVE_ALPHA",
+          "confidence": 0.99,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "c6a1ed72ce44ac7e8017857df2bec59b4f7e0d0cea19518a888789ab6b953ecb",
+      "entry_hash": "b357b3d0d28b52f444dc07e2cf2ad70ed0df0456f43b9e0afb4702c0bd4cdafb"
+    },
+    {
+      "seq": 82,
+      "ts": "2026-10-24T12:00:11.740Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 82,
+        "ts": "2026-10-24T12:00:11.740Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "merchant_id",
+          "value": "MID_LAB_B_4402",
+          "confidence": 0.95,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "b357b3d0d28b52f444dc07e2cf2ad70ed0df0456f43b9e0afb4702c0bd4cdafb",
+      "entry_hash": "cf38f7c344255932ed5b09e8e986a2b469917821f2b8123a0c2d62f96d18b395"
+    },
+    {
+      "seq": 83,
+      "ts": "2026-10-24T12:00:11.760Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 83,
+        "ts": "2026-10-24T12:00:11.760Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_c",
+        "module": "agent",
+        "state": "started"
+      },
+      "prev_hash": "cf38f7c344255932ed5b09e8e986a2b469917821f2b8123a0c2d62f96d18b395",
+      "entry_hash": "8596a63252538460ef8d1386600b19aeadff636304ea9980d380a5f0a07703bc"
+    },
+    {
+      "seq": 84,
+      "ts": "2026-10-24T12:00:11.880Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 84,
+        "ts": "2026-10-24T12:00:11.880Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "processor_host",
+          "value": "pay.labgate-one.example",
+          "confidence": 0.97,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "8596a63252538460ef8d1386600b19aeadff636304ea9980d380a5f0a07703bc",
+      "entry_hash": "872b92843cdb41f0644f19098ffdbb461de9ab43270533168b1583eb7bd17227"
+    },
+    {
+      "seq": 85,
+      "ts": "2026-10-24T12:00:11.880Z",
+      "event_type": "ProbeStarted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 85,
+        "ts": "2026-10-24T12:00:11.880Z",
+        "type": "ProbeStarted",
+        "target_id": "tgt_lab_c",
+        "run_id": "run_lab_c",
+        "key_label": "key-3"
+      },
+      "prev_hash": "872b92843cdb41f0644f19098ffdbb461de9ab43270533168b1583eb7bd17227",
+      "entry_hash": "836c71f72765c45c9f4cc3ae39103bef7375845268f4da5142b16c9aba69f402"
+    },
+    {
+      "seq": 86,
+      "ts": "2026-10-24T12:00:12.000Z",
+      "event_type": "StreamingUrl",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 86,
+        "ts": "2026-10-24T12:00:12.000Z",
+        "type": "StreamingUrl",
+        "target_id": "tgt_lab_c",
+        "url": "https://stream.invalid/run_lab_c"
+      },
+      "prev_hash": "836c71f72765c45c9f4cc3ae39103bef7375845268f4da5142b16c9aba69f402",
+      "entry_hash": "af48abacd1eb2e7042267fb17416ae907fb9b92d89c250de3970093c80abd9dd"
+    },
+    {
+      "seq": 87,
+      "ts": "2026-10-24T12:00:12.020Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 87,
+        "ts": "2026-10-24T12:00:12.020Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "checkout_script_host",
+          "value": "cdn.labgate-one.example",
+          "confidence": 0.9,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "af48abacd1eb2e7042267fb17416ae907fb9b92d89c250de3970093c80abd9dd",
+      "entry_hash": "283b6720a92399941fa350cdf51c18998c991e8576b45a844547d73bdea13b82"
+    },
+    {
+      "seq": 88,
+      "ts": "2026-10-24T12:00:12.160Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 88,
+        "ts": "2026-10-24T12:00:12.160Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "descriptor",
+          "value": "RXGLOBAL SERVICES",
+          "confidence": 0.93,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "283b6720a92399941fa350cdf51c18998c991e8576b45a844547d73bdea13b82",
+      "entry_hash": "9c4f4bff8d58830636e736e920a1f8b2cee1eeac74ee9455f38682fc17a5ff79"
+    },
+    {
+      "seq": 89,
+      "ts": "2026-10-24T12:00:12.300Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 89,
+        "ts": "2026-10-24T12:00:12.300Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "ip",
+          "value": "203.0.113.12",
+          "confidence": 0.9,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "9c4f4bff8d58830636e736e920a1f8b2cee1eeac74ee9455f38682fc17a5ff79",
+      "entry_hash": "dcb83155b8ab02f464c306387a7909789427e74d9ef7818e7d83434912202995"
+    },
+    {
+      "seq": 90,
+      "ts": "2026-10-24T12:00:12.440Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 90,
+        "ts": "2026-10-24T12:00:12.440Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "email",
+          "value": "billing-b@rxglobal-mail.example",
+          "confidence": 0.8,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "dcb83155b8ab02f464c306387a7909789427e74d9ef7818e7d83434912202995",
+      "entry_hash": "5f602e2ae6ee2c87dc3d3ed34364238fb0c7ec265db0351fd1a79c35cd16a904"
+    },
+    {
+      "seq": 91,
+      "ts": "2026-10-24T12:00:12.480Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 91,
+        "ts": "2026-10-24T12:00:12.480Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_c",
+        "index": 1,
+        "purpose": "Dismiss popup"
+      },
+      "prev_hash": "5f602e2ae6ee2c87dc3d3ed34364238fb0c7ec265db0351fd1a79c35cd16a904",
+      "entry_hash": "2564ad325c00f5128deee6b70c1f6a61a7a5985f52e1cf5aeeab5898086410c7"
+    },
+    {
+      "seq": 92,
+      "ts": "2026-10-24T12:00:12.560Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 92,
+        "ts": "2026-10-24T12:00:12.560Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_c",
+        "phase": "bypass_popups"
+      },
+      "prev_hash": "2564ad325c00f5128deee6b70c1f6a61a7a5985f52e1cf5aeeab5898086410c7",
+      "entry_hash": "838eaef7f381a73e4d73a310f25efe6328d3b7f6bca64c6bb2b230c7e606f64b"
+    },
+    {
+      "seq": 93,
+      "ts": "2026-10-24T12:00:12.580Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 93,
+        "ts": "2026-10-24T12:00:12.580Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "ns",
+          "value": "ns1.labdns.example",
+          "confidence": 0.7,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "838eaef7f381a73e4d73a310f25efe6328d3b7f6bca64c6bb2b230c7e606f64b",
+      "entry_hash": "2e72bba7394a54a96470296e7bb967fe21a9037a9b8cfcf5acc978edb6adefaa"
+    },
+    {
+      "seq": 94,
+      "ts": "2026-10-24T12:00:12.720Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 94,
+        "ts": "2026-10-24T12:00:12.720Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "cert_fingerprint",
+          "value": "b2:22:22:22:22:22:22:22",
+          "confidence": 0.88,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "2e72bba7394a54a96470296e7bb967fe21a9037a9b8cfcf5acc978edb6adefaa",
+      "entry_hash": "a0081f26a9c1d294ad11c1217318e821e2e340854329a4ee4fe32bbbccf90d22"
+    },
+    {
+      "seq": 95,
+      "ts": "2026-10-24T12:00:12.860Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 95,
+        "ts": "2026-10-24T12:00:12.860Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "registrar",
+          "value": "LabReg Ltd",
+          "confidence": 0.75,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "a0081f26a9c1d294ad11c1217318e821e2e340854329a4ee4fe32bbbccf90d22",
+      "entry_hash": "85bfacf5350450a0581725146004b32807cf951d8322cc6881f41d96e4df180c"
+    },
+    {
+      "seq": 96,
+      "ts": "2026-10-24T12:00:13.000Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 96,
+        "ts": "2026-10-24T12:00:13.000Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_b",
+        "indicator": {
+          "kind": "domain",
+          "value": "lab-b.example",
+          "confidence": 1,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "85bfacf5350450a0581725146004b32807cf951d8322cc6881f41d96e4df180c",
+      "entry_hash": "e832c9d907d562f20699a8746e9d3312eb15033299bc056dd2a7627fe4736e7d"
+    },
+    {
+      "seq": 97,
+      "ts": "2026-10-24T12:00:13.040Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 97,
+        "ts": "2026-10-24T12:00:13.040Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_c",
+        "index": 2,
+        "purpose": "Accept cookie banner"
+      },
+      "prev_hash": "e832c9d907d562f20699a8746e9d3312eb15033299bc056dd2a7627fe4736e7d",
+      "entry_hash": "3fafabc2ee1a5ff90bf465099f680328b79e08ef330e5a22a0903c39906dc033"
+    },
+    {
+      "seq": 98,
+      "ts": "2026-10-24T12:00:13.160Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 98,
+        "ts": "2026-10-24T12:00:13.160Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_b",
+        "module": "vault",
+        "state": "skipped",
+        "summary": "No vault credentials for this lab target"
+      },
+      "prev_hash": "3fafabc2ee1a5ff90bf465099f680328b79e08ef330e5a22a0903c39906dc033",
+      "entry_hash": "ca381b8ab07e3e30db1b6dc05e80f581afe66a384dfa4083ac80f2a1a541cc3b"
+    },
+    {
+      "seq": 99,
+      "ts": "2026-10-24T12:00:13.360Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 99,
+        "ts": "2026-10-24T12:00:13.360Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_b",
+        "phase": "validate_payload"
+      },
+      "prev_hash": "ca381b8ab07e3e30db1b6dc05e80f581afe66a384dfa4083ac80f2a1a541cc3b",
+      "entry_hash": "d56f6cc375ce3e5cbae575e9b6de81d0432064ded5d6758b667abbe48948d351"
+    },
+    {
+      "seq": 100,
+      "ts": "2026-10-24T12:00:13.520Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 100,
+        "ts": "2026-10-24T12:00:13.520Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_c",
+        "index": 3,
+        "purpose": "Add item to cart"
+      },
+      "prev_hash": "d56f6cc375ce3e5cbae575e9b6de81d0432064ded5d6758b667abbe48948d351",
+      "entry_hash": "85d1d05052237e55b24f1405b2a5a9600099779887d43e5bc1c31d281747bf0c"
+    },
+    {
+      "seq": 101,
+      "ts": "2026-10-24T12:00:13.720Z",
+      "event_type": "PayloadValidated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 101,
+        "ts": "2026-10-24T12:00:13.720Z",
+        "type": "PayloadValidated",
+        "target_id": "tgt_lab_b",
+        "schema_version": "2.4",
+        "checks": [
+          {
+            "field": "merchant_id",
+            "passed": true
+          },
+          {
+            "field": "gateway",
+            "passed": true
+          },
+          {
+            "field": "payment_endpoint",
+            "passed": true
+          },
+          {
+            "field": "host_ip",
+            "passed": true
+          },
+          {
+            "field": "domain_age",
+            "passed": true
+          },
+          {
+            "field": "ssl_issuer",
+            "passed": true
+          },
+          {
+            "field": "suspicious_scripts",
+            "passed": false,
+            "reason": "2 checkout scripts load from an unrelated host"
+          },
+          {
+            "field": "redirect_chain",
+            "passed": false,
+            "reason": "3 hops leave the storefront host before payment"
+          }
+        ],
+        "report": {
+          "target_id": "tgt_lab_b",
+          "host": "lab-b.example",
+          "risk": {
+            "score": 80,
+            "label": "HIGH",
+            "evidence_coverage": "6/8",
+            "verdict": "Shared merchant infrastructure and malicious checkout behavior detected"
+          },
+          "evidence": [
+            {
+              "field": "merchant_id",
+              "label": "Merchant ID",
+              "value": "MID_LAB_B_4402",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "gateway",
+              "label": "Gateway",
+              "value": "LabGate One",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "payment_endpoint",
+              "label": "Payment Endpoint",
+              "value": "https://pay.labgate-one.example/v1/charge",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "host_ip",
+              "label": "Host IP",
+              "value": "203.0.113.12",
+              "severity": "medium",
+              "source": "infra"
+            },
+            {
+              "field": "domain_age",
+              "label": "Domain Age",
+              "value": "12 days",
+              "severity": "high",
+              "source": "derived"
+            },
+            {
+              "field": "ssl_issuer",
+              "label": "SSL Issuer",
+              "value": "R3 / Let's Encrypt",
+              "severity": "safe",
+              "source": "infra"
+            },
+            {
+              "field": "suspicious_scripts",
+              "label": "Suspicious Scripts",
+              "value": "2 detected",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "redirect_chain",
+              "label": "Redirect Chain",
+              "value": "3 hops",
+              "severity": "medium",
+              "source": "derived"
+            }
+          ]
+        }
+      },
+      "prev_hash": "85d1d05052237e55b24f1405b2a5a9600099779887d43e5bc1c31d281747bf0c",
+      "entry_hash": "8cbf417559f6ca0c72fa855f7da60ef3a90ab5da57bc7a223e975bf80d4a14a5"
+    },
+    {
+      "seq": 102,
+      "ts": "2026-10-24T12:00:13.940Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 102,
+        "ts": "2026-10-24T12:00:13.940Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_b",
+        "phase": "build_graph"
+      },
+      "prev_hash": "8cbf417559f6ca0c72fa855f7da60ef3a90ab5da57bc7a223e975bf80d4a14a5",
+      "entry_hash": "acda2c5be9f0ff21cb23a96325ed6995b1feecdd90a4437e1aa94640f7caa2f6"
+    },
+    {
+      "seq": 103,
+      "ts": "2026-10-24T12:00:14.000Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 103,
+        "ts": "2026-10-24T12:00:14.000Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_c",
+        "index": 4,
+        "purpose": "Open checkout"
+      },
+      "prev_hash": "acda2c5be9f0ff21cb23a96325ed6995b1feecdd90a4437e1aa94640f7caa2f6",
+      "entry_hash": "6555b6f094f76eba6a99488fa3c974a963d7e58142e844118bafe4fc79e11b4c"
+    },
+    {
+      "seq": 104,
+      "ts": "2026-10-24T12:00:14.080Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 104,
+        "ts": "2026-10-24T12:00:14.080Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_c",
+        "phase": "navigate_checkout"
+      },
+      "prev_hash": "6555b6f094f76eba6a99488fa3c974a963d7e58142e844118bafe4fc79e11b4c",
+      "entry_hash": "ca8fbf91177f7457371802bbd712675a7094fde7312e3af0a9b129b72eeb3c81"
+    },
+    {
+      "seq": 105,
+      "ts": "2026-10-24T12:00:14.120Z",
+      "event_type": "GraphUpdated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 105,
+        "ts": "2026-10-24T12:00:14.120Z",
+        "type": "GraphUpdated",
+        "target_id": "tgt_lab_b",
+        "version": 2
+      },
+      "prev_hash": "ca8fbf91177f7457371802bbd712675a7094fde7312e3af0a9b129b72eeb3c81",
+      "entry_hash": "6e058abfca02751165f04d7817ca03e0edfc8ce51426f7447cb1d836ba2beb89"
+    },
+    {
+      "seq": 106,
+      "ts": "2026-10-24T12:00:14.320Z",
+      "event_type": "ProbeCompleted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 106,
+        "ts": "2026-10-24T12:00:14.320Z",
+        "type": "ProbeCompleted",
+        "target_id": "tgt_lab_b",
+        "status": "COMPLETED",
+        "reached_checkout": true,
+        "stopped_reason": "checkout_captured"
+      },
+      "prev_hash": "6e058abfca02751165f04d7817ca03e0edfc8ce51426f7447cb1d836ba2beb89",
+      "entry_hash": "29452fdc40fb71632d7e7644d4cb40503d6d61bb2f89edf16c624f6fc261ba61"
+    },
+    {
+      "seq": 107,
+      "ts": "2026-10-24T12:00:14.560Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 107,
+        "ts": "2026-10-24T12:00:14.560Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_c",
+        "index": 5,
+        "purpose": "Fill shipping form"
+      },
+      "prev_hash": "29452fdc40fb71632d7e7644d4cb40503d6d61bb2f89edf16c624f6fc261ba61",
+      "entry_hash": "2926ee0de70add889cc50aee816210e4cd39da764b475dbe1ee598c01938eb53"
+    },
+    {
+      "seq": 108,
+      "ts": "2026-10-24T12:00:15.040Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 108,
+        "ts": "2026-10-24T12:00:15.040Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_c",
+        "index": 6,
+        "purpose": "Reach payment stage"
+      },
+      "prev_hash": "2926ee0de70add889cc50aee816210e4cd39da764b475dbe1ee598c01938eb53",
+      "entry_hash": "356859f950f6ff2492270be1a8859cc21341e5dd20e973ccda1c698540e9eef4"
+    },
+    {
+      "seq": 109,
+      "ts": "2026-10-24T12:00:15.520Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 109,
+        "ts": "2026-10-24T12:00:15.520Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_c",
+        "index": 7,
+        "purpose": "Read publishable key from the checkout script"
+      },
+      "prev_hash": "356859f950f6ff2492270be1a8859cc21341e5dd20e973ccda1c698540e9eef4",
+      "entry_hash": "010fe3f3d9e1e0f7931f1109526fb9d39bf0a41776f910082a465c8432fec182"
+    },
+    {
+      "seq": 110,
+      "ts": "2026-10-24T12:00:16.000Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 110,
+        "ts": "2026-10-24T12:00:16.000Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_c",
+        "index": 8,
+        "purpose": "Capture the statement descriptor"
+      },
+      "prev_hash": "010fe3f3d9e1e0f7931f1109526fb9d39bf0a41776f910082a465c8432fec182",
+      "entry_hash": "524cc8488841a32485f057dfca2137e7991785aa39bfc23578305952ab7f0b54"
+    },
+    {
+      "seq": 111,
+      "ts": "2026-10-24T12:00:16.240Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 111,
+        "ts": "2026-10-24T12:00:16.240Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_c",
+        "module": "agent",
+        "state": "completed",
+        "duration_ms": 3840,
+        "summary": "Checkout reached in 8 steps"
+      },
+      "prev_hash": "524cc8488841a32485f057dfca2137e7991785aa39bfc23578305952ab7f0b54",
+      "entry_hash": "a9d6715c5a77f7bc9e3096263cf905036c8dd1103dd20a396a28dfd63f9a4622"
+    },
+    {
+      "seq": 112,
+      "ts": "2026-10-24T12:00:16.420Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 112,
+        "ts": "2026-10-24T12:00:16.420Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_c",
+        "phase": "collect_evidence"
+      },
+      "prev_hash": "a9d6715c5a77f7bc9e3096263cf905036c8dd1103dd20a396a28dfd63f9a4622",
+      "entry_hash": "57b5afab9bbfd11b8820d4df94c711ad59ced968675395771766c51cc6fe9b5f"
+    },
+    {
+      "seq": 113,
+      "ts": "2026-10-24T12:00:16.560Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 113,
+        "ts": "2026-10-24T12:00:16.560Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "publishable_key",
+          "value": "LAB_PK_LIVE_ALPHA",
+          "confidence": 0.99,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "57b5afab9bbfd11b8820d4df94c711ad59ced968675395771766c51cc6fe9b5f",
+      "entry_hash": "54bf6f5516189ef41c8904dbd608e98b3fb4cb325e510da17c05abf40d89d771"
+    },
+    {
+      "seq": 114,
+      "ts": "2026-10-24T12:00:16.700Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 114,
+        "ts": "2026-10-24T12:00:16.700Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "merchant_id",
+          "value": "MID_LAB_C_4403",
+          "confidence": 0.97,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "54bf6f5516189ef41c8904dbd608e98b3fb4cb325e510da17c05abf40d89d771",
+      "entry_hash": "8b1b172a2569b7dc767b27b20ff90bde0340d054e63e214bd8802f705415934d"
+    },
+    {
+      "seq": 115,
+      "ts": "2026-10-24T12:00:16.840Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 115,
+        "ts": "2026-10-24T12:00:16.840Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "processor_host",
+          "value": "pay.labgate-one.example",
+          "confidence": 0.98,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "8b1b172a2569b7dc767b27b20ff90bde0340d054e63e214bd8802f705415934d",
+      "entry_hash": "eb040e651ade8587ac83d5dc20a83c6c0944bf28374af847d4e22dc9a856a912"
+    },
+    {
+      "seq": 116,
+      "ts": "2026-10-24T12:00:16.980Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 116,
+        "ts": "2026-10-24T12:00:16.980Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "checkout_script_host",
+          "value": "cdn.labgate-one.example",
+          "confidence": 0.92,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "eb040e651ade8587ac83d5dc20a83c6c0944bf28374af847d4e22dc9a856a912",
+      "entry_hash": "1194a43129f3e5fec90973cfb96753a9800b607d84e0a5ac665debfe4dca6d95"
+    },
+    {
+      "seq": 117,
+      "ts": "2026-10-24T12:00:17.120Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 117,
+        "ts": "2026-10-24T12:00:17.120Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "descriptor",
+          "value": "RXGLOBAL SERVICES",
+          "confidence": 0.96,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "1194a43129f3e5fec90973cfb96753a9800b607d84e0a5ac665debfe4dca6d95",
+      "entry_hash": "df5bd7f13a5fe236520ca97d6dc0ff692d44d647457ce0b273ef71be0a780860"
+    },
+    {
+      "seq": 118,
+      "ts": "2026-10-24T12:00:17.260Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 118,
+        "ts": "2026-10-24T12:00:17.260Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "telegram",
+          "value": "t.me/rxglobal_desk",
+          "confidence": 0.93,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "df5bd7f13a5fe236520ca97d6dc0ff692d44d647457ce0b273ef71be0a780860",
+      "entry_hash": "18f76fc172f9de9303b6f76612c6944fa298a1a6ddb4828a5d7a0de81d4f58c8"
+    },
+    {
+      "seq": 119,
+      "ts": "2026-10-24T12:00:17.360Z",
+      "event_type": "PivotSuggested",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 119,
+        "ts": "2026-10-24T12:00:17.360Z",
+        "type": "PivotSuggested",
+        "target_id": "tgt_lab_c",
+        "pivot_id": "piv_tg_rxglobal",
+        "indicator": {
+          "kind": "telegram",
+          "value": "t.me/rxglobal_desk",
+          "confidence": 0.93,
+          "source": "agent"
+        },
+        "query": "t.me/rxglobal_desk"
+      },
+      "prev_hash": "18f76fc172f9de9303b6f76612c6944fa298a1a6ddb4828a5d7a0de81d4f58c8",
+      "entry_hash": "46be86cb0f07e897fe2ffea3e4bb243c7d054cbcbfd3411ff1ca8395a4768261"
+    },
+    {
+      "seq": 120,
+      "ts": "2026-10-24T12:00:17.500Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 120,
+        "ts": "2026-10-24T12:00:17.500Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "phone",
+          "value": "+15551230003",
+          "confidence": 0.7,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "46be86cb0f07e897fe2ffea3e4bb243c7d054cbcbfd3411ff1ca8395a4768261",
+      "entry_hash": "901756eee6f73bb8819a8337d26cbde7feb0344e72feaef290e538ffb84bd9b0"
+    },
+    {
+      "seq": 121,
+      "ts": "2026-10-24T12:00:17.640Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 121,
+        "ts": "2026-10-24T12:00:17.640Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "ip",
+          "value": "203.0.113.13",
+          "confidence": 0.9,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "901756eee6f73bb8819a8337d26cbde7feb0344e72feaef290e538ffb84bd9b0",
+      "entry_hash": "39e101970bec9d90fcee3b35d6f7f5ca0c0b2c9c882b1e70ebfdbe4e45f9a9a9"
+    },
+    {
+      "seq": 122,
+      "ts": "2026-10-24T12:00:17.780Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 122,
+        "ts": "2026-10-24T12:00:17.780Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "ns",
+          "value": "ns1.labdns.example",
+          "confidence": 0.7,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "39e101970bec9d90fcee3b35d6f7f5ca0c0b2c9c882b1e70ebfdbe4e45f9a9a9",
+      "entry_hash": "265b836d845fd70b517a2ac58555c3b5c4c6ed961b51f9cc253f5750cfb9c45e"
+    },
+    {
+      "seq": 123,
+      "ts": "2026-10-24T12:00:17.920Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 123,
+        "ts": "2026-10-24T12:00:17.920Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "cert_fingerprint",
+          "value": "c3:33:33:33:33:33:33:33",
+          "confidence": 0.88,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "265b836d845fd70b517a2ac58555c3b5c4c6ed961b51f9cc253f5750cfb9c45e",
+      "entry_hash": "514618320f3533a1d69fdbb18e318f057ba05aaa5ef24aa61c18596e5ad8a2b3"
+    },
+    {
+      "seq": 124,
+      "ts": "2026-10-24T12:00:18.060Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 124,
+        "ts": "2026-10-24T12:00:18.060Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "registrar",
+          "value": "LabReg Ltd",
+          "confidence": 0.75,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "514618320f3533a1d69fdbb18e318f057ba05aaa5ef24aa61c18596e5ad8a2b3",
+      "entry_hash": "a6006eb84531e4f0dbc4670c02105a81795f871b1a992590c769e0c48b81c07a"
+    },
+    {
+      "seq": 125,
+      "ts": "2026-10-24T12:00:18.200Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 125,
+        "ts": "2026-10-24T12:00:18.200Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_c",
+        "indicator": {
+          "kind": "domain",
+          "value": "lab-c.example",
+          "confidence": 1,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "a6006eb84531e4f0dbc4670c02105a81795f871b1a992590c769e0c48b81c07a",
+      "entry_hash": "185caee2a5fe1b757f8d82fe47ada577650ae08b6d771f3424b481aeefca3d38"
+    },
+    {
+      "seq": 126,
+      "ts": "2026-10-24T12:00:18.360Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 126,
+        "ts": "2026-10-24T12:00:18.360Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_c",
+        "module": "vault",
+        "state": "skipped",
+        "summary": "No vault credentials for this lab target"
+      },
+      "prev_hash": "185caee2a5fe1b757f8d82fe47ada577650ae08b6d771f3424b481aeefca3d38",
+      "entry_hash": "b195e709dcebee6901a9b09f0c408a6cdf2f07042b81b0d71334b599305b2e03"
+    },
+    {
+      "seq": 127,
+      "ts": "2026-10-24T12:00:18.560Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 127,
+        "ts": "2026-10-24T12:00:18.560Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_c",
+        "phase": "validate_payload"
+      },
+      "prev_hash": "b195e709dcebee6901a9b09f0c408a6cdf2f07042b81b0d71334b599305b2e03",
+      "entry_hash": "dc454501edd30b38612e3f2cea596191adf7a8c813b47ac8195caa2a88f5e379"
+    },
+    {
+      "seq": 128,
+      "ts": "2026-10-24T12:00:18.920Z",
+      "event_type": "PayloadValidated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 128,
+        "ts": "2026-10-24T12:00:18.920Z",
+        "type": "PayloadValidated",
+        "target_id": "tgt_lab_c",
+        "schema_version": "2.4",
+        "checks": [
+          {
+            "field": "merchant_id",
+            "passed": true
+          },
+          {
+            "field": "gateway",
+            "passed": true
+          },
+          {
+            "field": "payment_endpoint",
+            "passed": true
+          },
+          {
+            "field": "host_ip",
+            "passed": true
+          },
+          {
+            "field": "domain_age",
+            "passed": false,
+            "reason": "Domain age 6 days is under 30 days"
+          },
+          {
+            "field": "ssl_issuer",
+            "passed": true
+          },
+          {
+            "field": "suspicious_scripts",
+            "passed": false,
+            "reason": "4 checkout scripts load from an unrelated host"
+          },
+          {
+            "field": "redirect_chain",
+            "passed": false,
+            "reason": "5 hops leave the storefront host before payment"
+          }
+        ],
+        "report": {
+          "target_id": "tgt_lab_c",
+          "host": "lab-c.example",
+          "risk": {
+            "score": 92,
+            "label": "HIGH",
+            "evidence_coverage": "5/8",
+            "verdict": "Shared merchant infrastructure and malicious checkout behavior detected"
+          },
+          "evidence": [
+            {
+              "field": "merchant_id",
+              "label": "Merchant ID",
+              "value": "MID_LAB_C_4403",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "gateway",
+              "label": "Gateway",
+              "value": "LabGate One",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "payment_endpoint",
+              "label": "Payment Endpoint",
+              "value": "https://pay.labgate-one.example/v1/charge",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "host_ip",
+              "label": "Host IP",
+              "value": "203.0.113.13",
+              "severity": "high",
+              "source": "infra"
+            },
+            {
+              "field": "domain_age",
+              "label": "Domain Age",
+              "value": "6 days",
+              "severity": "high",
+              "source": "derived"
+            },
+            {
+              "field": "ssl_issuer",
+              "label": "SSL Issuer",
+              "value": "R3 / Let's Encrypt",
+              "severity": "safe",
+              "source": "infra"
+            },
+            {
+              "field": "suspicious_scripts",
+              "label": "Suspicious Scripts",
+              "value": "4 detected",
+              "severity": "high",
+              "source": "agent"
+            },
+            {
+              "field": "redirect_chain",
+              "label": "Redirect Chain",
+              "value": "5 hops",
+              "severity": "high",
+              "source": "derived"
+            }
+          ]
+        }
+      },
+      "prev_hash": "dc454501edd30b38612e3f2cea596191adf7a8c813b47ac8195caa2a88f5e379",
+      "entry_hash": "bc1cbd249d73b48596525f08d4eec9b89920e58302684231413351c81ce7c56a"
+    },
+    {
+      "seq": 129,
+      "ts": "2026-10-24T12:00:19.140Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 129,
+        "ts": "2026-10-24T12:00:19.140Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_c",
+        "phase": "build_graph"
+      },
+      "prev_hash": "bc1cbd249d73b48596525f08d4eec9b89920e58302684231413351c81ce7c56a",
+      "entry_hash": "ab2f2a93949175ef1914bd015da45d63a52baadf953c3cf8b2d19b5064dae02a"
+    },
+    {
+      "seq": 130,
+      "ts": "2026-10-24T12:00:19.320Z",
+      "event_type": "GraphUpdated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 130,
+        "ts": "2026-10-24T12:00:19.320Z",
+        "type": "GraphUpdated",
+        "target_id": "tgt_lab_c",
+        "version": 3
+      },
+      "prev_hash": "ab2f2a93949175ef1914bd015da45d63a52baadf953c3cf8b2d19b5064dae02a",
+      "entry_hash": "d311eb59cc2cfb8eb1793902d270a1b518b4f948b8fc5956a2b60e06bbe36cdd"
+    },
+    {
+      "seq": 131,
+      "ts": "2026-10-24T12:00:19.520Z",
+      "event_type": "ProbeCompleted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 131,
+        "ts": "2026-10-24T12:00:19.520Z",
+        "type": "ProbeCompleted",
+        "target_id": "tgt_lab_c",
+        "status": "COMPLETED",
+        "reached_checkout": true,
+        "stopped_reason": "checkout_captured"
+      },
+      "prev_hash": "d311eb59cc2cfb8eb1793902d270a1b518b4f948b8fc5956a2b60e06bbe36cdd",
+      "entry_hash": "fe8699d8489f3ecbfe2ae5762fcd05904225ddcbf3507321e3259b79abe039e3"
+    },
+    {
+      "seq": 132,
+      "ts": "2026-10-24T12:00:21.000Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 132,
+        "ts": "2026-10-24T12:00:21.000Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_d",
+        "module": "search",
+        "state": "started"
+      },
+      "prev_hash": "fe8699d8489f3ecbfe2ae5762fcd05904225ddcbf3507321e3259b79abe039e3",
+      "entry_hash": "b839c66ab212bd33bb38524dcdd3b4982b4969aa4813cb26b9ea03e89f5fb1e1"
+    },
+    {
+      "seq": 133,
+      "ts": "2026-10-24T12:00:21.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 133,
+        "ts": "2026-10-24T12:00:21.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_d",
+        "module": "search",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "Distinct publishable key; Telegram matches lab-c.example"
+      },
+      "prev_hash": "b839c66ab212bd33bb38524dcdd3b4982b4969aa4813cb26b9ea03e89f5fb1e1",
+      "entry_hash": "268ebeeb760a5b2d742b519b36bb27f48a9c234a47ce5ae41ac4dac1613982cb"
+    },
+    {
+      "seq": 134,
+      "ts": "2026-10-24T12:00:21.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 134,
+        "ts": "2026-10-24T12:00:21.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_d",
+        "source": "search",
+        "summary": "Distinct publishable key; Telegram matches lab-c.example"
+      },
+      "prev_hash": "268ebeeb760a5b2d742b519b36bb27f48a9c234a47ce5ae41ac4dac1613982cb",
+      "entry_hash": "d0840430c2495441f62627b4157b82a630e5e107f705926f51c3af949620f204"
+    },
+    {
+      "seq": 135,
+      "ts": "2026-10-24T12:00:21.800Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 135,
+        "ts": "2026-10-24T12:00:21.800Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_d",
+        "module": "fetch",
+        "state": "started"
+      },
+      "prev_hash": "d0840430c2495441f62627b4157b82a630e5e107f705926f51c3af949620f204",
+      "entry_hash": "231cee0dbe427f6e0b46f84cca0c5ee7ec99404d3738eb28f7f8e2840e2ab382"
+    },
+    {
+      "seq": 136,
+      "ts": "2026-10-24T12:00:22.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 136,
+        "ts": "2026-10-24T12:00:22.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_d",
+        "module": "fetch",
+        "state": "completed",
+        "duration_ms": 700,
+        "summary": "SPA DOM unpacked to JSON"
+      },
+      "prev_hash": "231cee0dbe427f6e0b46f84cca0c5ee7ec99404d3738eb28f7f8e2840e2ab382",
+      "entry_hash": "fffa87f5ea77c279f48b584efa9f62642cf9d46330154050b139da03a095ede5"
+    },
+    {
+      "seq": 137,
+      "ts": "2026-10-24T12:00:22.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 137,
+        "ts": "2026-10-24T12:00:22.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_d",
+        "source": "fetch",
+        "summary": "Fetched lab-d.example and noted the checkout script host"
+      },
+      "prev_hash": "fffa87f5ea77c279f48b584efa9f62642cf9d46330154050b139da03a095ede5",
+      "entry_hash": "44668352beb81eb5a811a6d8798a46aa4bf0f17f93b962b09ba3ba21cd30ce9f"
+    },
+    {
+      "seq": 138,
+      "ts": "2026-10-24T12:00:22.860Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 138,
+        "ts": "2026-10-24T12:00:22.860Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_d",
+        "phase": "init_browser"
+      },
+      "prev_hash": "44668352beb81eb5a811a6d8798a46aa4bf0f17f93b962b09ba3ba21cd30ce9f",
+      "entry_hash": "e496bce65bbfb8db6c21a8e79a89c30b0ee41ca74ba29858396221b54f4fb63e"
+    },
+    {
+      "seq": 139,
+      "ts": "2026-10-24T12:00:22.960Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 139,
+        "ts": "2026-10-24T12:00:22.960Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_d",
+        "module": "profiles",
+        "state": "started"
+      },
+      "prev_hash": "e496bce65bbfb8db6c21a8e79a89c30b0ee41ca74ba29858396221b54f4fb63e",
+      "entry_hash": "df9ea5a9bc6383289668b0c342dcc8dd08d2bf7b5c3c0f4b793ec997017668db"
+    },
+    {
+      "seq": 140,
+      "ts": "2026-10-24T12:00:23.360Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 140,
+        "ts": "2026-10-24T12:00:23.360Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_d",
+        "phase": "load_site"
+      },
+      "prev_hash": "df9ea5a9bc6383289668b0c342dcc8dd08d2bf7b5c3c0f4b793ec997017668db",
+      "entry_hash": "936ce3ad4aa925c2777581fceea1acb4ae48c024638586d5887f82e304673d71"
+    },
+    {
+      "seq": 141,
+      "ts": "2026-10-24T12:00:23.560Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 141,
+        "ts": "2026-10-24T12:00:23.560Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_d",
+        "module": "profiles",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "Session cookies saved to profile"
+      },
+      "prev_hash": "936ce3ad4aa925c2777581fceea1acb4ae48c024638586d5887f82e304673d71",
+      "entry_hash": "dea5a98e22636c1fb4461dd0bb032242cf6ceaee9129473268fbe7100f047b7e"
+    },
+    {
+      "seq": 142,
+      "ts": "2026-10-24T12:00:23.760Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 142,
+        "ts": "2026-10-24T12:00:23.760Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_d",
+        "module": "agent",
+        "state": "started"
+      },
+      "prev_hash": "dea5a98e22636c1fb4461dd0bb032242cf6ceaee9129473268fbe7100f047b7e",
+      "entry_hash": "9c27d7e0f0152cfc6482344b5e195b19f8cc39730df363078db3dd0ad590c164"
+    },
+    {
+      "seq": 143,
+      "ts": "2026-10-24T12:00:23.880Z",
+      "event_type": "ProbeStarted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 143,
+        "ts": "2026-10-24T12:00:23.880Z",
+        "type": "ProbeStarted",
+        "target_id": "tgt_lab_d",
+        "run_id": "run_lab_d",
+        "key_label": "key-1"
+      },
+      "prev_hash": "9c27d7e0f0152cfc6482344b5e195b19f8cc39730df363078db3dd0ad590c164",
+      "entry_hash": "4edbf7dcfd018840a05061010b6192c1311dcdd141075de9b2158bbb6e88afb3"
+    },
+    {
+      "seq": 144,
+      "ts": "2026-10-24T12:00:24.000Z",
+      "event_type": "StreamingUrl",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 144,
+        "ts": "2026-10-24T12:00:24.000Z",
+        "type": "StreamingUrl",
+        "target_id": "tgt_lab_d",
+        "url": "https://stream.invalid/run_lab_d"
+      },
+      "prev_hash": "4edbf7dcfd018840a05061010b6192c1311dcdd141075de9b2158bbb6e88afb3",
+      "entry_hash": "a1d0a193ee4adea1dd23526ba7734a19b81e7850971f17d77c29992e959923b4"
+    },
+    {
+      "seq": 145,
+      "ts": "2026-10-24T12:00:24.480Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 145,
+        "ts": "2026-10-24T12:00:24.480Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_d",
+        "index": 1,
+        "purpose": "Dismiss popup"
+      },
+      "prev_hash": "a1d0a193ee4adea1dd23526ba7734a19b81e7850971f17d77c29992e959923b4",
+      "entry_hash": "92f1553a3d3a11cd685a81e6ae43f79af6edc2c46da3195c6ea19048651a2b04"
+    },
+    {
+      "seq": 146,
+      "ts": "2026-10-24T12:00:24.560Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 146,
+        "ts": "2026-10-24T12:00:24.560Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_d",
+        "phase": "bypass_popups"
+      },
+      "prev_hash": "92f1553a3d3a11cd685a81e6ae43f79af6edc2c46da3195c6ea19048651a2b04",
+      "entry_hash": "ae707f0121e3e2b96937cd7dc9600b16c6b91b26aeb7b9f2a32ce3d517b59474"
+    },
+    {
+      "seq": 147,
+      "ts": "2026-10-24T12:00:25.040Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 147,
+        "ts": "2026-10-24T12:00:25.040Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_d",
+        "index": 2,
+        "purpose": "Accept cookie banner"
+      },
+      "prev_hash": "ae707f0121e3e2b96937cd7dc9600b16c6b91b26aeb7b9f2a32ce3d517b59474",
+      "entry_hash": "a1060428b2c7ffae9ec0f2f7937a6e66bd988b66064deb70cba62a64587fd292"
+    },
+    {
+      "seq": 148,
+      "ts": "2026-10-24T12:00:25.520Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 148,
+        "ts": "2026-10-24T12:00:25.520Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_d",
+        "index": 3,
+        "purpose": "Add item to cart"
+      },
+      "prev_hash": "a1060428b2c7ffae9ec0f2f7937a6e66bd988b66064deb70cba62a64587fd292",
+      "entry_hash": "4bf2ec360f463e0c09b2f2e4eb705c5db275022b088bd66505dac6105811b3b9"
+    },
+    {
+      "seq": 149,
+      "ts": "2026-10-24T12:00:26.000Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 149,
+        "ts": "2026-10-24T12:00:26.000Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_d",
+        "index": 4,
+        "purpose": "Open checkout"
+      },
+      "prev_hash": "4bf2ec360f463e0c09b2f2e4eb705c5db275022b088bd66505dac6105811b3b9",
+      "entry_hash": "e96c9cebab6cdcb214fa0b8b925781fd86ede5b7359aa037101da4d22c6c2739"
+    },
+    {
+      "seq": 150,
+      "ts": "2026-10-24T12:00:26.080Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 150,
+        "ts": "2026-10-24T12:00:26.080Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_d",
+        "phase": "navigate_checkout"
+      },
+      "prev_hash": "e96c9cebab6cdcb214fa0b8b925781fd86ede5b7359aa037101da4d22c6c2739",
+      "entry_hash": "a8c97cf1ad24415519b999c36ebfe1b3632faf55af59e9fde698d099b4c573c5"
+    },
+    {
+      "seq": 151,
+      "ts": "2026-10-24T12:00:26.560Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 151,
+        "ts": "2026-10-24T12:00:26.560Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_d",
+        "index": 5,
+        "purpose": "Fill shipping form"
+      },
+      "prev_hash": "a8c97cf1ad24415519b999c36ebfe1b3632faf55af59e9fde698d099b4c573c5",
+      "entry_hash": "e4fc84d0ed79fa1330e513f1044913f4a9e0203fb9adf4f5d76f15ede2dd6ec7"
+    },
+    {
+      "seq": 152,
+      "ts": "2026-10-24T12:00:26.800Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 152,
+        "ts": "2026-10-24T12:00:26.800Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_d",
+        "module": "agent",
+        "state": "completed",
+        "duration_ms": 2400,
+        "summary": "Checkout reached in 5 steps"
+      },
+      "prev_hash": "e4fc84d0ed79fa1330e513f1044913f4a9e0203fb9adf4f5d76f15ede2dd6ec7",
+      "entry_hash": "24c95b9c7b9caf9054b5b17c057dff1693986a80209caeac4498cd8c5ef8db7d"
+    },
+    {
+      "seq": 153,
+      "ts": "2026-10-24T12:00:26.980Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 153,
+        "ts": "2026-10-24T12:00:26.980Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_d",
+        "phase": "collect_evidence"
+      },
+      "prev_hash": "24c95b9c7b9caf9054b5b17c057dff1693986a80209caeac4498cd8c5ef8db7d",
+      "entry_hash": "96a2cd4c32abc4d6a200ed5425fbceb7048befb720c49db8df0e6c5e4d5de92f"
+    },
+    {
+      "seq": 154,
+      "ts": "2026-10-24T12:00:27.120Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 154,
+        "ts": "2026-10-24T12:00:27.120Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "publishable_key",
+          "value": "LAB_PK_LIVE_BETA",
+          "confidence": 0.9,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "96a2cd4c32abc4d6a200ed5425fbceb7048befb720c49db8df0e6c5e4d5de92f",
+      "entry_hash": "a9d9885a1a22d1637a29c9ca786867d479fac482e0e3c9e9f5392b7d28f2bcdf"
+    },
+    {
+      "seq": 155,
+      "ts": "2026-10-24T12:00:27.260Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 155,
+        "ts": "2026-10-24T12:00:27.260Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "merchant_id",
+          "value": "MID_LAB_D_5501",
+          "confidence": 0.84,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "a9d9885a1a22d1637a29c9ca786867d479fac482e0e3c9e9f5392b7d28f2bcdf",
+      "entry_hash": "c543cb2112892a58f05018b3de813760f446d8a28e4d2011956008afdbd5002b"
+    },
+    {
+      "seq": 156,
+      "ts": "2026-10-24T12:00:27.400Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 156,
+        "ts": "2026-10-24T12:00:27.400Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "processor_host",
+          "value": "pay.labgate-two.example",
+          "confidence": 0.8,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "c543cb2112892a58f05018b3de813760f446d8a28e4d2011956008afdbd5002b",
+      "entry_hash": "645c5c8b0a769977f6c0b8ab25d77ae3af56a4aeed7e7f891967795f553307e9"
+    },
+    {
+      "seq": 157,
+      "ts": "2026-10-24T12:00:27.540Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 157,
+        "ts": "2026-10-24T12:00:27.540Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "checkout_script_host",
+          "value": "cdn.labgate-two.example",
+          "confidence": 0.72,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "645c5c8b0a769977f6c0b8ab25d77ae3af56a4aeed7e7f891967795f553307e9",
+      "entry_hash": "7079fd1d7d7a5b44ee867b8720edd96bb9a1a4b488a079366e7155e8888a95e5"
+    },
+    {
+      "seq": 158,
+      "ts": "2026-10-24T12:00:27.680Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 158,
+        "ts": "2026-10-24T12:00:27.680Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "descriptor",
+          "value": "NORTHWIND MARKETS",
+          "confidence": 0.7,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "7079fd1d7d7a5b44ee867b8720edd96bb9a1a4b488a079366e7155e8888a95e5",
+      "entry_hash": "489f555c2b113c20646449e604201cfbc48d7cfe85f8d3cb7face17188e0e56c"
+    },
+    {
+      "seq": 159,
+      "ts": "2026-10-24T12:00:27.820Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 159,
+        "ts": "2026-10-24T12:00:27.820Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "telegram",
+          "value": "t.me/rxglobal_desk",
+          "confidence": 0.93,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "489f555c2b113c20646449e604201cfbc48d7cfe85f8d3cb7face17188e0e56c",
+      "entry_hash": "5b6576e55b92e8cc070a140b81d2a0a5a98d127b97c4d7c67e97d929e3b82a09"
+    },
+    {
+      "seq": 160,
+      "ts": "2026-10-24T12:00:27.960Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 160,
+        "ts": "2026-10-24T12:00:27.960Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "email",
+          "value": "desk@northwind-markets.example",
+          "confidence": 0.66,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "5b6576e55b92e8cc070a140b81d2a0a5a98d127b97c4d7c67e97d929e3b82a09",
+      "entry_hash": "d7a0f5d1e74d74bb8b1b0375510bdaff2b0e48a182ea4b7478081ec623470d7d"
+    },
+    {
+      "seq": 161,
+      "ts": "2026-10-24T12:00:28.100Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 161,
+        "ts": "2026-10-24T12:00:28.100Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "ip",
+          "value": "203.0.113.14",
+          "confidence": 0.85,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "d7a0f5d1e74d74bb8b1b0375510bdaff2b0e48a182ea4b7478081ec623470d7d",
+      "entry_hash": "8eca9b49ba2da4a7abb6171b9447c0660a63df150d7871622b354c8bb7b26d06"
+    },
+    {
+      "seq": 162,
+      "ts": "2026-10-24T12:00:28.240Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 162,
+        "ts": "2026-10-24T12:00:28.240Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "ns",
+          "value": "ns1.northwind-dns.example",
+          "confidence": 0.7,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "8eca9b49ba2da4a7abb6171b9447c0660a63df150d7871622b354c8bb7b26d06",
+      "entry_hash": "843c5343cde87147d61f0224729bd618356705c66a2f26c9271d8f641fa45ed8"
+    },
+    {
+      "seq": 163,
+      "ts": "2026-10-24T12:00:28.380Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 163,
+        "ts": "2026-10-24T12:00:28.380Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "cert_fingerprint",
+          "value": "d4:44:44:44:44:44:44:44",
+          "confidence": 0.8,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "843c5343cde87147d61f0224729bd618356705c66a2f26c9271d8f641fa45ed8",
+      "entry_hash": "e67dafbf58b947c2271e96f91acc1a86cfe0ca13880ef17c01dedec6edbbd56b"
+    },
+    {
+      "seq": 164,
+      "ts": "2026-10-24T12:00:28.520Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 164,
+        "ts": "2026-10-24T12:00:28.520Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "registrar",
+          "value": "Northwind Registrar",
+          "confidence": 0.7,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "e67dafbf58b947c2271e96f91acc1a86cfe0ca13880ef17c01dedec6edbbd56b",
+      "entry_hash": "d0d6cc4f0d9f59afff76bd6a19cf164d092924e0061f66f6e9505a197bdd8946"
+    },
+    {
+      "seq": 165,
+      "ts": "2026-10-24T12:00:28.660Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 165,
+        "ts": "2026-10-24T12:00:28.660Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_d",
+        "indicator": {
+          "kind": "domain",
+          "value": "lab-d.example",
+          "confidence": 1,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "d0d6cc4f0d9f59afff76bd6a19cf164d092924e0061f66f6e9505a197bdd8946",
+      "entry_hash": "9f8f033c41f65217a48d9077a9154c41d5b0a06a6cafb17831642a5accfee301"
+    },
+    {
+      "seq": 166,
+      "ts": "2026-10-24T12:00:28.820Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 166,
+        "ts": "2026-10-24T12:00:28.820Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_d",
+        "module": "vault",
+        "state": "skipped",
+        "summary": "No vault credentials for this lab target"
+      },
+      "prev_hash": "9f8f033c41f65217a48d9077a9154c41d5b0a06a6cafb17831642a5accfee301",
+      "entry_hash": "556a46cf39d9224ca993ba2bad8e066564a88ff8e4d8526864add94cd22ac33a"
+    },
+    {
+      "seq": 167,
+      "ts": "2026-10-24T12:00:29.020Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 167,
+        "ts": "2026-10-24T12:00:29.020Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_d",
+        "phase": "validate_payload"
+      },
+      "prev_hash": "556a46cf39d9224ca993ba2bad8e066564a88ff8e4d8526864add94cd22ac33a",
+      "entry_hash": "b4dd0755eb37357ef261516a513103e54337b3da32c261b7ca8b0634544a8bfe"
+    },
+    {
+      "seq": 168,
+      "ts": "2026-10-24T12:00:29.380Z",
+      "event_type": "PayloadValidated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 168,
+        "ts": "2026-10-24T12:00:29.380Z",
+        "type": "PayloadValidated",
+        "target_id": "tgt_lab_d",
+        "schema_version": "2.4",
+        "checks": [
+          {
+            "field": "merchant_id",
+            "passed": true
+          },
+          {
+            "field": "gateway",
+            "passed": true
+          },
+          {
+            "field": "payment_endpoint",
+            "passed": true
+          },
+          {
+            "field": "host_ip",
+            "passed": true
+          },
+          {
+            "field": "domain_age",
+            "passed": true
+          },
+          {
+            "field": "ssl_issuer",
+            "passed": true
+          },
+          {
+            "field": "suspicious_scripts",
+            "passed": false,
+            "reason": "1 flagged script is not on the storefront host"
+          },
+          {
+            "field": "redirect_chain",
+            "passed": false,
+            "reason": "2 hops leave the storefront host before payment"
+          }
+        ],
+        "report": {
+          "target_id": "tgt_lab_d",
+          "host": "lab-d.example",
+          "risk": {
+            "score": 68,
+            "label": "MEDIUM",
+            "evidence_coverage": "6/8",
+            "verdict": "Unverified infrastructure - manual review recommended"
+          },
+          "evidence": [
+            {
+              "field": "merchant_id",
+              "label": "Merchant ID",
+              "value": "MID_LAB_D_5501",
+              "severity": "medium",
+              "source": "agent"
+            },
+            {
+              "field": "gateway",
+              "label": "Gateway",
+              "value": "LabGate Two",
+              "severity": "medium",
+              "source": "agent"
+            },
+            {
+              "field": "payment_endpoint",
+              "label": "Payment Endpoint",
+              "value": "https://pay.labgate-two.example/v1/charge",
+              "severity": "medium",
+              "source": "agent"
+            },
+            {
+              "field": "host_ip",
+              "label": "Host IP",
+              "value": "203.0.113.14",
+              "severity": "medium",
+              "source": "infra"
+            },
+            {
+              "field": "domain_age",
+              "label": "Domain Age",
+              "value": "40 days",
+              "severity": "medium",
+              "source": "derived"
+            },
+            {
+              "field": "ssl_issuer",
+              "label": "SSL Issuer",
+              "value": "Valid certificate",
+              "severity": "safe",
+              "source": "infra"
+            },
+            {
+              "field": "suspicious_scripts",
+              "label": "Suspicious Scripts",
+              "value": "1 flagged",
+              "severity": "medium",
+              "source": "agent"
+            },
+            {
+              "field": "redirect_chain",
+              "label": "Redirect Chain",
+              "value": "2 hops",
+              "severity": "medium",
+              "source": "derived"
+            }
+          ]
+        }
+      },
+      "prev_hash": "b4dd0755eb37357ef261516a513103e54337b3da32c261b7ca8b0634544a8bfe",
+      "entry_hash": "d8e3209afe293fcc2678db85db531767ea3ccb53ef0def208d869007e6420812"
+    },
+    {
+      "seq": 169,
+      "ts": "2026-10-24T12:00:29.600Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 169,
+        "ts": "2026-10-24T12:00:29.600Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_d",
+        "phase": "build_graph"
+      },
+      "prev_hash": "d8e3209afe293fcc2678db85db531767ea3ccb53ef0def208d869007e6420812",
+      "entry_hash": "a8d508f6e327d40d73ea8375ac63abba04d368483b5a678811ccf385580a4d06"
+    },
+    {
+      "seq": 170,
+      "ts": "2026-10-24T12:00:29.780Z",
+      "event_type": "GraphUpdated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 170,
+        "ts": "2026-10-24T12:00:29.780Z",
+        "type": "GraphUpdated",
+        "target_id": "tgt_lab_d",
+        "version": 4
+      },
+      "prev_hash": "a8d508f6e327d40d73ea8375ac63abba04d368483b5a678811ccf385580a4d06",
+      "entry_hash": "b969ef7b3052e549927230dc2b8ef327be79f7e440261a0f43fb87cacecdab33"
+    },
+    {
+      "seq": 171,
+      "ts": "2026-10-24T12:00:29.980Z",
+      "event_type": "ProbeCompleted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 171,
+        "ts": "2026-10-24T12:00:29.980Z",
+        "type": "ProbeCompleted",
+        "target_id": "tgt_lab_d",
+        "status": "COMPLETED",
+        "reached_checkout": true,
+        "stopped_reason": "checkout_captured"
+      },
+      "prev_hash": "b969ef7b3052e549927230dc2b8ef327be79f7e440261a0f43fb87cacecdab33",
+      "entry_hash": "882d208b3fbde9a7f0521ae7f930422eca9d46c1e205cd2459f8b9e32ff30941"
+    },
+    {
+      "seq": 172,
+      "ts": "2026-10-24T12:00:30.000Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 172,
+        "ts": "2026-10-24T12:00:30.000Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_e",
+        "module": "search",
+        "state": "started"
+      },
+      "prev_hash": "882d208b3fbde9a7f0521ae7f930422eca9d46c1e205cd2459f8b9e32ff30941",
+      "entry_hash": "89c29bdc635a1f98d648b977fc4aaf93dd40550e64b2264a4d3b3eb85657e216"
+    },
+    {
+      "seq": 173,
+      "ts": "2026-10-24T12:00:30.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 173,
+        "ts": "2026-10-24T12:00:30.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_e",
+        "module": "search",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "0 suspicious mirrors found"
+      },
+      "prev_hash": "89c29bdc635a1f98d648b977fc4aaf93dd40550e64b2264a4d3b3eb85657e216",
+      "entry_hash": "908cc300c9cfa6537b2457ec90d434322bc260b6db99e9a1ec4d8efcade7d65a"
+    },
+    {
+      "seq": 174,
+      "ts": "2026-10-24T12:00:30.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 174,
+        "ts": "2026-10-24T12:00:30.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_e",
+        "source": "search",
+        "summary": "0 suspicious mirrors found"
+      },
+      "prev_hash": "908cc300c9cfa6537b2457ec90d434322bc260b6db99e9a1ec4d8efcade7d65a",
+      "entry_hash": "96261fea9a28f46901602ec4f245257848adab17182d3eef4d1685e1c62f7888"
+    },
+    {
+      "seq": 175,
+      "ts": "2026-10-24T12:00:30.800Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 175,
+        "ts": "2026-10-24T12:00:30.800Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_e",
+        "module": "fetch",
+        "state": "started"
+      },
+      "prev_hash": "96261fea9a28f46901602ec4f245257848adab17182d3eef4d1685e1c62f7888",
+      "entry_hash": "8b4f82db1a6fef4b4f96a23a98012c26b47970b4d5d4cb4e8e879c9a5fd24bc7"
+    },
+    {
+      "seq": 176,
+      "ts": "2026-10-24T12:00:31.500Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 176,
+        "ts": "2026-10-24T12:00:31.500Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_e",
+        "module": "fetch",
+        "state": "completed",
+        "duration_ms": 700,
+        "summary": "SPA DOM unpacked to JSON"
+      },
+      "prev_hash": "8b4f82db1a6fef4b4f96a23a98012c26b47970b4d5d4cb4e8e879c9a5fd24bc7",
+      "entry_hash": "03ba47d430ce1cfe5400b8490a2636205379a2138d94740b3d109684d81aece4"
+    },
+    {
+      "seq": 177,
+      "ts": "2026-10-24T12:00:31.620Z",
+      "event_type": "ReconFinding",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 177,
+        "ts": "2026-10-24T12:00:31.620Z",
+        "type": "ReconFinding",
+        "target_id": "tgt_lab_e",
+        "source": "fetch",
+        "summary": "Fetched lab-e.example and noted the checkout script host"
+      },
+      "prev_hash": "03ba47d430ce1cfe5400b8490a2636205379a2138d94740b3d109684d81aece4",
+      "entry_hash": "11b5f7361d363206600b71b23801bcb5e5341b356ea84a8f80fafab0c67287e1"
+    },
+    {
+      "seq": 178,
+      "ts": "2026-10-24T12:00:31.860Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 178,
+        "ts": "2026-10-24T12:00:31.860Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_e",
+        "phase": "init_browser"
+      },
+      "prev_hash": "11b5f7361d363206600b71b23801bcb5e5341b356ea84a8f80fafab0c67287e1",
+      "entry_hash": "f7b70f1cee67e97c475d92ce399724eec8c9538006deca50fad2fcfdf14b3e6d"
+    },
+    {
+      "seq": 179,
+      "ts": "2026-10-24T12:00:31.960Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 179,
+        "ts": "2026-10-24T12:00:31.960Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_e",
+        "module": "profiles",
+        "state": "started"
+      },
+      "prev_hash": "f7b70f1cee67e97c475d92ce399724eec8c9538006deca50fad2fcfdf14b3e6d",
+      "entry_hash": "76ae272eec60374a3b34e29ce759f0bbcc1e15bea9ab8fe09f3bdf043b23cab7"
+    },
+    {
+      "seq": 180,
+      "ts": "2026-10-24T12:00:32.360Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 180,
+        "ts": "2026-10-24T12:00:32.360Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_e",
+        "phase": "load_site"
+      },
+      "prev_hash": "76ae272eec60374a3b34e29ce759f0bbcc1e15bea9ab8fe09f3bdf043b23cab7",
+      "entry_hash": "519e37a343941906d7e431cd3d2959f0b12d831b65f267218abab62420095781"
+    },
+    {
+      "seq": 181,
+      "ts": "2026-10-24T12:00:32.560Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 181,
+        "ts": "2026-10-24T12:00:32.560Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_e",
+        "module": "profiles",
+        "state": "completed",
+        "duration_ms": 500,
+        "summary": "Session cookies saved to profile"
+      },
+      "prev_hash": "519e37a343941906d7e431cd3d2959f0b12d831b65f267218abab62420095781",
+      "entry_hash": "92e3581a7adc9ac63376931dd2089845248502e28b018b33b9288e3e9f407de7"
+    },
+    {
+      "seq": 182,
+      "ts": "2026-10-24T12:00:32.760Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 182,
+        "ts": "2026-10-24T12:00:32.760Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_e",
+        "module": "agent",
+        "state": "started"
+      },
+      "prev_hash": "92e3581a7adc9ac63376931dd2089845248502e28b018b33b9288e3e9f407de7",
+      "entry_hash": "27c3bee90a9529a0c67a551b19ce53dafd387a027981e5c66eb2b7f034c2777c"
+    },
+    {
+      "seq": 183,
+      "ts": "2026-10-24T12:00:32.880Z",
+      "event_type": "ProbeStarted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 183,
+        "ts": "2026-10-24T12:00:32.880Z",
+        "type": "ProbeStarted",
+        "target_id": "tgt_lab_e",
+        "run_id": "run_lab_e",
+        "key_label": "key-2"
+      },
+      "prev_hash": "27c3bee90a9529a0c67a551b19ce53dafd387a027981e5c66eb2b7f034c2777c",
+      "entry_hash": "306f551686f948e2562dd12031aead11f96c2afaf20757667187e6d83476eaa2"
+    },
+    {
+      "seq": 184,
+      "ts": "2026-10-24T12:00:33.000Z",
+      "event_type": "StreamingUrl",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 184,
+        "ts": "2026-10-24T12:00:33.000Z",
+        "type": "StreamingUrl",
+        "target_id": "tgt_lab_e",
+        "url": "https://stream.invalid/run_lab_e"
+      },
+      "prev_hash": "306f551686f948e2562dd12031aead11f96c2afaf20757667187e6d83476eaa2",
+      "entry_hash": "a847041d5cfb4f77b2d96e05bb0494096571a1f6b487563dc7fc7fc00ab01b1f"
+    },
+    {
+      "seq": 185,
+      "ts": "2026-10-24T12:00:33.480Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 185,
+        "ts": "2026-10-24T12:00:33.480Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_e",
+        "index": 1,
+        "purpose": "Dismiss popup"
+      },
+      "prev_hash": "a847041d5cfb4f77b2d96e05bb0494096571a1f6b487563dc7fc7fc00ab01b1f",
+      "entry_hash": "74789e041b7e69e6459360c4618e4b38c9e978cca5440ef150347a977bf042cd"
+    },
+    {
+      "seq": 186,
+      "ts": "2026-10-24T12:00:33.560Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 186,
+        "ts": "2026-10-24T12:00:33.560Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_e",
+        "phase": "bypass_popups"
+      },
+      "prev_hash": "74789e041b7e69e6459360c4618e4b38c9e978cca5440ef150347a977bf042cd",
+      "entry_hash": "4b4e27ff6b8c946d69edfbdc956386b0801bd7a8e48a57edaf9bc517cd2e1ec3"
+    },
+    {
+      "seq": 187,
+      "ts": "2026-10-24T12:00:34.040Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 187,
+        "ts": "2026-10-24T12:00:34.040Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_e",
+        "index": 2,
+        "purpose": "Accept cookie banner"
+      },
+      "prev_hash": "4b4e27ff6b8c946d69edfbdc956386b0801bd7a8e48a57edaf9bc517cd2e1ec3",
+      "entry_hash": "1dc8bd7ead1e57742421ee3d39d8ea49a487a3db29dd346d5324516cb9fdfcc6"
+    },
+    {
+      "seq": 188,
+      "ts": "2026-10-24T12:00:34.520Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 188,
+        "ts": "2026-10-24T12:00:34.520Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_e",
+        "index": 3,
+        "purpose": "Add item to cart"
+      },
+      "prev_hash": "1dc8bd7ead1e57742421ee3d39d8ea49a487a3db29dd346d5324516cb9fdfcc6",
+      "entry_hash": "3fb0c710b84073c70e94193b7ad13df4886b90fc3ac2c67d1b9b3964c8c917ea"
+    },
+    {
+      "seq": 189,
+      "ts": "2026-10-24T12:00:35.000Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 189,
+        "ts": "2026-10-24T12:00:35.000Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_e",
+        "index": 4,
+        "purpose": "Open checkout"
+      },
+      "prev_hash": "3fb0c710b84073c70e94193b7ad13df4886b90fc3ac2c67d1b9b3964c8c917ea",
+      "entry_hash": "9b45a2d2dc7e80a3736a39b9010b7bca2f7e88484cae20852868dde89cc781a0"
+    },
+    {
+      "seq": 190,
+      "ts": "2026-10-24T12:00:35.080Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 190,
+        "ts": "2026-10-24T12:00:35.080Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_e",
+        "phase": "navigate_checkout"
+      },
+      "prev_hash": "9b45a2d2dc7e80a3736a39b9010b7bca2f7e88484cae20852868dde89cc781a0",
+      "entry_hash": "39079bb29011b739f51800aca1267fb965d78909ac10c96138673e1177e1706b"
+    },
+    {
+      "seq": 191,
+      "ts": "2026-10-24T12:00:35.560Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 191,
+        "ts": "2026-10-24T12:00:35.560Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_e",
+        "index": 5,
+        "purpose": "Fill shipping form"
+      },
+      "prev_hash": "39079bb29011b739f51800aca1267fb965d78909ac10c96138673e1177e1706b",
+      "entry_hash": "b104d5eb2626bfee6d384a6504a24cc6166fe33e22b3972eae8078b2951c95fa"
+    },
+    {
+      "seq": 192,
+      "ts": "2026-10-24T12:00:36.040Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 192,
+        "ts": "2026-10-24T12:00:36.040Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_e",
+        "index": 6,
+        "purpose": "Reach payment stage"
+      },
+      "prev_hash": "b104d5eb2626bfee6d384a6504a24cc6166fe33e22b3972eae8078b2951c95fa",
+      "entry_hash": "d96c94b715edfbf7c22b2916d81a5327518b07882afc211ccf07459ac1246c84"
+    },
+    {
+      "seq": 193,
+      "ts": "2026-10-24T12:00:36.520Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 193,
+        "ts": "2026-10-24T12:00:36.520Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_e",
+        "index": 7,
+        "purpose": "Read publishable key from the checkout script"
+      },
+      "prev_hash": "d96c94b715edfbf7c22b2916d81a5327518b07882afc211ccf07459ac1246c84",
+      "entry_hash": "d227d0e466dfe7d61d0dcaabb7055da4b44aecf3092dc56c2fcbea318650ff8b"
+    },
+    {
+      "seq": 194,
+      "ts": "2026-10-24T12:00:37.000Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 194,
+        "ts": "2026-10-24T12:00:37.000Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_e",
+        "index": 8,
+        "purpose": "Capture the statement descriptor"
+      },
+      "prev_hash": "d227d0e466dfe7d61d0dcaabb7055da4b44aecf3092dc56c2fcbea318650ff8b",
+      "entry_hash": "5f7cd1d986fac0ad0c0493cfa7133a6db927e558324284d91f6360bfb9def5aa"
+    },
+    {
+      "seq": 195,
+      "ts": "2026-10-24T12:00:37.480Z",
+      "event_type": "AgentStep",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 195,
+        "ts": "2026-10-24T12:00:37.480Z",
+        "type": "AgentStep",
+        "target_id": "tgt_lab_e",
+        "index": 9,
+        "purpose": "Record the redirect chain"
+      },
+      "prev_hash": "5f7cd1d986fac0ad0c0493cfa7133a6db927e558324284d91f6360bfb9def5aa",
+      "entry_hash": "afa8eb8d02cfbc6e75b3ec4261a8cf642961cda4d9f3ebccaea357b2b65a2f67"
+    },
+    {
+      "seq": 196,
+      "ts": "2026-10-24T12:00:37.720Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 196,
+        "ts": "2026-10-24T12:00:37.720Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_e",
+        "module": "agent",
+        "state": "completed",
+        "duration_ms": 4320,
+        "summary": "Checkout reached in 9 steps"
+      },
+      "prev_hash": "afa8eb8d02cfbc6e75b3ec4261a8cf642961cda4d9f3ebccaea357b2b65a2f67",
+      "entry_hash": "a5e14e3212b1317fc3638d4e84653d5b23e5702d0e4a9448466db3303e9e818c"
+    },
+    {
+      "seq": 197,
+      "ts": "2026-10-24T12:00:37.900Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 197,
+        "ts": "2026-10-24T12:00:37.900Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_e",
+        "phase": "collect_evidence"
+      },
+      "prev_hash": "a5e14e3212b1317fc3638d4e84653d5b23e5702d0e4a9448466db3303e9e818c",
+      "entry_hash": "689e702fc4aef7b460f8c70ceee11fa47ec78ba01d8d8606cfb39cf52acaa7c6"
+    },
+    {
+      "seq": 198,
+      "ts": "2026-10-24T12:00:38.040Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 198,
+        "ts": "2026-10-24T12:00:38.040Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "publishable_key",
+          "value": "LAB_PK_TEST_ECHO",
+          "confidence": 0.6,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "689e702fc4aef7b460f8c70ceee11fa47ec78ba01d8d8606cfb39cf52acaa7c6",
+      "entry_hash": "2aae8795c1c95cc057ea35a79b8824e114d65ff6cf6cd9fc7699e3ca0980afec"
+    },
+    {
+      "seq": 199,
+      "ts": "2026-10-24T12:00:38.180Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 199,
+        "ts": "2026-10-24T12:00:38.180Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "merchant_id",
+          "value": "MID_ECHO_9001",
+          "confidence": 0.55,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "2aae8795c1c95cc057ea35a79b8824e114d65ff6cf6cd9fc7699e3ca0980afec",
+      "entry_hash": "732befec35705b17456bc404a38ad4cc2ed9362c3fd817d99d5168cb059b4d75"
+    },
+    {
+      "seq": 200,
+      "ts": "2026-10-24T12:00:38.320Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 200,
+        "ts": "2026-10-24T12:00:38.320Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "client_id",
+          "value": "cid_echo_e",
+          "confidence": 0.5,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "732befec35705b17456bc404a38ad4cc2ed9362c3fd817d99d5168cb059b4d75",
+      "entry_hash": "e11c7be23303bbc2db98a80df0d220f3e7dfaab5af7d663eae5fc28177b46b08"
+    },
+    {
+      "seq": 201,
+      "ts": "2026-10-24T12:00:38.460Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 201,
+        "ts": "2026-10-24T12:00:38.460Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "processor_host",
+          "value": "pay.echo-widgets.example",
+          "confidence": 0.5,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "e11c7be23303bbc2db98a80df0d220f3e7dfaab5af7d663eae5fc28177b46b08",
+      "entry_hash": "cec66e30557a39575d59134577247d5392af870f52cb78e4980916271304f12f"
+    },
+    {
+      "seq": 202,
+      "ts": "2026-10-24T12:00:38.600Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 202,
+        "ts": "2026-10-24T12:00:38.600Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "form_action_host",
+          "value": "forms.echo-widgets.example",
+          "confidence": 0.5,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "cec66e30557a39575d59134577247d5392af870f52cb78e4980916271304f12f",
+      "entry_hash": "f4f7f49d41def49210d6edf3da36721a95ad7ac86cc974f61e0ed75a23e2893c"
+    },
+    {
+      "seq": 203,
+      "ts": "2026-10-24T12:00:38.740Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 203,
+        "ts": "2026-10-24T12:00:38.740Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "checkout_script_host",
+          "value": "static.echo-widgets.example",
+          "confidence": 0.5,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "f4f7f49d41def49210d6edf3da36721a95ad7ac86cc974f61e0ed75a23e2893c",
+      "entry_hash": "49fbe5aa54dc20490b55fdcdcd1ddeb91914460207a7285769c3aa1948147354"
+    },
+    {
+      "seq": 204,
+      "ts": "2026-10-24T12:00:38.880Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 204,
+        "ts": "2026-10-24T12:00:38.880Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "descriptor",
+          "value": "ECHO WIDGETS LLC",
+          "confidence": 0.5,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "49fbe5aa54dc20490b55fdcdcd1ddeb91914460207a7285769c3aa1948147354",
+      "entry_hash": "5edc4380304f23474a12249724356855044d9e3f6e048077516c1bf711b05fca"
+    },
+    {
+      "seq": 205,
+      "ts": "2026-10-24T12:00:39.020Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 205,
+        "ts": "2026-10-24T12:00:39.020Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "telegram",
+          "value": "t.me/echo_widgets_help",
+          "confidence": 0.4,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "5edc4380304f23474a12249724356855044d9e3f6e048077516c1bf711b05fca",
+      "entry_hash": "2d0a47181e3b79c7d815d138e719cd6842797c1ee67d3110474aff18ce57cc1f"
+    },
+    {
+      "seq": 206,
+      "ts": "2026-10-24T12:00:39.160Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 206,
+        "ts": "2026-10-24T12:00:39.160Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "email",
+          "value": "hello@lab-e.example",
+          "confidence": 0.4,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "2d0a47181e3b79c7d815d138e719cd6842797c1ee67d3110474aff18ce57cc1f",
+      "entry_hash": "a07c5f35781668e3d772e3779f3e177357992fca0a423589742ec43ebebcd0d8"
+    },
+    {
+      "seq": 207,
+      "ts": "2026-10-24T12:00:39.300Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 207,
+        "ts": "2026-10-24T12:00:39.300Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "phone",
+          "value": "+15550000005",
+          "confidence": 0.4,
+          "source": "agent"
+        }
+      },
+      "prev_hash": "a07c5f35781668e3d772e3779f3e177357992fca0a423589742ec43ebebcd0d8",
+      "entry_hash": "2ca70e20a5c04198367fc71e2f94db5444c6ccfdab5d0ef676a404d92bb2aa73"
+    },
+    {
+      "seq": 208,
+      "ts": "2026-10-24T12:00:39.440Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 208,
+        "ts": "2026-10-24T12:00:39.440Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "ip",
+          "value": "198.51.100.50",
+          "confidence": 0.9,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "2ca70e20a5c04198367fc71e2f94db5444c6ccfdab5d0ef676a404d92bb2aa73",
+      "entry_hash": "c89e07630cbbf4aefe84c97e01a2b4e10bc89507c54a017c59a7679181cdd472"
+    },
+    {
+      "seq": 209,
+      "ts": "2026-10-24T12:00:39.580Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 209,
+        "ts": "2026-10-24T12:00:39.580Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "ns",
+          "value": "ns1.echo-dns.example",
+          "confidence": 0.7,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "c89e07630cbbf4aefe84c97e01a2b4e10bc89507c54a017c59a7679181cdd472",
+      "entry_hash": "2b6719511c7788128efc393a75d1f2c0b3f7b687ea7ab3fa923e8c0e919cf904"
+    },
+    {
+      "seq": 210,
+      "ts": "2026-10-24T12:00:39.720Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 210,
+        "ts": "2026-10-24T12:00:39.720Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "cert_fingerprint",
+          "value": "e5:55:55:55:55:55:55:55",
+          "confidence": 0.8,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "2b6719511c7788128efc393a75d1f2c0b3f7b687ea7ab3fa923e8c0e919cf904",
+      "entry_hash": "4727c01a293e60f1d64c4191fbe19a6ca15315e095d0400153d810bdd0ac134c"
+    },
+    {
+      "seq": 211,
+      "ts": "2026-10-24T12:00:39.860Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 211,
+        "ts": "2026-10-24T12:00:39.860Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "registrar",
+          "value": "Echo Registrar",
+          "confidence": 0.7,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "4727c01a293e60f1d64c4191fbe19a6ca15315e095d0400153d810bdd0ac134c",
+      "entry_hash": "7ba4af7e265c729ef393b564d223b823200759ce1b92280cc4a1f934f057bda2"
+    },
+    {
+      "seq": 212,
+      "ts": "2026-10-24T12:00:40.000Z",
+      "event_type": "IndicatorExtracted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 212,
+        "ts": "2026-10-24T12:00:40.000Z",
+        "type": "IndicatorExtracted",
+        "target_id": "tgt_lab_e",
+        "indicator": {
+          "kind": "domain",
+          "value": "lab-e.example",
+          "confidence": 1,
+          "source": "infra"
+        }
+      },
+      "prev_hash": "7ba4af7e265c729ef393b564d223b823200759ce1b92280cc4a1f934f057bda2",
+      "entry_hash": "7c1d760099a947499c634460beb88af3cf1f9133febc1ead2033d8042912279e"
+    },
+    {
+      "seq": 213,
+      "ts": "2026-10-24T12:00:40.160Z",
+      "event_type": "ModuleStatus",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 213,
+        "ts": "2026-10-24T12:00:40.160Z",
+        "type": "ModuleStatus",
+        "target_id": "tgt_lab_e",
+        "module": "vault",
+        "state": "skipped",
+        "summary": "No vault credentials for this lab target"
+      },
+      "prev_hash": "7c1d760099a947499c634460beb88af3cf1f9133febc1ead2033d8042912279e",
+      "entry_hash": "7d9eb581bbd4be140f22cb15733bb2ec788130ca0396d5808d115f0b5f17c371"
+    },
+    {
+      "seq": 214,
+      "ts": "2026-10-24T12:00:40.360Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 214,
+        "ts": "2026-10-24T12:00:40.360Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_e",
+        "phase": "validate_payload"
+      },
+      "prev_hash": "7d9eb581bbd4be140f22cb15733bb2ec788130ca0396d5808d115f0b5f17c371",
+      "entry_hash": "3fd9725645f036606968b70273c1ff7f154af10546932fc9f4121d6b8f44b778"
+    },
+    {
+      "seq": 215,
+      "ts": "2026-10-24T12:00:40.720Z",
+      "event_type": "PayloadValidated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 215,
+        "ts": "2026-10-24T12:00:40.720Z",
+        "type": "PayloadValidated",
+        "target_id": "tgt_lab_e",
+        "schema_version": "2.4",
+        "checks": [
+          {
+            "field": "merchant_id",
+            "passed": true
+          },
+          {
+            "field": "gateway",
+            "passed": true
+          },
+          {
+            "field": "payment_endpoint",
+            "passed": true
+          },
+          {
+            "field": "host_ip",
+            "passed": true
+          },
+          {
+            "field": "domain_age",
+            "passed": true
+          },
+          {
+            "field": "ssl_issuer",
+            "passed": true
+          },
+          {
+            "field": "suspicious_scripts",
+            "passed": true
+          },
+          {
+            "field": "redirect_chain",
+            "passed": true
+          }
+        ],
+        "report": {
+          "target_id": "tgt_lab_e",
+          "host": "lab-e.example",
+          "risk": {
+            "score": 18,
+            "label": "LOW",
+            "evidence_coverage": "8/8",
+            "verdict": "Demo/test environment - no fraud indicators found"
+          },
+          "evidence": [
+            {
+              "field": "merchant_id",
+              "label": "Merchant ID",
+              "value": "MID_ECHO_9001",
+              "severity": "safe",
+              "source": "agent"
+            },
+            {
+              "field": "gateway",
+              "label": "Gateway",
+              "value": "Echo Pay",
+              "severity": "safe",
+              "source": "agent"
+            },
+            {
+              "field": "payment_endpoint",
+              "label": "Payment Endpoint",
+              "value": "https://pay.echo-widgets.example/checkout",
+              "severity": "safe",
+              "source": "agent"
+            },
+            {
+              "field": "host_ip",
+              "label": "Host IP",
+              "value": "198.51.100.50",
+              "severity": "safe",
+              "source": "infra"
+            },
+            {
+              "field": "domain_age",
+              "label": "Domain Age",
+              "value": "8 years",
+              "severity": "safe",
+              "source": "derived"
+            },
+            {
+              "field": "ssl_issuer",
+              "label": "SSL Issuer",
+              "value": "Amazon RSA 2048",
+              "severity": "safe",
+              "source": "infra"
+            },
+            {
+              "field": "suspicious_scripts",
+              "label": "Suspicious Scripts",
+              "value": "0",
+              "severity": "safe",
+              "source": "agent"
+            },
+            {
+              "field": "redirect_chain",
+              "label": "Redirect Chain",
+              "value": "clean",
+              "severity": "safe",
+              "source": "derived"
+            }
+          ]
+        }
+      },
+      "prev_hash": "3fd9725645f036606968b70273c1ff7f154af10546932fc9f4121d6b8f44b778",
+      "entry_hash": "471eab8860c66baba537b46b9c47c7042161a5ca3fc237ffe9c48429822e41d6"
+    },
+    {
+      "seq": 216,
+      "ts": "2026-10-24T12:00:40.940Z",
+      "event_type": "PhaseChanged",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 216,
+        "ts": "2026-10-24T12:00:40.940Z",
+        "type": "PhaseChanged",
+        "target_id": "tgt_lab_e",
+        "phase": "build_graph"
+      },
+      "prev_hash": "471eab8860c66baba537b46b9c47c7042161a5ca3fc237ffe9c48429822e41d6",
+      "entry_hash": "26b5f85912059f28a7e591490a561b657b4f77bd4651ef5a94011a68e3fa0afd"
+    },
+    {
+      "seq": 217,
+      "ts": "2026-10-24T12:00:41.120Z",
+      "event_type": "GraphUpdated",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 217,
+        "ts": "2026-10-24T12:00:41.120Z",
+        "type": "GraphUpdated",
+        "target_id": "tgt_lab_e",
+        "version": 5
+      },
+      "prev_hash": "26b5f85912059f28a7e591490a561b657b4f77bd4651ef5a94011a68e3fa0afd",
+      "entry_hash": "51c281b620a7091c6912af4cd8f9f60e1ea25e6dfc965484b7a259220fe02703"
+    },
+    {
+      "seq": 218,
+      "ts": "2026-10-24T12:00:41.320Z",
+      "event_type": "ProbeCompleted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 218,
+        "ts": "2026-10-24T12:00:41.320Z",
+        "type": "ProbeCompleted",
+        "target_id": "tgt_lab_e",
+        "status": "COMPLETED",
+        "reached_checkout": true,
+        "stopped_reason": "benign_catalog"
+      },
+      "prev_hash": "51c281b620a7091c6912af4cd8f9f60e1ea25e6dfc965484b7a259220fe02703",
+      "entry_hash": "4d3cf2757b4d63d887ba222bf9377583edb0afba287d14b1cd9a7650e9f3ce0c"
+    },
+    {
+      "seq": 219,
+      "ts": "2026-10-24T12:00:45.000Z",
+      "event_type": "CaseCompleted",
+      "payload": {
+        "case_id": "c0ffee00-0000-4000-8000-000000000001",
+        "seq": 219,
+        "ts": "2026-10-24T12:00:45.000Z",
+        "type": "CaseCompleted",
+        "targets": 5,
+        "failed": 0,
+        "clusters": 1
+      },
+      "prev_hash": "4d3cf2757b4d63d887ba222bf9377583edb0afba287d14b1cd9a7650e9f3ce0c",
+      "entry_hash": "235f37ad335452edeffc1014862ff2f59b9d4a176cc3ef8a6624da00994090bf"
+    }
+  ]
+}
