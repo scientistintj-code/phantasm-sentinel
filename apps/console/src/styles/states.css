@@ -1,0 +1,111 @@
+:root {
+  --bg: #0a0e1a;
+  --panel: rgba(15, 23, 38, 0.76);
+  --line: rgba(121, 156, 186, 0.17);
+  --muted: #74869b;
+  --cyan: #22d3ee;
+  --red: #fb5262;
+  --amber: #f5b942;
+  --green: #25d492;
+}
+
+.error-banner,
+.reconnecting-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 22px;
+  border-bottom: 1px solid var(--line);
+  font: 500 11px "DM Mono", monospace;
+  letter-spacing: 0.4px;
+}
+
+.error-banner {
+  color: var(--red);
+  background: rgba(251, 82, 98, 0.12);
+  border-bottom-color: rgba(251, 82, 98, 0.35);
+}
+
+.reconnecting-banner {
+  color: var(--amber);
+  background: rgba(245, 185, 66, 0.1);
+  border-bottom-color: rgba(245, 185, 66, 0.35);
+}
+
+.empty-state {
+  color: var(--muted);
+  font: 9px "DM Mono", monospace;
+  letter-spacing: 0.4px;
+}
+
+.browser-body > .empty-state,
+.graph-canvas > .empty-state {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+
+.status-idle {
+  color: var(--muted);
+}
+
+.mode-badge {
+  font: 500 10px "DM Mono", monospace;
+  letter-spacing: 0.8px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.mode-badge-live {
+  color: var(--cyan);
+  border-color: rgba(34, 211, 238, 0.32);
+}
+
+.mode-badge-replay {
+  color: var(--amber);
+  border-color: rgba(245, 185, 66, 0.4);
+}
+
+.toggle-disabled {
+  display: block;
+  position: relative;
+}
+
+.toggle-row.is-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  width: 100%;
+}
+
+.toggle-tooltip {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 6px);
+  z-index: 5;
+  max-width: 240px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--muted);
+  font: 9px "DM Mono", monospace;
+  letter-spacing: 0.2px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle-disabled:hover .toggle-tooltip,
+.toggle-disabled:focus-within .toggle-tooltip {
+  opacity: 1;
+}
+
+.evidence > i.empty {
+  background: var(--line);
+}
+
+.contact {
+  --node: var(--muted);
+}
