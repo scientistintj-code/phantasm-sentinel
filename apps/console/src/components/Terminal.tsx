@@ -8,6 +8,7 @@ export interface TerminalLine {
   tone: "info" | "ok" | "warn" | "risk";
   module: string;
   message: string;
+  card?: "halt";
 }
 
 export function Terminal({ lines, resetKey }: { lines: TerminalLine[]; resetKey: string }) {
@@ -72,15 +73,21 @@ export function Terminal({ lines, resetKey }: { lines: TerminalLine[]; resetKey:
             <span className="cursor">_</span>
           </div>
         ) : (
-          lines.map((line) => (
-            <div className={`log log-${line.tone}`} key={line.id}>
-              <time>[{line.time}]</time>
-              <b>{line.tag}</b>
-              <span>
-                {line.module ? <strong className="log-module">{line.module}:</strong> : null} {line.message}
-              </span>
-            </div>
-          ))
+          lines.map((line) =>
+            line.card === "halt" ? (
+              <div className="halt-card" role="note" key={line.id}>
+                {line.message}
+              </div>
+            ) : (
+              <div className={`log log-${line.tone}`} key={line.id}>
+                <time>[{line.time}]</time>
+                <b>{line.tag}</b>
+                <span>
+                  {line.module ? <strong className="log-module">{line.module}:</strong> : null} {line.message}
+                </span>
+              </div>
+            ),
+          )
         )}
       </div>
       {pending > 0 ? (

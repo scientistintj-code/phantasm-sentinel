@@ -1,31 +1,39 @@
 import { LuLock, LuMonitor } from "react-icons/lu";
-import type { TargetState } from "@phantasm/core";
+import type { PivotState } from "@phantasm/core";
 import { Panel } from "./Panel";
 import { Stepper } from "./Stepper";
+import { StreamFrame } from "./StreamFrame";
 import { Terminal, type TerminalLine } from "./Terminal";
+import type { TargetTabModel } from "../viewState";
 
 export function LiveAgentView({
   targets,
   selectedTargetId,
   address,
-  live,
+  mode,
   streamingUrl,
+  streamOrigins,
   phaseIndex,
   complete,
   lines,
+  pivots,
   onSelectTarget,
-  onStreamError,
+  onApprovePivot,
+  onDismissPivot,
 }: {
-  targets: TargetState[];
+  targets: TargetTabModel[];
   selectedTargetId: string | "all";
   address: string;
-  live: boolean;
+  mode: "live" | "replay";
   streamingUrl: string | null;
+  streamOrigins: readonly string[];
   phaseIndex: number;
   complete: boolean;
   lines: TerminalLine[];
+  pivots: PivotState[];
   onSelectTarget: (targetId: string | "all") => void;
-  onStreamError: () => void;
+  onApprovePivot: (pivotId: string) => void;
+  onDismissPivot: (pivotId: string) => void;
 }) {
   return (
     <Panel title="LIVE AGENT VIEW" icon={LuMonitor} className="center-panel">
@@ -45,11 +53,12 @@ export function LiveAgentView({
             role="tab"
             key={target.id}
             aria-selected={selectedTargetId === target.id}
-            className={`target-tab${selectedTargetId === target.id ? " is-selected" : ""}`}
+            className={`target-tab${selectedTargetId === target.id ? " is-selected" : ""}${target.status === "failed" ? " is-failed" : ""}`}
             onClick={() => onSelectTarget(target.id)}
           >
-            <i className={`status-dot status-dot-${target.status}`} />
-            {target.host || target.id}
+            <i className={`status-dot status-dot-${target.dot}`} />
+            <span>{target.label}</span>
+            {target.failureMessage ? <span className="tab-failure">{target.failureMessage}</span> : null}
           </button>
         ))}
       </div>
@@ -64,32 +73,37 @@ export function LiveAgentView({
             <LuLock size={13} />
             {address}
           </div>
-          {live ? (
+          {mode === "live" ? (
             <span className="live">
               <i />
               LIVE
             </span>
-          ) : null}
+          ) : (
+            <span className="replay-badge">REPLAY</span>
+          )}
         </div>
         <div className="browser-body">
-          <div className="scanline" />
-          {streamingUrl ? (
-            <iframe
-              key={streamingUrl}
-              title="Live agent stream"
-              src={streamingUrl}
-              sandbox="allow-scripts allow-same-origin"
-              referrerPolicy="no-referrer"
-              onError={onStreamError}
-              style={{ width: "100%", height: "100%", border: 0, position: "relative", zIndex: 1 }}
-            />
-          ) : (
-            <div className="empty-state">Awaiting live stream</div>
-          )}
+          <StreamFrame streamingUrl={streamingUrl} origins={streamOrigins} recorded={mode === "replay"} />
         </div>
       </div>
       <Stepper phaseIndex={phaseIndex} complete={complete} />
       <Terminal lines={lines} resetKey={selectedTargetId} />
+      {pivots.length > 0 ? (
+        <div className="pivot-row" aria-label="Pivot suggested">
+          {pivots.map((pivot) => (
+            <div className="pivot-chip" key={pivot.pivotId}>
+              <b>Pivot Suggested</b>
+              <code>{pivot.query}</code>
+              <button type="button" onClick={() => onApprovePivot(pivot.pivotId)}>
+                Approve
+              </button>
+              <button type="button" onClick={() => onDismissPivot(pivot.pivotId)}>
+                Dismiss
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : null}
     </Panel>
   );
 }

@@ -21,9 +21,11 @@ import { GraphPanel } from "./components/GraphPanel";
 import { LiveAgentView } from "./components/LiveAgentView";
 import { MetricsRow } from "./components/MetricsRow";
 import { MissionControl, type DeployState } from "./components/MissionControl";
+import { StatusBanners } from "./components/StatusBanners";
 import type { TerminalLine } from "./components/Terminal";
 import { TinyFishPanel } from "./components/TinyFishPanel";
 import { Topbar } from "./components/Topbar";
+import { loadConfig } from "./config";
 import { labCaseText, labGraph, labKeys, reportForTarget } from "./fixtures";
 import {
   PDF_DISABLED_REASON,
@@ -38,12 +40,11 @@ import { useButtonRipple } from "./hooks/useButtonRipple";
 import {
   FOCUS_CAP,
   addTargetUrl,
-  agentTogglesEnabled,
   buildModuleCards,
   chipLabel,
   clampParallel,
   connectionLabel,
-  consoleMode,
+  deployAllowed,
   deployLive,
   elapsedLabel,
   errorText,
@@ -53,6 +54,7 @@ import {
   stepperView,
   suggestedFocus,
 } from "./mission";
+import { attachCase, caseFileHref, caseIdFromSearch, displayHost, keyPoolBanner, targetTabs, visiblePivots } from "./viewState";
 
 const MODULE_LABEL: Record<string, string> = {
   search: "TinySearch",
@@ -66,10 +68,11 @@ const MODULE_LABEL: Record<string, string> = {
 const KEY_POLL_MS = 5000;
 
 export function App() {
-  const mode = consoleMode();
-  const store = useState(() => createConsoleStore(mode))[0];
-  const client = useState(() => createApiClient())[0];
+  const config = useState(() => loadConfig())[0];
+  const store = useState(() => createConsoleStore(config.defaultMode))[0];
+  const client = useState(() => createApiClient({ baseUrl: config.apiBase }))[0];
   const state = useStore(store);
+  const [mode, setMode] = useState(config.defaultMode);
   const driverRef = useRef<ReplayDriver | null>(null);
   const streamStopRef = useRef<(() => void) | null>(null);
   const caseIdRef = useRef<string | null>(null);
@@ -86,10 +89,13 @@ export function App() {
   const [speed, setSpeed] = useState<ReplaySpeed>(1);
   const [apiError, setApiError] = useState<string | null>(null);
   const [selectedTargetId, setSelectedTargetId] = useState<string | "all">("all");
-  const [keys, setKeys] = useState<KeyHealth[]>(mode === "replay" ? labKeys : []);
+  const [keys, setKeys] = useState<KeyHealth[]>(config.defaultMode === "replay" ? labKeys : []);
+  const [poolKeys, setPoolKeys] = useState<KeyHealth[] | null>(null);
+  const [liveEnabled, setLiveEnabled] = useState(true);
+  const [hiddenPivots, setHiddenPivots] = useState<ReadonlySet<string>>(() => new Set());
   const [forceInvalid, setForceInvalid] = useState(false);
-  const [streamBroken, setStreamBroken] = useState(false);
   const [graph, setGraph] = useState<Graph | null>(null);
+  const retryRef = useRef<(() => void) | null>(null);
   useButtonRipple();
 
   useEffect(() => {
@@ -108,10 +114,6 @@ export function App() {
   useEffect(() => {
     if (selectedTargetId !== "all" && !state.targets[selectedTargetId]) setSelectedTargetId("all");
   }, [selectedTargetId, state.targets]);
-
-  useEffect(() => {
-    setStreamBroken(false);
-  }, [selectedTargetId]);
 
   useEffect(() => {
     const id = state.case?.id;
@@ -138,19 +140,39 @@ export function App() {
   }, [client, mode, state.case?.id, state.graphVersion]);
 
   useEffect(() => {
-    if (mode === "replay") {
-      setKeys(labKeys);
-      return;
-    }
+    const caseId = caseIdFromSearch(window.location.search);
+    if (!caseId) return;
+    caseIdRef.current = caseId;
+    setDeployState("running");
+    const session = attachCase({ client, store, caseId });
+    streamStopRef.current = session.stopStream;
+    return () => {
+      session.stopStream();
+      if (streamStopRef.current === session.stopStream) streamStopRef.current = null;
+    };
+  }, [client, store]);
+
+  useEffect(() => {
+    if (mode === "replay") setKeys(labKeys);
+    else if (poolKeys) setKeys(poolKeys);
     let stopped = false;
     const load = () => {
       client
         .getKeyHealth()
         .then((rows) => {
-          if (!stopped) setKeys(rows);
+          if (stopped) return;
+          setLiveEnabled(true);
+          setPoolKeys(rows);
+          if (mode === "live") setKeys(rows);
         })
         .catch(() => {
-          // Key material is never rendered. A failed poll keeps the last squares.
+          if (stopped) return;
+          setLiveEnabled(false);
+          if (!caseIdRef.current) {
+            setMode("replay");
+            store.getState().setMode("replay");
+            setKeys(labKeys);
+          }
         });
     };
     load();
@@ -159,15 +181,14 @@ export function App() {
       stopped = true;
       clearInterval(timer);
     };
-  }, [client, mode]);
+  }, [client, mode, store]);
 
   const suggestion = suggestedFocus(targets);
-  const presets = presetUrls(mode, import.meta.env.VITE_LAB_URLS).map((preset) => ({
+  const presets = presetUrls(mode, config.labUrls).map((preset) => ({
     url: preset,
     label: chipLabel(preset),
   }));
-  const canDeploy = investigator.trim() !== "" && authorized && targets.length > 0;
-  const targetList = Object.values(state.targets);
+  const canDeploy = deployAllowed({ investigator, authorized, targetCount: targets.length });
   const followed = followedTarget(state, selectedTargetId);
   const report = resolveReport(followed, state.case?.status ?? null, mode);
   const risk = report
@@ -182,14 +203,15 @@ export function App() {
   const view = logViewState(state, selectedTargetId);
   const lines = useMemo(() => toLines(view.log, logLines(view)), [view]);
   const modules = useMemo(() => buildModuleCards(state, selectedTargetId), [state, selectedTargetId]);
-  const alerts = alertMessages(state, selectedTargetId);
-  const caseId = state.case?.id ?? null;
+  const caseId = state.case?.id ?? caseIdRef.current;
   const riskText = risk?.text ?? "";
   const riskColor = risk ? RISK_COLOR[risk.label] : "#74869b";
   const validation = validationView(followed, forceInvalid);
   const agent = agentPill(state.case?.status ?? null);
-  const streamingUrl = streamBroken ? null : (followed?.streamingUrl ?? null);
-  const togglesEnabled = agentTogglesEnabled();
+  const streamingUrl = followed?.streamingUrl ?? null;
+  const togglesEnabled = config.agentToggles;
+  const keyNotice = keyPoolBanner(poolKeys ?? []);
+  const pivots = visiblePivots(state, selectedTargetId, hiddenPivots);
 
   const addUrl = (raw: string) => {
     const next = addTargetUrl(targets, raw);
@@ -209,6 +231,7 @@ export function App() {
       startReplay();
       return;
     }
+    retryRef.current = () => void startLive();
     void startLive();
   };
 
@@ -250,7 +273,35 @@ export function App() {
       if (!mountedRef.current) return;
       setDeployState("idle");
       setApiError(errorText(error));
+      retryRef.current = () => void startLive();
     }
+  };
+
+  const onMode = (next: "live" | "replay") => {
+    if (next === "live" && !liveEnabled) return;
+    if (next === mode) return;
+    if (deployState === "running" || deployState === "deploying") return;
+    setMode(next);
+    store.getState().setMode(next);
+    if (next === "replay") setKeys(labKeys);
+  };
+
+  const onApprovePivot = (pivotId: string) => {
+    const id = state.case?.id ?? caseIdRef.current;
+    if (!id) return;
+    const run = async () => {
+      try {
+        await client.approvePivot(id, pivotId);
+        if (!mountedRef.current) return;
+        setHiddenPivots((current) => new Set(current).add(pivotId));
+        setApiError(null);
+      } catch (error) {
+        if (!mountedRef.current) return;
+        setApiError(errorText(error));
+        retryRef.current = () => void run();
+      }
+    };
+    void run();
   };
 
   const onStop = async () => {
@@ -267,7 +318,9 @@ export function App() {
       store.getState().setConnection("closed");
       if (mountedRef.current) setDeployState("idle");
     } catch (error) {
-      if (mountedRef.current) setApiError(error instanceof ApiError ? error.message : "Request failed");
+      if (!mountedRef.current) return;
+      setApiError(error instanceof ApiError ? error.message : "Request failed");
+      retryRef.current = () => void onStop();
     }
   };
 
@@ -276,30 +329,20 @@ export function App() {
       <Topbar
         agentStatus={agent.text}
         agentClass={agent.className}
-        mode={state.mode}
+        mode={mode}
+        liveEnabled={liveEnabled}
+        caseId={caseId}
+        caseHref={caseId ? caseFileHref(caseId) : null}
         presentation={presentation}
+        onMode={onMode}
         onTogglePresentation={() => setPresentation((value) => !value)}
       />
-      {apiError ? (
-        <p className="error-banner" role="alert">
-          <span>{apiError}</span>
-          {deployState === "idle" ? (
-            <button type="button" onClick={() => void startLive()}>
-              Retry
-            </button>
-          ) : null}
-        </p>
-      ) : null}
-      {alerts.length > 0 ? (
-        <p className="error-banner" role="alert">
-          {alerts.join(" · ")}
-        </p>
-      ) : null}
-      {state.connection === "reconnecting" ? (
-        <p className="reconnecting-banner" role="status">
-          Reconnecting to event stream
-        </p>
-      ) : null}
+      <StatusBanners
+        apiError={apiError}
+        onRetry={() => retryRef.current?.()}
+        reconnecting={state.connection === "reconnecting"}
+        keyNotice={keyNotice}
+      />
       <main className={presentation ? "presentation" : ""}>
         <div className="dashboard-grid">
           <div className={`left-stack side-panel${presentation ? " side-hidden" : ""}`}>
@@ -342,16 +385,19 @@ export function App() {
             />
           </div>
           <LiveAgentView
-            targets={targetList}
+            targets={targetTabs(state)}
             selectedTargetId={selectedTargetId}
-            address={displayAddress(streamingUrl, followed)}
-            live={state.case?.status === "running" || state.connection === "live"}
+            address={displayHost(followed)}
+            mode={mode}
             streamingUrl={streamingUrl}
+            streamOrigins={config.streamOrigins}
             phaseIndex={phase.phaseIndex}
             complete={phase.complete}
             lines={lines}
+            pivots={pivots}
             onSelectTarget={setSelectedTargetId}
-            onStreamError={() => setStreamBroken(true)}
+            onApprovePivot={onApprovePivot}
+            onDismissPivot={(pivotId) => setHiddenPivots((current) => new Set(current).add(pivotId))}
           />
           <div className={`side-panel right-wrap${presentation ? " side-hidden" : ""}`}>
             <ForensicPanel
@@ -425,32 +471,16 @@ function agentPill(status: "created" | "running" | "completed" | "cancelled" | n
 function toLines(events: SentinelEvent[], rows: ReturnType<typeof logLines>): TerminalLine[] {
   return rows.map((row, index) => {
     const event = events[index];
-    return {
-      id: String(event?.seq ?? index),
-      time: row.time,
-      tag: row.tag,
-      tone: row.tag === "FINISH" ? "ok" : row.tag === "THREAT" ? "risk" : row.tag === "TRACE" ? "warn" : "info",
-      module: MODULE_LABEL[row.module] ?? row.module,
-      message: row.message,
-    };
+      return {
+        id: String(event?.seq ?? index),
+        time: row.time,
+        tag: row.tag,
+        tone: row.tag === "FINISH" ? "ok" : row.tag === "THREAT" ? "risk" : row.tag === "TRACE" ? "warn" : "info",
+        module: MODULE_LABEL[row.module] ?? row.module,
+        message: row.message,
+        card: event?.type === "SafetyHalt" ? "halt" : undefined,
+      };
   });
-}
-
-function alertMessages(state: ReturnType<InvestigationStore["getState"]>, targetId: string | "all"): string[] {
-  const messages = state.safetyHalts
-    .filter((halt) => targetId === "all" || halt.targetId === targetId || halt.targetId === null)
-    .map((halt) => halt.reason);
-  for (const event of state.log) {
-    if (event.type !== "TargetFailed") continue;
-    if (targetId !== "all" && event.target_id !== targetId) continue;
-    messages.push(event.message);
-  }
-  return messages;
-}
-
-function displayAddress(streamingUrl: string | null, target: TargetState | null): string {
-  const raw = streamingUrl || target?.url || "";
-  return raw.replace(/^https?:\/\//, "");
 }
 
 async function exportBundle(input: {

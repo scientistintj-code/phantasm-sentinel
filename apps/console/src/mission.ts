@@ -83,12 +83,19 @@ export interface ModuleCardData {
   span: { left: number; width: number } | null;
 }
 
-export function consoleMode(env: { VITE_CONSOLE_MODE?: string } = import.meta.env): "live" | "replay" {
+export function consoleMode(
+  env: { VITE_DEFAULT_MODE?: string; VITE_CONSOLE_MODE?: string } = import.meta.env,
+): "live" | "replay" {
+  if (env.VITE_DEFAULT_MODE === "live" || env.VITE_DEFAULT_MODE === "replay") return env.VITE_DEFAULT_MODE;
   return env.VITE_CONSOLE_MODE === "live" ? "live" : "replay";
 }
 
 export function agentTogglesEnabled(env: { VITE_ENABLE_AGENT_TOGGLES?: string } = import.meta.env): boolean {
   return env.VITE_ENABLE_AGENT_TOGGLES === "true";
+}
+
+export function deployAllowed(input: { investigator: string; authorized: boolean; targetCount: number }): boolean {
+  return input.authorized && input.investigator.trim() !== "" && input.targetCount > 0;
 }
 
 export function normalizeTargetUrl(raw: string): string | null {

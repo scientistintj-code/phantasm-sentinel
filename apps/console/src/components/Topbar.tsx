@@ -5,13 +5,21 @@ export function Topbar({
   agentStatus,
   agentClass,
   mode,
+  liveEnabled,
+  caseId,
+  caseHref,
   presentation,
+  onMode,
   onTogglePresentation,
 }: {
   agentStatus: "IDLE" | "RUNNING" | "COMPLETE";
   agentClass: "status-idle" | "status-running" | "status-complete";
   mode: "live" | "replay";
+  liveEnabled: boolean;
+  caseId: string | null;
+  caseHref: string | null;
   presentation: boolean;
+  onMode: (mode: "live" | "replay") => void;
   onTogglePresentation: () => void;
 }) {
   return (
@@ -31,7 +39,19 @@ export function Topbar({
         <div className={`status ${agentClass}`}>
           <i /> AGENT {agentStatus}
         </div>
-        <div className={`mode-badge mode-badge-${mode}`}>{mode === "live" ? "LIVE" : "REPLAY"}</div>
+        <div className="mode-switch" role="group" aria-label="Session mode">
+          <button type="button" aria-pressed={mode === "replay"} onClick={() => onMode("replay")}>
+            Replay
+          </button>
+          <button type="button" aria-pressed={mode === "live"} disabled={!liveEnabled} onClick={() => onMode("live")}>
+            Live
+          </button>
+        </div>
+        {caseId && caseHref ? (
+          <a className="case-link" href={caseHref}>
+            Open case file
+          </a>
+        ) : null}
         <PresentationMode active={presentation} onToggle={onTogglePresentation} />
       </div>
     </header>
