@@ -27,3 +27,7 @@ docs/TINYFISH_DOCS.txt
 docs/sse-sample.txt
 design/Phantasm-Web_Dashboard.html
 design/Phantasm-Web_Dashboard.html
+live-test.txt
+body.json
+.vercel
+*.mp4
