@@ -27,10 +27,10 @@ test("limits connect-src to this app and frame-src to configured stream origins"
   expect(policy).not.toContain("*");
 });
 
-test("uses frame-src none when no stream origins are configured", () => {
+test("allows same-origin frames when no stream origins are configured", () => {
   expect(
     contentSecurityPolicy({ dev: false, nonce: "abc", streamOrigins: [] }),
-  ).toContain("frame-src 'none'");
+  ).toContain("frame-src 'self'");
 });
 
 test("keeps only http(s) stream origins", () => {

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulated stream</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0a0e1a;
+        --cyan: #22d3ee;
+        --ink: #d7e6ee;
+        --muted: #8aa0b3;
+        --line: rgba(34, 211, 238, 0.35);
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: var(--bg);
+        color: var(--ink);
+        font: 12px/1.35 ui-sans-serif, system-ui, sans-serif;
+        overflow: hidden;
+      }
+      .chrome {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 10px;
+        border-bottom: 1px solid var(--line);
+        background: #0d1424;
+      }
+      .mark { color: var(--cyan); font-weight: 650; letter-spacing: 0.04em; }
+      #host {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: var(--muted);
+        font-family: ui-monospace, monospace;
+        font-size: 11px;
+      }
+      #stage { position: relative; height: calc(100% - 28px); }
+      .pad { padding: 10px; height: 100%; }
+      .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      .card, .panel, .modal, .banner, .widget {
+        border: 1px solid var(--line);
+        background: #101828;
+        border-radius: 6px;
+      }
+      .card { padding: 8px; }
+      .swatch { height: 36px; border-radius: 4px; background: linear-gradient(145deg, #143044, #0a0e1a); margin-bottom: 6px; }
+      .card b, .panel h2, .modal h2 { display: block; margin: 0 0 4px; font-size: 12px; }
+      .price, .tag { color: var(--cyan); }
+      .panel { margin: 10px; padding: 10px; }
+      .row { display: flex; justify-content: space-between; gap: 8px; margin: 4px 0; }
+      button, .btn {
+        border: 1px solid var(--cyan);
+        background: transparent;
+        color: var(--cyan);
+        border-radius: 4px;
+        padding: 4px 8px;
+        font: inherit;
+      }
+      .modal, .banner {
+        position: absolute;
+        z-index: 3;
+        padding: 10px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      }
+      .modal { left: 50%; top: 42%; width: min(240px, 86%); transform: translate(-50%, -50%); }
+      .banner { left: 10px; right: 10px; bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+      .steps { display: flex; gap: 6px; margin-bottom: 8px; color: var(--muted); }
+      .steps i { font-style: normal; }
+      .steps .on { color: var(--cyan); }
+      .field { margin: 6px 0; }
+      .field span { display: block; color: var(--muted); font-size: 10px; }
+      .field b {
+        display: block;
+        min-height: 16px;
+        border-bottom: 1px solid var(--line);
+        font-weight: 500;
+      }
+      .boot {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .spinner {
+        width: 28px;
+        height: 28px;
+        border: 2px solid rgba(34, 211, 238, 0.25);
+        border-top-color: var(--cyan);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      .widget { position: relative; margin-top: 8px; padding: 8px; outline: 2px solid var(--cyan); }
+      .tag {
+        position: absolute;
+        top: -8px;
+        right: 8px;
+        background: #0a0e1a;
+        padding: 0 4px;
+        font-size: 10px;
+        letter-spacing: 0.04em;
+      }
+      pre { margin: 0; color: var(--ink); font: 11px/1.45 ui-monospace, monospace; white-space: pre-wrap; }
+      .veil {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        text-align: center;
+        background: rgba(10, 14, 26, 0.82);
+        color: var(--cyan);
+        font-size: 14px;
+      }
+      #cursor {
+        position: fixed;
+        z-index: 6;
+        width: 12px;
+        height: 12px;
+        margin: -1px 0 0 -1px;
+        pointer-events: none;
+        border-top: 2px solid var(--cyan);
+        border-left: 2px solid var(--cyan);
+        transform: rotate(-18deg);
+        filter: drop-shadow(0 0 4px var(--cyan));
+        transition: left 0.4s ease, top 0.4s ease;
+      }
+      #cursor.click { transform: rotate(-18deg) scale(0.8); }
+      #badge {
+        position: fixed;
+        z-index: 7;
+        top: 4px;
+        right: 6px;
+        padding: 2px 6px;
+        border: 1px solid var(--cyan);
+        border-radius: 999px;
+        background: #0a0e1a;
+        color: var(--cyan);
+        font: 9px/1.4 ui-monospace, monospace;
+        letter-spacing: 0.04em;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) {
+        .spinner { animation: none; border-top-color: var(--cyan); }
+        #cursor { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chrome">
+      <span class="mark">HARBOR SUPPLY</span>
+      <span id="host"></span>
+    </div>
+    <div id="stage"></div>
+    <div id="cursor" hidden></div>
+    <div id="badge">SIMULATED STREAM (replay)</div>
+    <script>
+      (function () {
+        var PHASES = [
+          "init_browser",
+          "load_site",
+          "bypass_popups",
+          "navigate_checkout",
+          "collect_evidence",
+          "validate_payload",
+          "build_graph",
+        ];
+        var stage = document.getElementById("stage");
+        var cursor = document.getElementById("cursor");
+        var hostNode = document.getElementById("host");
+        var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var timers = [];
+        var loopToken = 0;
+        var locked = false;
+
+        hostNode.textContent = new URLSearchParams(window.location.search).get("host") || "";
+
+        document.addEventListener(
+          "submit",
+          function (event) {
+            event.preventDefault();
+          },
+          true,
+        );
+        document.addEventListener(
+          "click",
+          function (event) {
+            event.preventDefault();
+          },
+          true,
+        );
+
+        function later(ms, fn) {
+          if (reduced) {
+            fn();
+            return;
+          }
+          timers.push(window.setTimeout(fn, ms));
+        }
+
+        function clearTimers() {
+          timers.forEach(function (id) {
+            window.clearTimeout(id);
+          });
+          timers = [];
+        }
+
+        function move(x, y, click) {
+          cursor.hidden = false;
+          cursor.style.left = x + "%";
+          cursor.style.top = y + "%";
+          cursor.classList.toggle("click", Boolean(click));
+          if (click) later(160, function () { cursor.classList.remove("click"); });
+        }
+
+        function html(value) {
+          stage.innerHTML = value;
+        }
+
+        function home() {
+          html(
+            '<div class="pad"><div class="cards">' +
+              card("Field lantern", "$42.00") +
+              card("Wool blanket", "$68.00") +
+              card("Tin cup set", "$24.00") +
+              "</div></div>",
+          );
+        }
+
+        function card(name, price) {
+          return (
+            '<article class="card"><div class="swatch"></div><b>' +
+            name +
+            '</b><span class="price">' +
+            price +
+            "</span></article>"
+          );
+        }
+
+        function showInit() {
+          html(
+            '<div class="boot"><div class="spinner" aria-hidden="true"></div><p>Allocating cloud browser</p></div>',
+          );
+          move(50, 58, false);
+        }
+
+        function showHome() {
+          home();
+          move(18, 46, false);
+          later(700, function () { move(50, 46, false); });
+          later(1400, function () { move(82, 46, true); });
+        }
+
+        function showPopups() {
+          home();
+          stage.insertAdjacentHTML(
+            "beforeend",
+            '<div class="modal" id="age"><h2>Age check</h2><p>Are you 18 or older?</p><button type="button" id="yes">Yes</button></div>' +
+              '<div class="banner" id="cookie" hidden><p>Demo cookies only. No tracking.</p><button type="button" id="accept">Accept</button></div>',
+          );
+          move(58, 58, false);
+          later(700, function () {
+            move(58, 58, true);
+            var age = document.getElementById("age");
+            var cookie = document.getElementById("cookie");
+            if (age) age.hidden = true;
+            if (cookie) cookie.hidden = false;
+          });
+          later(1500, function () { move(78, 82, false); });
+          later(2100, function () {
+            move(78, 82, true);
+            var cookie = document.getElementById("cookie");
+            if (cookie) cookie.hidden = true;
+          });
+        }
+
+        function wizard(step, name, email) {
+          html(
+            '<div class="panel"><div class="steps"><i class="' +
+              (step === 1 ? "on" : "") +
+              '">1 Name</i><i class="' +
+              (step === 2 ? "on" : "") +
+              '">2 Email</i><i class="' +
+              (step === 3 ? "on" : "") +
+              '">3 Review</i></div>' +
+              '<div class="field"><span>Name</span><b id="w-name"></b></div>' +
+              '<div class="field"><span>Email</span><b id="w-email"></b></div>' +
+              "<p>" +
+              (step === 3 ? "Synthetic intake only." : "Step " + step + " of 3") +
+              "</p></div>",
+          );
+          document.getElementById("w-name").textContent = name;
+          document.getElementById("w-email").textContent = email;
+        }
+
+        function checkout(captured) {
+          html(
+            '<div class="panel"><h2>Checkout</h2>' +
+              '<div class="field"><span>Name</span><b id="c-name"></b></div>' +
+              '<div class="field"><span>Email</span><b id="c-email"></b></div>' +
+              '<div class="field"><span>Card</span><b>••••</b></div>' +
+              (captured
+                ? '<div class="widget"><span class="tag">captured</span><pre id="cfg"></pre></div>'
+                : '<button type="button">Review order</button>') +
+              "</div>",
+          );
+          document.getElementById("c-name").textContent = "Test User";
+          document.getElementById("c-email").textContent = "test@example.invalid";
+          if (captured) {
+            document.getElementById("cfg").textContent =
+              'provider: "harbor-pay"\nmode: "test"\ncurrency: "USD"\nsubmit: false';
+          }
+        }
+
+        function showCheckout() {
+          html(
+            '<div class="panel"><h2>Cart</h2><div class="row"><span>Field lantern</span><b>$42.00</b></div><button type="button" id="go">Checkout</button></div>',
+          );
+          move(28, 62, false);
+          later(550, function () { move(28, 62, true); });
+          later(800, function () {
+            wizard(1, "", "");
+            move(40, 48, false);
+          });
+          later(1200, function () { wizard(1, "Test User", ""); });
+          later(1600, function () {
+            wizard(2, "Test User", "");
+            move(46, 64, false);
+          });
+          later(2000, function () {
+            wizard(2, "Test User", "test@example.invalid");
+            move(62, 70, true);
+          });
+          later(2300, function () { wizard(3, "Test User", "test@example.invalid"); });
+          later(2600, function () {
+            checkout(false);
+            move(36, 78, false);
+          });
+        }
+
+        function showEvidence() {
+          checkout(true);
+          move(62, 70, true);
+        }
+
+        function showStop() {
+          checkout(false);
+          stage.insertAdjacentHTML(
+            "beforeend",
+            '<div class="veil">Stopped before payment evidence captured</div>',
+          );
+          move(50, 48, false);
+        }
+
+        var scenes = {
+          init_browser: showInit,
+          load_site: showHome,
+          bypass_popups: showPopups,
+          navigate_checkout: showCheckout,
+          collect_evidence: showEvidence,
+          validate_payload: showStop,
+          build_graph: showStop,
+        };
+
+        function show(phase) {
+          clearTimers();
+          var scene = scenes[phase];
+          if (scene) scene();
+        }
+
+        function armLoop() {
+          loopToken += 1;
+          var token = loopToken;
+          var index = 0;
+          function tick() {
+            if (locked || token !== loopToken) return;
+            show(PHASES[index]);
+            index = (index + 1) % PHASES.length;
+            window.setTimeout(tick, 3000);
+          }
+          tick();
+        }
+
+        window.addEventListener("message", function (event) {
+          if (event.origin !== window.location.origin) return;
+          var data = event.data;
+          if (!data || typeof data !== "object" || data.type !== "phase") return;
+          if (PHASES.indexOf(data.phase) === -1) return;
+          locked = true;
+          loopToken += 1;
+          show(data.phase);
+        });
+
+        armLoop();
+      })();
+    </script>
+  </body>
+</html>

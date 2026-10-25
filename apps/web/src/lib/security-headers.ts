@@ -4,7 +4,7 @@ export type SecurityHeader = {
 };
 
 // VERIFY: docs/TINYFISH_FACTS.md does not document the streaming_url host.
-// frame-src is only the http(s) origins in SENTINEL_STREAM_ORIGINS.
+// frame-src is 'self' so /console can embed /mock-stream, plus the http(s) origins in SENTINEL_STREAM_ORIGINS.
 // script-src stays 'self' plus a production nonce, without strict-dynamic,
 // so same-origin /console/ scripts keep loading. The stream iframe is frame-src.
 
@@ -58,7 +58,8 @@ function frameSrc(origins: readonly string[]): string {
       return false;
     }
   });
-  return safe.length > 0 ? `frame-src ${safe.join(" ")}` : "frame-src 'none'";
+  const sources = ["'self'", ...safe];
+  return `frame-src ${sources.join(" ")}`;
 }
 
 export function contentSecurityPolicy(options: ContentSecurityPolicyOptions): string {

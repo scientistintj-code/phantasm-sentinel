@@ -1,4 +1,12 @@
-import { connectEventStream, type ConnectEventStreamOptions, type InvestigationState, type InvestigationStore, type KeyHealth, type TargetStatus } from "@phantasm/core";
+import {
+  ApiError,
+  connectEventStream,
+  type ConnectEventStreamOptions,
+  type InvestigationState,
+  type InvestigationStore,
+  type KeyHealth,
+  type TargetStatus,
+} from "@phantasm/core";
 
 export interface KeyPoolRow {
   state: KeyHealth["state"];
@@ -25,6 +33,59 @@ export function caseIdFromSearch(search: string): string | null {
 
 export function caseFileHref(caseId: string): string {
   return `/cases/${encodeURIComponent(caseId)}`;
+}
+
+export const CASE_ID_STORAGE_KEY = "phantasm.caseId";
+
+export function caseIdFromStorage(storage: Pick<Storage, "getItem">): string | null {
+  let raw: string | null = null;
+  try {
+    raw = storage.getItem(CASE_ID_STORAGE_KEY);
+  } catch {
+    return null;
+  }
+  if (raw === null) return null;
+  return caseIdFromSearch(`?case=${encodeURIComponent(raw)}`);
+}
+
+export function caseIdToResume(search: string, storages: ReadonlyArray<Pick<Storage, "getItem">>): string | null {
+  const fromSearch = caseIdFromSearch(search);
+  if (fromSearch) return fromSearch;
+  for (const storage of storages) {
+    const stored = caseIdFromStorage(storage);
+    if (stored) return stored;
+  }
+  return null;
+}
+
+export function storeCaseId(storage: Pick<Storage, "setItem">, caseId: string): void {
+  try {
+    storage.setItem(CASE_ID_STORAGE_KEY, caseId);
+  } catch {
+    return;
+  }
+}
+
+export function isMissingCase(error: unknown): boolean {
+  return error instanceof ApiError && error.status === 404;
+}
+
+export function clearFailedCase(input: {
+  caseId: string;
+  storages: ReadonlyArray<Pick<Storage, "getItem" | "removeItem">>;
+  href: string;
+}): string {
+  for (const storage of input.storages) {
+    if (caseIdFromStorage(storage) !== input.caseId) continue;
+    try {
+      storage.removeItem(CASE_ID_STORAGE_KEY);
+    } catch {
+      continue;
+    }
+  }
+  const url = new URL(input.href, "http://console.local");
+  if (caseIdFromSearch(url.search) === input.caseId) url.searchParams.delete("case");
+  return `${url.pathname}${url.search}${url.hash}`;
 }
 
 export function keyPoolBanner(keys: readonly KeyPoolRow[]): string | null {

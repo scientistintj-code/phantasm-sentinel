@@ -1,8 +1,8 @@
 import { LuLock, LuMonitor } from "react-icons/lu";
-import type { PivotState } from "@phantasm/core";
+import { PHASES, type PivotState } from "@phantasm/core";
 import { Panel } from "./Panel";
 import { Stepper } from "./Stepper";
-import { StreamFrame } from "./StreamFrame";
+import { StreamFrame, simulatedStream } from "./StreamFrame";
 import { Terminal, type TerminalLine } from "./Terminal";
 import type { TargetTabModel } from "../viewState";
 
@@ -35,6 +35,8 @@ export function LiveAgentView({
   onApprovePivot: (pivotId: string) => void;
   onDismissPivot: (pivotId: string) => void;
 }) {
+  const runPhase = PHASES[phaseIndex] ?? null;
+  const simulated = simulatedStream(streamingUrl, streamOrigins, mode === "replay");
   return (
     <Panel title="LIVE AGENT VIEW" icon={LuMonitor} className="center-panel">
       <div className="target-tabs" role="tablist" aria-label="Targets">
@@ -73,7 +75,7 @@ export function LiveAgentView({
             <LuLock size={13} />
             {address}
           </div>
-          {mode === "live" ? (
+          {mode === "live" && !simulated ? (
             <span className="live">
               <i />
               LIVE
@@ -83,7 +85,13 @@ export function LiveAgentView({
           )}
         </div>
         <div className="browser-body">
-          <StreamFrame streamingUrl={streamingUrl} origins={streamOrigins} recorded={mode === "replay"} />
+          <StreamFrame
+            streamingUrl={streamingUrl}
+            origins={streamOrigins}
+            recorded={mode === "replay"}
+            host={address}
+            runPhase={runPhase}
+          />
         </div>
       </div>
       <Stepper phaseIndex={phaseIndex} complete={complete} />

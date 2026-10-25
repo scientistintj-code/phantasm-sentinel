@@ -54,7 +54,18 @@ import {
   stepperView,
   suggestedFocus,
 } from "./mission";
-import { attachCase, caseFileHref, caseIdFromSearch, displayHost, keyPoolBanner, targetTabs, visiblePivots } from "./viewState";
+import {
+  attachCase,
+  caseFileHref,
+  caseIdToResume,
+  clearFailedCase,
+  displayHost,
+  isMissingCase,
+  keyPoolBanner,
+  storeCaseId,
+  targetTabs,
+  visiblePivots,
+} from "./viewState";
 
 const MODULE_LABEL: Record<string, string> = {
   search: "TinySearch",
@@ -140,27 +151,54 @@ export function App() {
     };
   }, [client, mode, state.case?.id, state.graphVersion]);
 
+  const caseStores = [window.sessionStorage, window.localStorage];
+  const publishCaseId = (id: string) => {
+    caseIdRef.current = id;
+    setOpenCaseId((current) => (current === id ? current : id));
+    for (const storage of caseStores) storeCaseId(storage, id);
+  };
+
   useEffect(() => {
-    const caseId = caseIdFromSearch(window.location.search);
+    if (mode === "replay") return;
+    const caseId = caseIdToResume(window.location.search, caseStores);
     if (!caseId) return;
-    caseIdRef.current = caseId;
-    setOpenCaseId(caseId);
-    setDeployState("running");
-    const session = attachCase({
-      client,
-      store,
-      caseId,
-      onCaseId: (id) => {
-        caseIdRef.current = id;
-        setOpenCaseId((current) => (current === id ? current : id));
-      },
-    });
-    streamStopRef.current = session.stopStream;
-    return () => {
-      session.stopStream();
-      if (streamStopRef.current === session.stopStream) streamStopRef.current = null;
+    let cancelled = false;
+    let stop: (() => void) | null = null;
+    const resume = () => {
+      client
+        .getCase(caseId)
+        .then(() => {
+          if (cancelled || !mountedRef.current) return;
+          publishCaseId(caseId);
+          setDeployState("running");
+          setApiError(null);
+          const session = attachCase({ client, store, caseId, onCaseId: publishCaseId });
+          stop = session.stopStream;
+          streamStopRef.current = session.stopStream;
+        })
+        .catch((error: unknown) => {
+          if (cancelled || !mountedRef.current) return;
+          if (isMissingCase(error)) {
+            caseIdRef.current = null;
+            setOpenCaseId(null);
+            setDeployState("idle");
+            setApiError(null);
+            const next = clearFailedCase({ caseId, storages: caseStores, href: window.location.href });
+            window.history.replaceState(window.history.state, "", next);
+            return;
+          }
+          setDeployState("idle");
+          setApiError(errorText(error));
+          retryRef.current = () => resume();
+        });
     };
-  }, [client, store]);
+    resume();
+    return () => {
+      cancelled = true;
+      stop?.();
+      if (stop !== null && streamStopRef.current === stop) streamStopRef.current = null;
+    };
+  }, [client, mode, store]);
 
   useEffect(() => {
     if (mode === "replay") setKeys(labKeys);
@@ -270,17 +308,14 @@ export function App() {
         urls: targets,
         maxParallel: clampParallel(parallel),
         focus,
-        onCaseId: (id) => {
-          caseIdRef.current = id;
-          setOpenCaseId((current) => (current === id ? current : id));
-        },
+        onCaseId: publishCaseId,
       });
       if (!mountedRef.current) {
         session.stopStream();
         return;
       }
       streamStopRef.current = session.stopStream;
-      caseIdRef.current = session.caseId;
+      publishCaseId(session.caseId);
       setDeployState("running");
       if (session.rejected.length > 0) setApiError(session.rejected.join("; "));
     } catch (error) {

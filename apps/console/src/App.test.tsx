@@ -1,9 +1,14 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, expect, it } from "vitest";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { afterEach, expect, it, vi } from "vitest";
 import { App } from "./App";
+import { CASE_ID_STORAGE_KEY } from "./viewState";
 
 afterEach(() => {
   cleanup();
+  vi.unstubAllGlobals();
+  localStorage.clear();
+  sessionStorage.clear();
+  window.history.replaceState(null, "", "/");
 });
 
 function deployButton(): HTMLButtonElement {
@@ -65,4 +70,50 @@ it("adds removable targets, fills focus, and deploys a replay", () => {
   expect(screen.getByRole("button", { name: /DEPLOY AGENT/ })).toBeTruthy();
   fireEvent.click(screen.getByRole("button", { name: "Remove https://checkout.example/pay" }));
   expect(screen.queryByText("checkout.example/pay")).toBeNull();
+});
+
+it("clears a missing case id from storage and the url without an error banner", async () => {
+  localStorage.setItem(CASE_ID_STORAGE_KEY, "missing");
+  sessionStorage.setItem(CASE_ID_STORAGE_KEY, "missing");
+  window.history.replaceState(null, "", "/console/?case=missing");
+  const calls: string[] = [];
+  vi.stubGlobal("fetch", async (url: string) => {
+    const href = String(url);
+    calls.push(href);
+    if (href.endsWith("/v1/health/keys")) {
+      return new Response("[]", { status: 200, headers: { "content-type": "application/json" } });
+    }
+    if (href.endsWith("/v1/cases/missing")) {
+      return new Response(
+        JSON.stringify({
+          type: "about:blank",
+          title: "Not Found",
+          status: 404,
+          detail: "Case not found",
+          instance: "/v1/cases/missing",
+        }),
+        { status: 404, headers: { "content-type": "application/problem+json" } },
+      );
+    }
+    return new Response("{}", { status: 500 });
+  });
+
+  render(<App />);
+  await waitFor(() => {
+    expect(calls.some((href) => href.endsWith("/v1/health/keys"))).toBe(true);
+  });
+  expect(calls.some((href) => href.includes("/v1/cases/"))).toBe(false);
+  expect(screen.queryByRole("alert")).toBeNull();
+
+  fireEvent.click(screen.getByRole("button", { name: "Live" }));
+  await waitFor(() => {
+    expect(localStorage.getItem(CASE_ID_STORAGE_KEY)).toBeNull();
+    expect(sessionStorage.getItem(CASE_ID_STORAGE_KEY)).toBeNull();
+  });
+  expect(window.location.search).toBe("");
+  expect(screen.queryByRole("alert")).toBeNull();
+  expect(screen.queryByRole("button", { name: "Retry" })).toBeNull();
+  expect(screen.getByText(/AGENT\s+IDLE/)).toBeTruthy();
+  expect(calls.some((href) => href.endsWith("/v1/cases/missing"))).toBe(true);
+  expect(calls.some((href) => href.includes("/events") || href.includes("/graph") || href.includes("/report"))).toBe(false);
 });
