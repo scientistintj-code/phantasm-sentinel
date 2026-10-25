@@ -118,11 +118,15 @@ def test_rejects_empty_signing_secret(monkeypatch: pytest.MonkeyPatch) -> None:
         Settings()
 
 
-def test_rejects_non_asyncpg_database_url(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setenv("DATABASE_URL", "sqlite+aiosqlite:///sentinel.db")
+def test_database_url_accepts_asyncpg_or_aiosqlite(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("EVIDENCE_SIGNING_SECRET", "hidden-signing-secret")
+    monkeypatch.setenv("DATABASE_URL", "sqlite+aiosqlite:///sentinel.db")
 
-    with pytest.raises(ValidationError):
+    assert Settings().database_url.get_secret_value() == "sqlite+aiosqlite:///sentinel.db"
+
+    monkeypatch.setenv("DATABASE_URL", "sqlite:///sentinel.db")
+
+    with pytest.raises(ValidationError, match="postgresql\\+asyncpg or sqlite\\+aiosqlite"):
         Settings()
 
 

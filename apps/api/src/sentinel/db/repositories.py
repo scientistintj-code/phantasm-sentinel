@@ -85,6 +85,13 @@ class CaseRepository:
         result = await self._session.execute(select(CaseRow).where(CaseRow.id == case_id))
         return result.scalar_one_or_none()
 
+    async def list_newest(self) -> list[CaseRow]:
+        """Return every case, newest ``created_at`` first."""
+        result = await self._session.execute(
+            select(CaseRow).order_by(CaseRow.created_at.desc(), CaseRow.sequence.desc())
+        )
+        return list(result.scalars().all())
+
     async def set_status(self, case_id: str, status: str) -> bool:
         """Update status. Return whether the case existed."""
         row = await self._session.get(CaseRow, case_id)
@@ -122,6 +129,16 @@ class TargetRepository:
             stored.append(row)
         await self._session.flush()
         return stored
+
+    async def get(self, case_id: str, target_id: str) -> TargetRow | None:
+        """Return the target when it belongs to ``case_id``."""
+        result = await self._session.execute(
+            select(TargetRow).where(
+                TargetRow.case_id == case_id,
+                TargetRow.target_id == target_id,
+            )
+        )
+        return result.scalar_one_or_none()
 
     async def list_for_case(self, case_id: str) -> list[TargetRow]:
         """Return targets in insertion order."""
@@ -306,6 +323,29 @@ class LedgerRepository:
             head_hash=row.head_hash,
             entry_count=row.entry_count,
         )
+
+    async def latest_payload_report(
+        self,
+        case_id: str,
+        target_id: str,
+    ) -> dict[str, Any] | None:
+        """Return the newest ``PayloadValidated`` report stored for ``target_id``."""
+        result = await self._session.execute(
+            select(LedgerEntryRow)
+            .where(
+                LedgerEntryRow.case_id == case_id,
+                LedgerEntryRow.event_type == "PayloadValidated",
+            )
+            .order_by(LedgerEntryRow.seq.desc())
+        )
+        for row in result.scalars():
+            payload = row.payload
+            if not isinstance(payload, dict) or payload.get("target_id") != target_id:
+                continue
+            report = payload.get("report")
+            if isinstance(report, dict):
+                return {str(key): value for key, value in report.items()}
+        return None
 
     async def page(self, case_id: str, after_seq: int) -> tuple[list[LedgerEntry], str | None]:
         """Return at most one page of entries with ``seq`` greater than ``after_seq``."""

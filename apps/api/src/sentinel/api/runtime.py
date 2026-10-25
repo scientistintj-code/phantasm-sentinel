@@ -129,7 +129,12 @@ class Runtime:
                 await store.indicators.replace_from_graph(case_id, result.graph)
                 await store.evidence.replace_from_entries(case_id, entries)
                 await store.targets.save_reports(case_id, entries)
-                if not await store.cases.set_status(case_id, "completed"):
+                status = (
+                    "cancelled"
+                    if self.orchestrator.cancellation_requested(case_id)
+                    else "completed"
+                )
+                if not await store.cases.set_status(case_id, status):
                     return
                 await session.commit()
         except asyncio.CancelledError:

@@ -1,4 +1,4 @@
-"""Case, target, stream, graph, and ledger routes."""
+"""Case, target, event stream, graph, and ledger routes."""
 
 from __future__ import annotations
 
@@ -10,9 +10,15 @@ from uuid import uuid4
 
 from fastapi import APIRouter, BackgroundTasks, Body, Header, Query, Response
 from fastapi.responses import StreamingResponse
+from pydantic import ValidationError
 
 from sentinel.api.deps import RuntimeDep, SessionDep, SettingsDep
-from sentinel.api.errors import BadRequestError, ConflictError, NotFoundError
+from sentinel.api.errors import (
+    BadRequestError,
+    ConflictError,
+    NotFoundError,
+    NotImplementedRouteError,
+)
 from sentinel.api.schemas import (
     CaseCreated,
     CaseDetail,
@@ -44,6 +50,13 @@ async def create_case(payload: CreateCaseRequest, session: SessionDep) -> CaseCr
     )
     await session.commit()
     return _created(row)
+
+
+@router.get("/cases", response_model=list[CaseCreated])
+async def list_cases(session: SessionDep) -> list[CaseCreated]:
+    """Return every case, newest first."""
+    rows = await Repositories(session).cases.list_newest()
+    return [_created(row) for row in rows]
 
 
 @router.post(
@@ -104,14 +117,37 @@ async def investigate(
     return Response(status_code=202)
 
 
-@router.get("/cases/{case_id}/stream")
+@router.post("/cases/{case_id}/cancel", response_model=CaseCreated)
+async def cancel_case(case_id: str, session: SessionDep, runtime: RuntimeDep) -> CaseCreated:
+    """Stop the case and return its stored summary."""
+    store = Repositories(session)
+    case = await _require_case(store, case_id)
+    await runtime.orchestrator.cancel_case(case_id)
+    if not await store.cases.set_status(case_id, "cancelled"):
+        raise NotFoundError("Case not found")
+    await session.commit()
+    return _created(case)
+
+
+@router.post("/cases/{case_id}/pivots/{pivot_id}/approve")
+async def approve_pivot(case_id: str, pivot_id: str, session: SessionDep) -> None:
+    """Pivot approval is not available. A missing case is still not found."""
+    await _require_case(Repositories(session), case_id)
+    raise NotImplementedRouteError(f"Pivot approval is not implemented for {pivot_id}")
+
+
+@router.get("/cases/{case_id}/events", operation_id="case_events")
+@router.get("/cases/{case_id}/stream", operation_id="case_stream")
 async def stream_case(
     case_id: str,
     session: SessionDep,
     runtime: RuntimeDep,
     last_event_id: Annotated[str | None, Header(alias="Last-Event-ID")] = None,
 ) -> StreamingResponse:
-    """Replay ledger events, then stream live ones. Heartbeats are comments."""
+    """Replay ledger events, then stream live ones. Heartbeats are comments.
+
+    ``/events`` is the contract path. ``/stream`` calls this same handler.
+    """
     await _require_case(Repositories(session), case_id)
     after = _sequence(last_event_id, name="Last-Event-ID")
     await session.rollback()
@@ -144,6 +180,31 @@ async def get_case(case_id: str, session: SessionDep) -> CaseDetail:
     """Return the case summary and each stored target report."""
     case = await _require_case(Repositories(session), case_id)
     return _detail(case)
+
+
+@router.get(
+    "/cases/{case_id}/targets/{target_id}/report",
+    response_model=TargetReport,
+    response_model_exclude_none=True,
+)
+async def get_target_report(
+    case_id: str,
+    target_id: str,
+    session: SessionDep,
+) -> TargetReport:
+    """Return the ``PayloadValidated`` report stored for this target."""
+    store = Repositories(session)
+    await _require_case(store, case_id)
+    target = await store.targets.get(case_id, target_id)
+    if target is None:
+        raise NotFoundError("Target not found")
+    stored = await store.ledger.latest_payload_report(case_id, target_id)
+    if stored is None:
+        raise NotFoundError("Target report is not available")
+    try:
+        return TargetReport.model_validate(stored)
+    except ValidationError as exc:
+        raise NotFoundError("Target report is not available") from exc
 
 
 @router.get(

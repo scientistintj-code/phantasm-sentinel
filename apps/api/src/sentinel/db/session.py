@@ -4,9 +4,11 @@ from __future__ import annotations
 
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Any
 
 from sqlalchemy import event
+from sqlalchemy.engine.url import make_url
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -21,6 +23,7 @@ from sentinel.db.base import Base
 def build_engine(url: str) -> AsyncEngine:
     """Build an async engine. SQLite connections do not cross requests."""
     if url.startswith("sqlite"):
+        _ensure_sqlite_parent(url)
         engine = create_async_engine(
             url,
             poolclass=NullPool,
@@ -51,6 +54,14 @@ async def session_scope(factory: async_sessionmaker[AsyncSession]) -> AsyncItera
     """Yield a session and close it when the caller returns."""
     async with factory() as session:
         yield session
+
+
+def _ensure_sqlite_parent(url: str) -> None:
+    """Create the parent directory for a file-backed SQLite URL."""
+    database = make_url(url).database
+    if not database or database == ":memory:":
+        return
+    Path(database).parent.mkdir(parents=True, exist_ok=True)
 
 
 def _enable_sqlite_pragmas(engine: AsyncEngine) -> None:

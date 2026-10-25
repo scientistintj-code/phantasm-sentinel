@@ -7,7 +7,7 @@ from urllib.parse import urlsplit
 from pydantic import AnyHttpUrl, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
-_DATABASE_SCHEME = "postgresql+asyncpg://"
+_DATABASE_SCHEMES = ("postgresql+asyncpg://", "sqlite+aiosqlite://")
 
 
 def _parse_api_keys(value: object) -> tuple[SecretStr, ...]:
@@ -112,9 +112,9 @@ class Settings(BaseSettings):
 
     @field_validator("database_url")
     @classmethod
-    def database_url_uses_asyncpg(cls, value: SecretStr) -> SecretStr:
-        if not value.get_secret_value().startswith(_DATABASE_SCHEME):
-            raise ValueError("must use the postgresql+asyncpg scheme")
+    def database_url_uses_async_driver(cls, value: SecretStr) -> SecretStr:
+        if not value.get_secret_value().startswith(_DATABASE_SCHEMES):
+            raise ValueError("must use the postgresql+asyncpg or sqlite+aiosqlite scheme")
         return value
 
     @field_validator("evidence_signing_secret")

@@ -253,6 +253,16 @@ class InvestigationOrchestrator:
         self._enrich = _enrich_url if enrich_target is None else enrich_target
         self._key_acquire_timeout = key_acquire_timeout
         self._now: Callable[[], datetime] = _utc_now if now is None else now
+        self._cancellations: set[str] = set()
+
+    async def cancel_case(self, case_id: str) -> None:
+        """Record that ``case_id`` should finish as cancelled."""
+        self._cancellations.add(case_id)
+        log.info("case_cancel_requested", case_id=case_id)
+
+    def cancellation_requested(self, case_id: str) -> bool:
+        """Return whether ``cancel_case`` was called for ``case_id``."""
+        return case_id in self._cancellations
 
     async def run(
         self,

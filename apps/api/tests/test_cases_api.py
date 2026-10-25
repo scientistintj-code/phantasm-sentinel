@@ -18,7 +18,9 @@ from sentinel.api.runtime import Runtime
 from sentinel.core.config import Settings
 from sentinel.db.models import EvidenceRow, IndicatorRow, LedgerEntryRow
 from sentinel.db.schema import main, run
+from sentinel.orchestrator.bus import EVIDENCE_FIELDS, Risk, TargetReport
 from sentinel.pipeline.enrichment import Indicator, InfraProfile
+from sentinel.pipeline.schemas import EvidenceItem
 from sentinel.tinyfish import (
     AgentEvent,
     AgentRunRequest,
@@ -309,19 +311,241 @@ async def test_case_targets_stream_graph_and_ledger(client: AsyncClient, app: Fa
     assert "x-sentinel-token" in allow.lower()
 
 
-async def _read_sse(app: FastAPI, case_id: str, last_event_id: str | None) -> str:
+async def test_list_cases_requires_auth_and_returns_newest_first(client: AsyncClient) -> None:
+    denied = await client.get("/v1/cases")
+    assert denied.status_code == 401
+    assert denied.headers["content-type"].startswith("application/problem+json")
+    assert denied.json()["detail"] == "X-Sentinel-Token is required"
+
+    first = await client.post("/v1/cases", headers=TOKEN, json=_CASE)
+    second = await client.post(
+        "/v1/cases",
+        headers=TOKEN,
+        json={**_CASE, "title": "Newer storefronts"},
+    )
+    assert first.status_code == 201
+    assert second.status_code == 201
+    older = first.json()
+    newer = second.json()
+
+    listed = await client.get("/v1/cases", headers=TOKEN)
+    assert listed.status_code == 200
+    rows = listed.json()
+    assert [row["id"] for row in rows] == [newer["id"], older["id"]]
+    assert rows[0]["title"] == "Newer storefronts"
+    assert rows[0]["status"] == "created"
+    assert rows[0]["number"].startswith("PS-")
+    assert rows[0]["created_at"].endswith("Z")
+    assert set(rows[0]) == {"id", "number", "title", "status", "created_at"}
+
+
+async def test_events_route_requires_auth_and_replays(client: AsyncClient, app: FastAPI) -> None:
+    denied = await client.get("/v1/cases/missing/events")
+    assert denied.status_code == 401
+    assert denied.headers["content-type"].startswith("application/problem+json")
+
+    missing = await client.get("/v1/cases/missing/events", headers=TOKEN)
+    assert missing.status_code == 404
+    assert missing.headers["content-type"].startswith("application/problem+json")
+    assert missing.json()["title"] == "Not Found"
+    assert missing.json()["detail"] == "Case not found"
+    assert missing.json()["instance"] == "/v1/cases/missing/events"
+
+    created = await client.post("/v1/cases", headers=TOKEN, json=_CASE)
+    case_id = created.json()["id"]
+    added = await client.post(
+        f"/v1/cases/{case_id}/targets",
+        headers=TOKEN,
+        json={"urls": ["https://example.com/shop"]},
+    )
+    assert added.status_code == 200
+    started = await client.post(f"/v1/cases/{case_id}/investigate", headers=TOKEN)
+    assert started.status_code == 202
+    stream = await _read_sse(app, case_id, None, suffix="events")
+    assert "id: 1\n" in stream
+    assert "CaseCompleted" in stream
+
+
+async def test_cancel_case_requires_auth_and_returns_status(
+    client: AsyncClient,
+    app: FastAPI,
+) -> None:
+    denied = await client.post("/v1/cases/missing/cancel")
+    assert denied.status_code == 401
+    assert denied.json()["detail"] == "X-Sentinel-Token is required"
+
+    missing = await client.post("/v1/cases/missing/cancel", headers=TOKEN)
+    assert missing.status_code == 404
+    assert missing.headers["content-type"].startswith("application/problem+json")
+    assert missing.json()["detail"] == "Case not found"
+    assert missing.json()["instance"] == "/v1/cases/missing/cancel"
+
+    created = await client.post("/v1/cases", headers=TOKEN, json=_CASE)
+    case = created.json()
+    case_id = case["id"]
+    runtime = app.state.runtime
+    assert isinstance(runtime, Runtime)
+    seen: list[str] = []
+    original = runtime.orchestrator.cancel_case
+
+    async def _spy(requested: str) -> None:
+        seen.append(requested)
+        await original(requested)
+
+    runtime.orchestrator.cancel_case = _spy  # type: ignore[method-assign]
+    cancelled = await client.post(f"/v1/cases/{case_id}/cancel", headers=TOKEN)
+    assert cancelled.status_code == 200
+    body = cancelled.json()
+    assert seen == [case_id]
+    assert body["id"] == case_id
+    assert body["number"] == case["number"]
+    assert body["title"] == case["title"]
+    assert body["created_at"] == case["created_at"]
+    assert body["status"] == "cancelled"
+    stored = await client.get(f"/v1/cases/{case_id}", headers=TOKEN)
+    assert stored.json()["status"] == "cancelled"
+
+
+async def test_target_report_requires_auth_and_reads_payload_validated(
+    client: AsyncClient,
+    app: FastAPI,
+) -> None:
+    denied = await client.get("/v1/cases/missing/targets/tgt_missing/report")
+    assert denied.status_code == 401
+    assert denied.headers["content-type"].startswith("application/problem+json")
+
+    missing = await client.get("/v1/cases/missing/targets/tgt_missing/report", headers=TOKEN)
+    assert missing.status_code == 404
+    assert missing.json()["title"] == "Not Found"
+    assert missing.json()["detail"] == "Case not found"
+    assert missing.json()["instance"] == "/v1/cases/missing/targets/tgt_missing/report"
+
+    created = await client.post("/v1/cases", headers=TOKEN, json=_CASE)
+    case_id = created.json()["id"]
+    other = await client.post(
+        "/v1/cases",
+        headers=TOKEN,
+        json={**_CASE, "title": "Other case"},
+    )
+    other_id = other.json()["id"]
+    added = await client.post(
+        f"/v1/cases/{case_id}/targets",
+        headers=TOKEN,
+        json={"urls": ["https://example.com/shop"]},
+    )
+    assert added.status_code == 200
+    detail = (await client.get(f"/v1/cases/{case_id}", headers=TOKEN)).json()
+    target_id = detail["targets"][0]["target_id"]
+    report_path = f"/v1/cases/{case_id}/targets/{target_id}/report"
+
+    waiting = await client.get(report_path, headers=TOKEN)
+    assert waiting.status_code == 404
+    assert waiting.headers["content-type"].startswith("application/problem+json")
+    assert waiting.json()["detail"] == "Target report is not available"
+
+    foreign = await client.get(
+        f"/v1/cases/{case_id}/targets/tgt_other/report",
+        headers=TOKEN,
+    )
+    assert foreign.status_code == 404
+    assert foreign.json()["detail"] == "Target not found"
+
+    cross = await client.get(
+        f"/v1/cases/{other_id}/targets/{target_id}/report",
+        headers=TOKEN,
+    )
+    assert cross.status_code == 404
+    assert cross.json()["detail"] == "Target not found"
+
+    report = TargetReport(
+        target_id=target_id,
+        host="example.com",
+        risk=Risk(score=25, label="LOW", evidence_coverage="8/8", verdict="Lab verdict"),
+        evidence=tuple(EvidenceItem(field=field, value="example.com") for field in EVIDENCE_FIELDS),
+    )
+    runtime = app.state.runtime
+    assert isinstance(runtime, Runtime)
+    async with runtime.sessions() as session:
+        session.add(
+            LedgerEntryRow(
+                case_id=case_id,
+                seq=1,
+                ts="2026-10-24T12:00:00.000Z",
+                event_type="PayloadValidated",
+                payload={
+                    "case_id": case_id,
+                    "seq": 1,
+                    "ts": "2026-10-24T12:00:00.000Z",
+                    "type": "PayloadValidated",
+                    "target_id": target_id,
+                    "report": report.model_dump(mode="json"),
+                },
+                prev_hash="a" * 64,
+                entry_hash="b" * 64,
+            )
+        )
+        await session.commit()
+
+    found = await client.get(report_path, headers=TOKEN)
+    assert found.status_code == 200
+    body = found.json()
+    assert body["target_id"] == target_id
+    assert body["host"] == "example.com"
+    assert body["risk"]["verdict"] == "Lab verdict"
+    assert len(body["evidence"]) == 8
+
+
+async def test_approve_pivot_requires_auth_and_returns_not_implemented(
+    client: AsyncClient,
+) -> None:
+    denied = await client.post("/v1/cases/missing/pivots/piv_1/approve")
+    assert denied.status_code == 401
+    assert denied.headers["content-type"].startswith("application/problem+json")
+    assert denied.json()["detail"] == "X-Sentinel-Token is required"
+
+    missing = await client.post("/v1/cases/missing/pivots/piv_1/approve", headers=TOKEN)
+    assert missing.status_code == 404
+    assert missing.json()["title"] == "Not Found"
+    assert missing.json()["detail"] == "Case not found"
+    assert missing.json()["instance"] == "/v1/cases/missing/pivots/piv_1/approve"
+
+    created = await client.post("/v1/cases", headers=TOKEN, json=_CASE)
+    case_id = created.json()["id"]
+    response = await client.post(
+        f"/v1/cases/{case_id}/pivots/piv_1/approve",
+        headers=TOKEN,
+    )
+    assert response.status_code == 501
+    assert response.headers["content-type"].startswith("application/problem+json")
+    body = response.json()
+    assert body["type"] == "about:blank"
+    assert body["title"] == "Not Implemented"
+    assert body["status"] == 501
+    assert body["detail"] == "Pivot approval is not implemented for piv_1"
+    assert body["code"] == "not_implemented"
+    assert body["instance"] == f"/v1/cases/{case_id}/pivots/piv_1/approve"
+
+
+async def _read_sse(
+    app: FastAPI,
+    case_id: str,
+    last_event_id: str | None,
+    *,
+    suffix: str = "stream",
+) -> str:
     """Read the replay, then disconnect. The httpx ASGI transport buffers until close."""
     headers = [(b"x-sentinel-token", b"test-token")]
     if last_event_id is not None:
         headers.append((b"last-event-id", last_event_id.encode()))
+    path = f"/v1/cases/{case_id}/{suffix}"
     scope = {
         "type": "http",
         "asgi": {"version": "3.0"},
         "http_version": "1.1",
         "method": "GET",
         "scheme": "http",
-        "path": f"/v1/cases/{case_id}/stream",
-        "raw_path": f"/v1/cases/{case_id}/stream".encode(),
+        "path": path,
+        "raw_path": path.encode(),
         "query_string": b"",
         "headers": headers,
         "client": ("127.0.0.1", 123),

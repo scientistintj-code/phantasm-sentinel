@@ -27,3 +27,11 @@ class ConflictError(SentinelError):
     code: ClassVar[str] = "conflict"
     status_code: ClassVar[int] = 409
     title: ClassVar[str] = "Conflict"
+
+
+class NotImplementedRouteError(SentinelError):
+    """The path is registered and the action is not available yet."""
+
+    code: ClassVar[str] = "not_implemented"
+    status_code: ClassVar[int] = 501
+    title: ClassVar[str] = "Not Implemented"
