@@ -61,7 +61,7 @@ const KEY_LABEL = /^key-\d+$/;
 export interface LiveDeployClient {
   createCase(body: CreateCaseRequest): Promise<CaseRecord>;
   addTargets(caseId: string, body: { urls: string[] }): Promise<TargetAdmission[]>;
-  investigate(caseId: string, body?: InvestigateRequest): Promise<void>;
+  investigate(caseId: string, body?: InvestigateRequest): Promise<unknown>;
   cancelCase(caseId: string): Promise<void>;
   eventsUrl(caseId: string): string;
 }
@@ -274,6 +274,7 @@ export async function deployLive(
     maxParallel: number;
     focus: string;
     connect?: (options: ConnectEventStreamOptions) => () => void;
+    onCaseId?: (caseId: string) => void;
   },
 ): Promise<LiveSession> {
   const investigator = input.investigator.trim();
@@ -297,18 +298,34 @@ export async function deployLive(
   const focus = input.focus.trim().slice(0, FOCUS_CAP);
   const body: InvestigateRequest = { max_parallel: clampParallel(input.maxParallel) };
   if (focus !== "") body.focus = focus;
-  await input.client.investigate(record.id, body);
+  const started = await input.client.investigate(record.id, body);
+  const caseId = caseIdFromInvestigate(started) ?? record.id;
+  input.onCaseId?.(caseId);
   const connect = input.connect ?? connectEventStream;
   const stopStream = connect({
-    url: input.client.eventsUrl(record.id),
-    onEvent: (event) => input.store.getState().apply(event),
+    url: input.client.eventsUrl(caseId),
+    onEvent: (event) => {
+      input.store.getState().apply(event);
+      input.onCaseId?.(event.case_id);
+    },
     onState: (connection) => input.store.getState().setConnection(connection),
   });
   return {
-    caseId: record.id,
+    caseId,
     stopStream,
     rejected: rejected.map((row) => `${row.host}: ${row.reason ?? "rejected"}`),
   };
+}
+
+export function caseIdFromInvestigate(value: unknown): string | null {
+  if (!value || typeof value !== "object") return null;
+  const record = value as Record<string, unknown>;
+  const raw = record.case_id ?? record.id;
+  if (typeof raw !== "string") return null;
+  const trimmed = raw.trim();
+  if (trimmed === "" || trimmed.length > 200) return null;
+  if (/[\s/?#\\]/.test(trimmed)) return null;
+  return trimmed;
 }
 
 export function errorText(error: unknown): string {

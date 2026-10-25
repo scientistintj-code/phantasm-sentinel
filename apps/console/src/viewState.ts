@@ -89,12 +89,17 @@ export function attachCase(input: {
   store: InvestigationStore;
   caseId: string;
   connect?: (options: ConnectEventStreamOptions) => () => void;
+  onCaseId?: (caseId: string) => void;
 }): { stopStream: () => void } {
   const connect = input.connect ?? connectEventStream;
+  input.onCaseId?.(input.caseId);
   const stopStream = connect({
     url: input.client.eventsUrl(input.caseId),
     lastSeq: lastAppliedSeq(input.store.getState()),
-    onEvent: (event) => input.store.getState().apply(event),
+    onEvent: (event) => {
+      input.store.getState().apply(event);
+      input.onCaseId?.(event.case_id);
+    },
     onState: (connection) => input.store.getState().setConnection(connection),
   });
   return { stopStream };

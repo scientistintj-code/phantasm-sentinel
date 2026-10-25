@@ -76,6 +76,7 @@ export function App() {
   const driverRef = useRef<ReplayDriver | null>(null);
   const streamStopRef = useRef<(() => void) | null>(null);
   const caseIdRef = useRef<string | null>(null);
+  const [openCaseId, setOpenCaseId] = useState<string | null>(null);
   const mountedRef = useRef(true);
   const [presentation, setPresentation] = useState(false);
   const [url, setUrl] = useState("");
@@ -143,8 +144,17 @@ export function App() {
     const caseId = caseIdFromSearch(window.location.search);
     if (!caseId) return;
     caseIdRef.current = caseId;
+    setOpenCaseId(caseId);
     setDeployState("running");
-    const session = attachCase({ client, store, caseId });
+    const session = attachCase({
+      client,
+      store,
+      caseId,
+      onCaseId: (id) => {
+        caseIdRef.current = id;
+        setOpenCaseId((current) => (current === id ? current : id));
+      },
+    });
     streamStopRef.current = session.stopStream;
     return () => {
       session.stopStream();
@@ -260,6 +270,10 @@ export function App() {
         urls: targets,
         maxParallel: clampParallel(parallel),
         focus,
+        onCaseId: (id) => {
+          caseIdRef.current = id;
+          setOpenCaseId((current) => (current === id ? current : id));
+        },
       });
       if (!mountedRef.current) {
         session.stopStream();
@@ -334,8 +348,8 @@ export function App() {
         agentClass={agent.className}
         mode={mode}
         liveEnabled={liveEnabled}
-        caseId={caseId}
-        caseHref={caseId ? caseFileHref(caseId) : null}
+        caseId={openCaseId}
+        caseHref={openCaseId ? caseFileHref(openCaseId) : null}
         presentation={presentation}
         onMode={onMode}
         onTogglePresentation={() => setPresentation((value) => !value)}

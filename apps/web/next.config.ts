@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      { source: "/console", destination: "/console/index.html" },
+      { source: "/console/", destination: "/console/index.html" },
+    ];
+  },
 };
 
 export default nextConfig;

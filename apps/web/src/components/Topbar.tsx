@@ -7,13 +7,13 @@ import { StatusPill } from "./StatusPill";
 
 const LINKS = [
   { href: "/cases", label: "Cases" },
-  { href: "/console/", label: "Console" },
+  { href: "/console", label: "Console" },
   { href: "/methodology", label: "Methodology" },
   { href: "/system", label: "System" },
 ] as const;
 
 function isCurrent(pathname: string, href: string): boolean {
-  if (href === "/console/") return false;
+  if (href === "/console") return false;
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 

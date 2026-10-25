@@ -112,6 +112,7 @@ it("deploys through createCase, addTargets, investigate, and the event stream", 
     async investigate(_id, body) {
       investigateBody = JSON.stringify(body);
       calls.push("investigate");
+      return { case_id: "case-1" };
     },
     async cancelCase() {
       calls.push("cancel");
@@ -120,6 +121,7 @@ it("deploys through createCase, addTargets, investigate, and the event stream", 
       return `/api/sentinel/v1/cases/${id}/events`;
     },
   };
+  const noted: string[] = [];
   const session = await deployLive({
     client,
     store,
@@ -127,8 +129,10 @@ it("deploys through createCase, addTargets, investigate, and the event stream", 
     urls: ["https://lab-a.example/"],
     maxParallel: 2,
     focus: "  checkout trail  ",
+    onCaseId: (id) => noted.push(id),
     connect: (options) => {
       calls.push(`stream:${options.url}`);
+      options.onEvent(parseSentinelEvent({ case_id: "case-1", seq: 1, ts: T0, type: "CaseCreated", title: "Live" }));
       options.onState("live");
       return () => options.onState("closed");
     },
@@ -141,6 +145,8 @@ it("deploys through createCase, addTargets, investigate, and the event stream", 
   ]);
   expect(investigateBody).toContain('"max_parallel":2');
   expect(investigateBody).toContain("checkout trail");
+  expect(noted).toEqual(["case-1", "case-1"]);
+  expect(session.caseId).toBe("case-1");
   expect(store.getState().connection).toBe("live");
   session.stopStream();
   expect(store.getState().connection).toBe("closed");
